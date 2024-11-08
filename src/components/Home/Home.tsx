@@ -1,6 +1,4 @@
 
-// Home.tsx
-import React from 'react';
 import Welcome from './Welcome';  // Import the Welcome component
 
 const Home = () => {
