@@ -1,4 +1,4 @@
-name: Build and Deploy React App
+name: Build and Deploy
 
 # Trigger workflow on push or pull request to the main branch
 on:
@@ -12,6 +12,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Ensure write access to repository contents for deploying
 
     steps:
       # Step 1: Checkout the code
@@ -46,5 +49,4 @@ jobs:
         with:
           deploy_dir: ./dist  # Path to the build output directory
           branch: gh-pages  # The branch to deploy to (use gh-pages branch for GitHub Pages)
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GITHUB_TOKEN or a custom token
