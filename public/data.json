@@ -41,6 +41,15 @@
             "url": "https://www.google.com",
             "tags": ["React", "TailwindCSS", "Vite"],
             "repo": ""
+        },
+        {
+            "id": 2,
+            "title": "Project 2",
+            "description": "This is a project description",
+            "image": "project2.jpg",
+            "url": "https://www.google.com",
+            "tags": ["React", "TailwindCSS", "Vite"],
+            "repo": ""
         }
     ],
 

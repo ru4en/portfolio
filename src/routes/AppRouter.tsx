@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Navbar from "../components/Nav/Navbar";
+import Footer from "../components/Footer/Footer";
 import Home from "../components/Home/Home";
 
 import CV from "../components/CV/CV";
@@ -29,6 +30,7 @@ function AppRouter() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/admin" element={<Admin />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

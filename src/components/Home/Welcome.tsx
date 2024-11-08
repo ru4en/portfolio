@@ -23,8 +23,9 @@ const Welcome = () => {
   return (
     <section className="relative w-full h-screen flex items-center transition-all duration-900
      justify-center bg-gradient-to-r dark:from-blue-500 dark:to-teal-500 dark:text-white text-gray-800 to-blue-300 from-teal-300">
-      <div className="absolute top-0 left-0 w-full h-full particles bg-[url('/particles.png')] bg-fixed bg-cover transition-all duration-300"></div>
-    <TerminalPopup />
+      <div className="p-3">
+        <TerminalPopup />
+      </div>
     </section>
   );
 };
