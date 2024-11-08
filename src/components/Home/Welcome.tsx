@@ -1,5 +1,5 @@
-import { TriangleAlert } from 'lucide-react';
 import { useEffect } from 'react';
+import TerminalPopup from './Term';
 
 const Welcome = () => {
   useEffect(() => {
@@ -24,21 +24,7 @@ const Welcome = () => {
     <section className="relative w-full h-screen flex items-center transition-all duration-900
      justify-center bg-gradient-to-r dark:from-blue-500 dark:to-teal-500 dark:text-white text-gray-800 to-blue-300 from-teal-300">
       <div className="absolute top-0 left-0 w-full h-full particles bg-[url('/particles.png')] bg-fixed bg-cover transition-all duration-300"></div>
-
-      <div className="relative text-center px-4 md:px-8">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Welcome to My Portfolio
-        </h1>
-        <TriangleAlert className="w-16 h-16 mx-auto text-black dark:text-white" />
-        <p className="text-lg md:text-2xl mb-6">
-          This Portfolio is still under construction.
-          <br />
-          Check back soon for updates!
-        </p>
-        <button className="px-6 py-3 bg-black text-white text-lg font-semibold rounded-xl hover:bg-gray-800 transition-all">
-          Keep Me Updated
-        </button>
-      </div>
+    <TerminalPopup />
     </section>
   );
 };

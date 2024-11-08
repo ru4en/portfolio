@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+// ignore file for now
 
 import { SiteInfo
     , SocialLink
@@ -14,53 +14,6 @@ import { SiteInfo
 
 import SiteInfoEditor from './SiteInfoEditor';
 import SocialLinkEditor from './SocialLinkEditor';
-
-
-const AboutInfoEditor: React.FC<{ aboutInfo: AboutInfo }> = ({ aboutInfo }) => {
-    return (
-        <section>
-        <label htmlFor="role">Role</label>
-        <input type="text" id="role" name="role" value={aboutInfo.role} />
-        <label htmlFor="description">Description</label>
-        <input type="text" id="description" name="description" value={aboutInfo.description} />
-        <label htmlFor="image">Image</label>
-        <input type="text" id="image" name="image" value={aboutInfo.image} />
-        </section>
-    );
-}
-
-const SkillEditor: React.FC<{ skill: Skill[] }> = ({ skill }) => {
-    return (
-        <section>
-        {skill.map((s, index) => (
-            <div key={index}>
-            <label htmlFor={`skill-name-${index}`}>Name</label>
-            <input
-                type="text"
-                id={`skill-name-${index}`}
-                name={`skill-name-${index}`}
-                value={s.name}
-            />
-            <label htmlFor={`skill-icon-${index}`}>Icon</label>
-            <input
-                type="text"
-                id={`skill-icon-${index}`}
-                name={`skill-icon-${index}`}
-                value={s.icon}
-            />
-            <label htmlFor={`skill-level-${index}`}>Level</label>
-            <input
-                type="number"
-                id={`skill-level-${index}`}
-                name={`skill-level-${index}`}
-                value={s.level}
-            />
-            </div>
-        ))}
-        </section>
-    );
-}
-            
 
 
 const ProjectEditor: React.FC<{ project: Project[] }> = ({ project }) => {
@@ -313,4 +266,3 @@ const PortfolioEditor = () => {
 };
 
 export default PortfolioEditor;
-export { SiteInfoEditor, SocialLinkEditor, AboutInfoEditor, SkillEditor, ProjectEditor, ModuleEditor, EducationEditor, TechnologyEditor, ExperienceEditor };

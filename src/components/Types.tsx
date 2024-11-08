@@ -19,7 +19,6 @@ export interface AboutInfo {
 
 export interface Skill {
     name: string;
-    icon: string;
     level: number;
 }
 

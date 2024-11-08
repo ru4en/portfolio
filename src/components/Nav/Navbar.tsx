@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
+import { ChevronRight } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isDarkMode, setDarkMode] = useState<boolean>(() => {
@@ -32,8 +33,8 @@ const Navbar: React.FC = () => {
       bg-opacity-80 transition-all duration-300 w-full max-w-7xl dark:bg-gray-800 dark:bg-opacity-80">
         <div className="navbar-content flex items-center w-full">
           <div className="logo flex items-center">
-            <Link to="/" className="font-bold text-2xl dark:text-white">
-              <img src="/logo-small.png" alt="logo" width={120} className="transition-opacity hover:opacity-80" />
+            <Link to="/">
+              <img src="/logo-small.png" alt="logo" width={120} className="transition-all duration-300 ease-in-out hover:scale-105 transform active:scale-95" />
             </Link>
           </div>
 
@@ -45,16 +46,25 @@ const Navbar: React.FC = () => {
               size={24}
             />
 
-            <div className="hidden md:flex space-x-8">
-              <Link to="/about-me" className="font-medium hover:text-gray-600 transition-colors text-lg dark:text-white dark:hover:text-gray-400">
-                About Me
-              </Link>
-              <Link to="/cv" className="font-medium hover:text-gray-600 transition-colors text-lg dark:text-white dark:hover:text-gray-400">
-                CV
-              </Link>
-              <Link to="/blog" className="font-medium hover:text-gray-600 transition-colors text-lg dark:text-white dark:hover:text-gray-400">
-                Blog
-              </Link>
+            <div className="hidden md:flex space-x-8 pr-10">
+            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <ChevronRight />
+              </span>
+              WHOAMI
+            </Link>
+            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <ChevronRight />
+              </span>
+              cv.pdf
+            </Link>
+            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <ChevronRight />
+              </span>
+              blog_
+            </Link>
             </div>
 
     <div className="block md:hidden pt-2">
@@ -106,19 +116,28 @@ const Navbar: React.FC = () => {
         >
           <ul className="flex flex-col items-center space-y-4 py-4">
             <li>
-              <Link to="/about-me" className="font-medium hover:text-gray-600 text-lg dark:text-white dark:hover:text-gray-400">
-                {'>'} about_me
-              </Link>
+            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <ChevronRight />
+              </span>
+              WHOAMI
+            </Link>
             </li>
             <li>
-              <Link to="/cv" className="font-medium hover:text-gray-600 text-lg dark:text-white dark:hover:text-gray-400">
-              {'>'} cv.pdf
-              </Link>
+            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <ChevronRight />
+              </span>
+              cv.pdf
+            </Link>
             </li>
             <li>
-              <Link to="/blog" className="font-medium hover:text-gray-600 text-lg dark:text-white dark:hover:text-gray-400">
-                {'>'} blog_
-              </Link>
+            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                <ChevronRight />
+              </span>
+              blog_
+            </Link>
             </li>
           </ul>
         </div>
