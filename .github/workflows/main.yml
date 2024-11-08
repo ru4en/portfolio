@@ -1,11 +1,8 @@
-name: Build and Deploy
+name: Build and Deploy React App
 
-# Trigger workflow on push or pull request to the main branch
+# Trigger workflow on push to the main branch
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -14,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # Ensure write access to repository contents for deploying
+      contents: write  # Allow writing to repository contents
 
     steps:
       # Step 1: Checkout the code
@@ -43,10 +40,10 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      # Step 5: Deploy to GitHub Pages (or other deployment service)
+      # Step 5: Deploy to GitHub Pages (ensure deploy to gh-pages branch)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_dir: ./dist  # Path to the build output directory
-          branch: gh-pages  # The branch to deploy to (use gh-pages branch for GitHub Pages)
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GITHUB_TOKEN or a custom token
+          branch: gh-pages    # Push to gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GitHub token or a custom PAT if needed
