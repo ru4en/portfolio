@@ -4,6 +4,7 @@ import Navbar from "../components/Nav/Navbar";
 import Home from "../components/Home/Home";
 
 import CV from "../components/CV/CV";
+import Admin from "../components/Admin/Admin";
 
 function About() {
   return <h2>About</h2>;
@@ -25,6 +26,7 @@ function AppRouter() {
         <Route path="/about-me" element={<About />} />
         <Route path="/cv" element={<CV />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </Router>

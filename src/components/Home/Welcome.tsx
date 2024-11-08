@@ -1,3 +1,4 @@
+import { TriangleAlert } from 'lucide-react';
 import { useEffect } from 'react';
 
 const Welcome = () => {
@@ -28,11 +29,14 @@ const Welcome = () => {
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Welcome to My Portfolio
         </h1>
+        <TriangleAlert className="w-16 h-16 mx-auto text-black dark:text-white" />
         <p className="text-lg md:text-2xl mb-6">
-          Explore my projects, skills, and journey in the world of tech.
+          This Portfolio is still under construction.
+          <br />
+          Check back soon for updates!
         </p>
         <button className="px-6 py-3 bg-black text-white text-lg font-semibold rounded-xl hover:bg-gray-800 transition-all">
-          Get Started
+          Keep Me Updated
         </button>
       </div>
     </section>

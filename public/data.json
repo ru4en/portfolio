@@ -1,0 +1,83 @@
+
+{
+    "site": {
+        "title": "Ruben's Portfolio",
+        "description": "This is a my portfolio site, where I showcase my work and projects.",
+        "author": "Ruben"
+    },
+
+    "socials": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/ru4en/"
+        }
+    ],
+
+    "about": {
+        "role": "DevOps Engineer",
+        "description": "I am a DevOps Engineer with a passion for web development. I have experience with React, Node.js, and AWS.",
+        "image": "profile.jpg"
+    },
+ 
+
+    "skills": [
+        {
+            "name": "React",
+            "icon": "react.svg",
+            "level": 10
+        }
+    ],
+
+    "projects": [
+        {
+            "id": 1,
+            "title": "Project 1",
+            "description": "This is a project description",
+            "image": "project1.jpg",
+            "url": "https://www.google.com",
+            "tags": ["React", "TailwindCSS", "Vite"],
+            "repo": ""
+        }
+    ],
+
+    "education": [
+        {
+            "id": 1,
+            "degree": "BSc Computer Science",
+            "school": "University of Reading",
+            "start": "2021",
+            "end": "2025",
+            "image": "reading.jpg",
+            "description": "This is a description of my degree",
+            "grade": "1st",
+            "modules": [
+                {
+                    "name": "Software Engineering",
+                    "grade": "1st"
+                },
+                {
+                    "name": "Web Development",
+                    "grade": "1st"
+                }
+            ]
+        }
+    ],
+
+    "experience": [
+        {
+            "id": 1,
+            "role": "DevOps Engineer",
+            "company": "Company A",
+            "start": "2021",
+            "end": "Present",
+            "image": "companya.jpg",
+            "description": "This is a description of my role",
+            "technologies": [
+                {
+                    "name": "AWS",
+                    "level": 10
+                }
+            ]
+        }
+    ]  
+}
