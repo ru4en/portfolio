@@ -4,10 +4,11 @@ const CVViewer = () => {
   const [activeTab, setActiveTab] = useState("cv");
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-20 px-4">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-20 px-4
+    dark:bg-gray-600 dark:text-white">
       {/* Tabs */}
       <div className="w-full max-w-4xl">
-        <div className="flex justify-around mb-8">
+        <div className="flex justify-around">
           <button
             className={`py-2 px-4 rounded-t-lg text-lg font-medium ${
               activeTab === "cv"
@@ -19,7 +20,8 @@ const CVViewer = () => {
             CV
           </button>
           <button
-            className={`py-2 px-4 rounded-t-lg text-lg font-medium ${
+            className={`py-2 px-4 rounded-t-lg text-lg font-medium
+              ${
               activeTab === "details"
                 ? "bg-gray-800 text-white"
                 : "bg-gray-300 text-gray-800"
@@ -34,14 +36,14 @@ const CVViewer = () => {
       {/* Content Area */}
       <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6">
         {activeTab === "cv" ? (
-          <div className="flex justify-center items-center h-96">
+          <div className="flex justify-center items-center h-screen">
             {/* Embed the PDF */}
             <embed
-              src="/path-to-your-cv.pdf"
+              src="/Ruben Lopes - CV-TX1124.pdf"
               type="application/pdf"
               width="100%"
               height="100%"
-              className="rounded-lg"
+              className="rounded-lg shadow-lg"
             />
           </div>
         ) : (

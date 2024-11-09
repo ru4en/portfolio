@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="fixed top-0 w-full z-50 px-4">
-      <nav className="mt-2 mx-auto navbar navbar-expand-md py-2 shadow-sm px-4 shadow-md rounded-xl backdrop-blur-md bg-white
+      <nav className="mt-2 mx-auto navbar navbar-expand-md py-2 shadow-sm px-4 shadow-md rounded-xl backdrop-blur-md bg-gray-200
       bg-opacity-80 transition-all duration-300 w-full max-w-7xl dark:bg-gray-800 dark:bg-opacity-80">
         <div className="navbar-content flex items-center w-full">
           <div className="logo flex items-center">
@@ -53,13 +53,13 @@ const Navbar: React.FC = () => {
               </span>
               WHOAMI
             </Link>
-            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity">
                 <ChevronRight />
               </span>
               cv.pdf
             </Link>
-            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity">
                 <ChevronRight />
               </span>
@@ -124,7 +124,7 @@ const Navbar: React.FC = () => {
             </Link>
             </li>
             <li>
-            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity">
                 <ChevronRight />
               </span>
@@ -132,7 +132,7 @@ const Navbar: React.FC = () => {
             </Link>
             </li>
             <li>
-            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+            <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity">
                 <ChevronRight />
               </span>
