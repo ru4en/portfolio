@@ -1,13 +1,14 @@
 
-import Welcome from './Welcome';  // Import the Welcome component
-import Projects from './Projects';  // Import the Projects component
+import Welcome from './Welcome';
+import Projects from './Projects';
+import ContactMe from './ContactMe';
 
 const Home = () => {
   return (
     <div>
-      <Welcome />  {/* Render the Welcome component */}
-      <Projects />  {/* Render the Welcome component */}
-      <Welcome />  {/* Render the Welcome component */}
+      <Welcome /> 
+      <Projects />
+      <ContactMe />
     </div>
   );
 };

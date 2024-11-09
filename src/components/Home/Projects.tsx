@@ -9,8 +9,8 @@ const Projects = () => {
         <div className="flex flex-col items-center space-y-4 py-4">
             <h1 className="text-2xl font-semibold">Projects</h1>
             <p>Here are some of the projects I have worked on.</p>
-            <div className="w-full overflow-x-auto px-4">  {/* Horizontal scroll for smaller screens */}
-                <div className="flex space-x-4 justify-center"> {/* Centered scrollable layout */}
+            <div className="w-full overflow-x-auto px-4">  
+                <div className="flex space-x-4 justify-center p-5" style={{minWidth: 'min-content'}}>
                     {projects.map((project, index) => (
                         <div key={index} className="min-w-[280px] flex flex-col p-4 bg-white rounded-lg shadow-md">
                             <img 
