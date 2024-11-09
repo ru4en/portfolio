@@ -1,4 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Define types for form data
 interface FormData {
@@ -33,22 +35,38 @@ const ContactMe: React.FC = () => {
     setIsSubmitting(true);
     setFormStatus('Sending...');
 
-    // Simulating form submission (Replace with actual submission logic)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormStatus('Message Sent! I\'ll get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
+    try {
+      const response = await fetch('https://forms.rlab.uk/portfolio', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
       });
-    }, 2000); // Simulating delay for submission
+
+      if (response.ok) {
+        setFormStatus('Message Sent! I\'ll get back to you soon.');
+        toast.success('Message Sent! I\'ll get back to you soon.');
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        setFormStatus('Failed to send message. Please try again.');
+        toast.error('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setFormStatus('Failed to send message. Please try again.');
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-20 bg-gray-900 text-white font-mono">
-      <div className="container mx-auto px-4 max-w-3xl
-        flex flex-col items-center justify-center">
+      <div className="container mx-auto px-4 max-w-3xl flex flex-col items-center justify-center">
         <h2 className="text-3xl font-bold text-center m-10">Contact Me</h2>
         <div className="flex justify-center w-full">
           <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-lg w-full">
@@ -105,12 +123,12 @@ const ContactMe: React.FC = () => {
 
             {formStatus && (
               <div className="mt-4 text-center text-gray-400">
-                <p>{formStatus}</p>
               </div>
             )}
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 };
