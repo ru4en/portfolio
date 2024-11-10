@@ -21,28 +21,28 @@ const SocialLinkEditor: React.FC<{
     };
 
     return (
-        <div className="flex flex-col p-4 bg-white rounded-lg shadow-md mb-4 w-full">
+        <div className="p-6 mb-6 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <div className="flex flex-col space-y-4 w-full">
                 <div className="w-full">
-                    <label htmlFor={`name-${index}`} className="text-sm font-medium text-gray-700">Platform Name</label>
+                    <label htmlFor={`name-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Name</label>
                     <input
                         id={`name-${index}`}
                         type="text"
                         value={link.name}
                         placeholder="e.g., GitHub"
-                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         aria-label="Social media platform name"
                     />
                 </div>
                 <div className="w-full">
-                    <label htmlFor={`url-${index}`} className="text-sm font-medium text-gray-700">URL</label>
+                    <label htmlFor={`url-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">URL</label>
                     <input
                         id={`url-${index}`}
                         type="text"
                         value={link.url}
                         placeholder="https://example.com"
-                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         onChange={(e) => handleInputChange('url', e.target.value)}
                         aria-label="Social media platform URL"
                     />

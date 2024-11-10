@@ -5,10 +5,8 @@ import {
     AboutInfo,
     Skill,
     Project,
-    // Module,
-    // Education,
-    // Technology,
-    // Experience,
+    Education,
+    Experience,
     ProjectData,
 } from '../Types';
 
@@ -17,6 +15,8 @@ import SocialLinkEditor from './SocialLinkEditor';
 import AboutInfoEditor from './AboutInfoEditor';
 import SkillEditor from './SkillEditor';
 import ProjectEditor from './ProjectEditor';
+import EducationEditor from './EducationEditor';
+import ExperienceEditor from './ExperienceEditor';
 
 
 const Admin = () => {
@@ -61,15 +61,34 @@ const Admin = () => {
         if (jsonData) {
             setJsonData({
                 ...jsonData,
-                projects: [...jsonData.projects, { id: 0, title: '', description: '', image: '', url: '', tags: [], repo: '' }],
+                projects: [...jsonData.projects, { title: '', description: '', image: '', url: '', tags: [], repo: '' }],
             });
         }
     }
 
+    const addEducation = () => {
+        if (jsonData) {
+            setJsonData({
+                ...jsonData,
+                education: [...jsonData.education, { degree: '', school: '', start: '', end: '', image: '', description: '', grade: '', modules: [] }],
+            });
+        }
+    }
+
+    const addExperience = () => {
+        if (jsonData) {
+            setJsonData({
+                ...jsonData,
+                experience: [...jsonData.experience, { role: '', company: '', start: '', end: '', image: '', description: '', technologies: [] }],
+            });
+        }
+    }
+
+
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center py-20 px-4">
-            <h1 className="text-3xl font-semibold text-gray-800 mb-8">Admin Panel</h1>
-            <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6">
+        <div className="min-h-screen bg-white flex flex-col items-center py-20 px-4 dark:bg-gray-900 font-sans">
+            <h1 className="text-3xl font-semibold mb-8">Admin Panel</h1>
+            <div className="w-full max-w-4xl rounded-lg p-6">
                 <h2 className="text-2xl font-semibold mb-4">JSON Data</h2>
 
                 {jsonData ? (
@@ -86,7 +105,6 @@ const Admin = () => {
 
                         <section>
                             <h3 className="font-semibold text-lg mb-2">Social Links</h3>
-                            <div className='flex flex-col items-center justify-center'>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                   {jsonData.socials.map((link, index) => (
                                       <div key={index} className="space-x-2">
@@ -107,7 +125,7 @@ const Admin = () => {
                                                     skills: prevState.skills,
                                                     projects: prevState.projects,
                                                     education: prevState.education,
-                                                    experiences: prevState.experiences,
+                                                    experience: prevState.experience,
                                                   };
                                                 }
                                               )}
@@ -117,12 +135,10 @@ const Admin = () => {
                               </div>
                                   <button
                                 onClick={addSocial}
-                                className="bg-blue-500 w-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                className="m-4 bg-blue-500 w-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"                                
                             >
                                 Add Social Link
                             </button>
-                            </div>
-                      
                         </section>
 
                         <section>
@@ -156,7 +172,7 @@ const Admin = () => {
                                           about: prevState.about,
                                           projects: prevState.projects,
                                           education: prevState.education,
-                                          experiences: prevState.experiences,
+                                          experience: prevState.experience,
                                         };
                                       })
                                     }
@@ -165,7 +181,7 @@ const Admin = () => {
                             </div>
                             <button
                                 onClick={addSkill}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                className="m-4 bg-blue-500 w-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                             >
                                 Add Skill
                             </button>
@@ -192,7 +208,7 @@ const Admin = () => {
                                       about: prevState.about,
                                       skills: prevState.skills,
                                       education: prevState.education,
-                                      experiences: prevState.experiences,
+                                      experience: prevState.experience,
                                     };
                                   })
                                 }
@@ -210,14 +226,72 @@ const Admin = () => {
                         <section>
                             <h3 className="font-semibold text-lg mb-2">Education</h3>
                             <div className="space-y-2">
-                                {/* Add Education Editor here */}
+                                { jsonData.education.map((education, index) => (
+                                    <EducationEditor 
+                                        key={index}
+                                        education={education}
+                                        index={index}
+                                        educations={jsonData.education}
+                                        setEducations={(newEducation: Education[] | ((prevEducation: Education[]) => Education[])) =>
+                                            setJsonData(prevState => {
+                                                if (!prevState) return null;
+                                                const updatedEducations = typeof newEducation === 'function' ? newEducation(prevState.education) : newEducation;
+                                                return {
+                                                    ...prevState,
+                                                    education: updatedEducations,
+                                                    site: prevState.site,
+                                                    socials: prevState.socials,
+                                                    about: prevState.about,
+                                                    skills: prevState.skills,
+                                                    projects: prevState.projects,
+                                                    experience: prevState.experience,
+                                                };
+                                            })
+                                        }
+                                    />
+                                ))}
+                                <button
+                                    onClick={() => addEducation()}
+                                    className="m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                >
+                                    Add Education
+                                </button>
                             </div>
                         </section>
 
                         <section>
                             <h3 className="font-semibold text-lg mb-2">Experience</h3>
                             <div className="space-y-2">
-                                {/* Add Experience Editor here */}
+                                { jsonData.experience.map((experience, index) => (
+                                    <ExperienceEditor 
+                                        key={index}
+                                        experience={experience}
+                                        index={index}
+                                        experiences={jsonData.experience}
+                                        setExperiences={(newExperience: Experience[] | ((prevExperience: Experience[]) => Experience[])) =>
+                                            setJsonData(prevState => {
+                                                if (!prevState) return null;
+                                                const updatedexperience = typeof newExperience === 'function' ? newExperience(prevState.experience) : newExperience;
+                                                return {
+                                                    ...prevState,
+                                                    experience: updatedexperience,
+                                                    site: prevState.site,
+                                                    socials: prevState.socials,
+                                                    about: prevState.about,
+                                                    skills: prevState.skills,
+                                                    projects: prevState.projects,
+                                                    education: prevState.education,
+                                                };
+                                            })
+                                        }
+                                    />
+                                ))}
+                                <button
+                                    onClick={() => addExperience()}
+                                    className="m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                >
+                                    Add Experience
+                                </button>
                             </div>
                         </section>
 

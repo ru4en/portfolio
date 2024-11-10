@@ -85,12 +85,7 @@
             "end": "Present",
             "image": "companya.jpg",
             "description": "This is a description of my role",
-            "technologies": [
-                {
-                    "name": "AWS",
-                    "level": 10
-                }
-            ]
+            "technologies": ["AWS", "Node.js"]
         }
     ]  
 }

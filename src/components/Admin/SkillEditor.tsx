@@ -22,33 +22,39 @@ const SkillEditor: React.FC<{
     };
 
     return (
-        <div className="flex flex-col p-4 bg-white rounded-lg shadow-md mb-4 w-full">
+        <div className="p-6 mb-6 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <div className="flex flex-col space-y-4 w-full">
                 <div className="w-full">
-                    <label htmlFor={`name-${index}`} className="text-sm font-medium text-gray-700">Skill Name</label>
+                    <label htmlFor={`name-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Skill Name</label>
                     <input
                         id={`name-${index}`}
                         type="text"
                         value={skill.name}
                         placeholder="e.g., JavaScript"
-                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         aria-label="Skill name"
                     />
                 </div>
                 <div className="w-full">
-                    <label htmlFor={`level-${index}`} className="text-sm font-medium text-gray-700">Proficiency</label>
+                    <label htmlFor={`level-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Proficiency</label>
+                    <div className="flex justify-between items-center">
                     <input
                         id={`level-${index}`}
-                        type="number"
+                        type="range"
                         value={skill.level}
-                        placeholder="0-100"
-                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                        onChange={(e) => handleInputChange('level', e.target.value)}
-                        aria-label="Skill proficiency"
-                        min="0"
-                        max="100"
+                        min="1"
+                        max="10"
+                        step="1"
+                        onChange={(e) => handleInputChange('level', Number(e.target.value))}
+                        className="w-full mt-2"
+                        aria-label="Skill proficiency level"
                     />
+
+                    <span className="ml-4 mt-2 font-medium text-gray-800 dark:text-gray-200">
+                    {skill.level}
+                    </span>
+                    </div>
                 </div>
                 <div>
                     <button

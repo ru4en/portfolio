@@ -23,7 +23,6 @@ export interface Skill {
 }
 
 export interface Project {
-    id: number;
     title: string;
     description: string;
     image: string;
@@ -38,7 +37,6 @@ export interface Module {
 }
 
 export interface Education {
-    id: number;
     degree: string;
     school: string;
     start: string;
@@ -49,20 +47,14 @@ export interface Education {
     modules: Module[];
 }
 
-export interface Technology {
-    name: string;
-    level: number;
-}
-
 export interface Experience {
-    id: number;
     role: string;
     company: string;
     start: string;
     end: string;
     image: string;
     description: string;
-    technologies: Technology[];
+    technologies: string[];
 }
 
 export interface ProjectData {
@@ -72,5 +64,5 @@ export interface ProjectData {
     skills: Skill[];
     projects: Project[];
     education: Education[];
-    experiences: Experience[];
+    experience: Experience[];
 }

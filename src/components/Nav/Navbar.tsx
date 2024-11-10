@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { ChevronRight } from 'lucide-react';
 
 const Navbar: React.FC = () => {
+  const location = useLocation();
   const [isDarkMode, setDarkMode] = useState<boolean>(() => {
     const savedPreference = localStorage.getItem('dark-mode');
     return savedPreference ? JSON.parse(savedPreference) : window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isTop, setIsTop] = useState<boolean>(true);
 
-  // Apply dark mode class to the root element
   useEffect(() => {
+    // Apply dark mode class to the root element
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -27,10 +29,23 @@ const Navbar: React.FC = () => {
 
   const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
 
+  useEffect(() => {
+    // Only apply scroll effect on the index page
+    if (location.pathname !== '/') return;
+
+    const handleScroll = () => {
+      setIsTop(window.scrollY === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location]);
+
   return (
     <div className="fixed top-0 w-full z-50 px-4">
-      <nav className="mt-2 mx-auto navbar navbar-expand-md py-2 shadow-sm px-4 shadow-md rounded-xl backdrop-blur-md bg-gray-200
-      bg-opacity-80 transition-all duration-300 w-full max-w-7xl dark:bg-gray-800 dark:bg-opacity-80">
+      <nav className={`mt-2 mx-auto navbar navbar-expand-md py-2 px-4 shadow-md rounded-xl backdrop-blur-md transition-all duration-300 w-full max-w-7xl 
+        ${isTop && location.pathname === '/' ? 'bg-transparent shadow-none' : 'bg-gray-200 bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80'}`}>
+        
         <div className="navbar-content flex items-center w-full">
           <div className="logo flex items-center">
             <Link to="/">
@@ -47,65 +62,65 @@ const Navbar: React.FC = () => {
             />
 
             <div className="hidden md:flex space-x-8 pr-10">
-            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight />
-              </span>
-              WHOAMI
-            </Link>
-            <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight />
-              </span>
-              cv.pdf
-            </Link>
-            <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight />
-              </span>
-              blog_
-            </Link>
+              <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ChevronRight />
+                </span>
+                WHOAMI
+              </Link>
+              <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ChevronRight />
+                </span>
+                cv.pdf
+              </Link>
+              <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ChevronRight />
+                </span>
+                blog_
+              </Link>
             </div>
 
-    <div className="block md:hidden pt-2">
-      <button
-        onClick={handleMenuToggle}
-        className="focus:outline-none transform transition-all duration-500 ease-in-out"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className={`h-6 w-6 dark:text-white transform transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-45' : ''}`}
-          fill="none"
-          viewBox="0 0 25 25"
-          stroke="currentColor"
-        >
-          {/* Top line */}
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 6h15"
-            className={`transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-90 origin-center -translate-x-1.5' : ''}`}
-          />
-          {/* Middle line (hidden when open) */}
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 12h15"
-            className={`transition-opacity duration-300 ease-in-out ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
-          />
-          {/* Bottom line */}
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5.2 18h15"
-            className={`transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-135 origin-center -translate-y-1.5' : ''}`}
-          />
-        </svg>
-      </button>
-    </div>
+            <div className="block md:hidden pt-2">
+              <button
+                onClick={handleMenuToggle}
+                className="focus:outline-none transform transition-all duration-500 ease-in-out"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-6 w-6 dark:text-white transform transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-45' : ''}`}
+                  fill="none"
+                  viewBox="0 0 25 25"
+                  stroke="currentColor"
+                >
+                  {/* Top line */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 6h15"
+                    className={`transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-90 origin-center -translate-x-1.5' : ''}`}
+                  />
+                  {/* Middle line (hidden when open) */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 12h15"
+                    className={`transition-opacity duration-300 ease-in-out ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
+                  />
+                  {/* Bottom line */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5.2 18h15"
+                    className={`transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-135 origin-center -translate-y-1.5' : ''}`}
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -116,28 +131,28 @@ const Navbar: React.FC = () => {
         >
           <ul className="flex flex-col items-center space-y-4 py-4">
             <li>
-            <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight />
-              </span>
-              WHOAMI
-            </Link>
+              <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ChevronRight />
+                </span>
+                WHOAMI
+              </Link>
             </li>
             <li>
-            <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight />
-              </span>
-              cv.pdf
-            </Link>
+              <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ChevronRight />
+                </span>
+                cv.pdf
+              </Link>
             </li>
             <li>
-            <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                <ChevronRight />
-              </span>
-              blog_
-            </Link>
+              <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ChevronRight />
+                </span>
+                blog_
+              </Link>
             </li>
           </ul>
         </div>
