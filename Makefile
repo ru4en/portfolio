@@ -26,4 +26,13 @@ clean:
 watch:
 	npm run watch
 
+
+# CV
+
+cv:
+	cd cv && make
+
+cv-clean:
+	cd cv && make clean
+
 .PHONY: install dev build compose down test lint

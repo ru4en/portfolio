@@ -49,13 +49,21 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Step 5: Upload the build output
+      # Step 5: Install LaTeX packages to build CV
+      - name: Install pdflatex
+        run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+
+      # Step 6: Build CV
+      - name: Build CV
+        run: pdflatex -output-directory=dist cv.tex
+
+      # Step 7: Upload the build output
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'  # Point to the directory that contains the build output
+          path: './dist'  # Points to the directory containing the build output
 
-      # Step 6: Deploy to GitHub Pages
+      # Step 8: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
