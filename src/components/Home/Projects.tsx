@@ -84,7 +84,7 @@ const Projects = () => {
         : projects;
 
     return (
-        <div className="flex flex-col items-center space-y-4 shadow-md py-4 bg-gray-100 dark:bg-gray-950 dark:text-white h-[calc(100vh-4rem)]">
+        <div className="flex flex-col items-center space-y-4 shadow-md py-4 bg-gray-100 dark:bg-gray-950 dark:text-white">
             <h2 className="text-2xl font-semibold">{'</ Projects >'}</h2>
             <p>Here are some of the projects I have worked on.</p>
 
