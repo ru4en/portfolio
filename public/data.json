@@ -82,7 +82,7 @@
             "school": "University of Reading",
             "start": "2021",
             "end": "2025",
-            "image": "reading.jpg",
+            "image": "https://www.reading.ac.uk/homepage/web/multimediafiles/legacy-uor-home-mobile.png",
             "description": "This is a description of my degree",
             "grade": "1st",
             "modules": [
@@ -93,6 +93,29 @@
                 {
                     "name": "Web Development",
                     "grade": "1st"
+                }
+            ]
+        },
+        {
+            "degree": "A-Levels",
+            "school": "School A",
+            "start": "2019",
+            "end": "2021",
+            "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
+            "description": "This is a description of my A-Levels",
+            "grades": "D*DD",
+            "modules": [
+                {
+                    "name": "Computer Science",
+                    "grade": "D*"
+                },
+                {
+                    "name": "Mathematics",
+                    "grade": "D"
+                },
+                {
+                    "name": "Physics",
+                    "grade": "D"
                 }
             ]
         }
@@ -107,6 +130,15 @@
             "image": "companya.jpg",
             "description": "This is a description of my role",
             "technologies": ["AWS", "Node.js"]
+        },
+        {
+            "role": "Web Developer",
+            "company": "Company B",
+            "start": "2020",
+            "end": "2021",
+            "image": "companyb.jpg",
+            "description": "This is a description of my role",
+            "technologies": ["React", "TailwindCSS"]
         }
     ]  
 }
