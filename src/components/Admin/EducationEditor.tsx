@@ -1,5 +1,7 @@
 import React from 'react';
 import { Education } from '../Types';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const EducationEditor: React.FC<{
     education: Education;
@@ -159,7 +161,7 @@ const EducationEditor: React.FC<{
                                 onClick={() => removeModule(i)}
                                 aria-label="Remove module"
                             >
-                                x
+                                <FontAwesomeIcon icon={faTrash} />
                             </button>
                         </div>
                     ))}

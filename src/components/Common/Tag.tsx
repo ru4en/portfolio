@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faTag, faCode, faLaptop, faMobileAlt, faCogs, faTerminal, faDatabase 
+  faTag, faCode, faLaptop, faMobileAlt, faCogs, faTerminal, faDatabase, faBoxOpen, faDharmachakra
 } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { 
@@ -38,6 +38,9 @@ const TagComponent: React.FC<{
     'android': faAndroid,
     'aws': faAws,
     'docker': faDocker,
+    'kubernetes': faDharmachakra,
+    'vm': faBoxOpen,
+    'teraform': faCogs,
     'linux': faLinux,
     'windows': faWindows,
     'go': faCode,
@@ -59,8 +62,9 @@ const TagComponent: React.FC<{
   };
 
   return (
-    <span className="bg-gray-300 m-1 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full
-      px-3 py-1 text-sm font-semibold flex items-center transition-all duration-200">
+    <span className="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full
+      px-3 py-1 text-sm font-semibold flex items-center transition-all duration-200 hover:bg-gray-400
+      dark:hover:bg-gray-600 hover:scale-105">
       {/* Dynamically set the icon based on tag */}
       <FontAwesomeIcon
         icon={tagIconMap[tag.toLowerCase()] || tagIconMap[(tag.split('.').pop() || '').toLowerCase()] || tagIconMap[(tag.split('-').pop() || '').toLowerCase()] || tagIconMap['default']}

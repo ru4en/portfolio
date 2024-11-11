@@ -1,5 +1,6 @@
 import projectsData from '../../../public/data.json';
 import { Project } from '../Types';
+import Tag from '../Common/Tag';
 
 
 const ProjectCard = ({ project }: { project: Project }) => {
@@ -14,14 +15,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </a>
             <h2 className="text-lg font-semibold mt-4 line-clamp-2">{project.title}</h2>
             <p className="text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mt-2" style={{ maxHeight: '4rem', overflow: 'hidden' }}>
+            <div className="flex flex-wrap mt-2" style={{ maxHeight: '4rem', overflow: 'hidden' }}>
                 {project.tags && project.tags.map((tag, tagIndex) => (
-                    <span 
-                        key={tagIndex} 
-                        className="text-xs text-white bg-blue-500 rounded-full px-2 py-1 line-clamp-1 max-w-full hover:bg-blue-600"
-                    >
-                        {tag}
-                    </span>
+                    <Tag key={tagIndex} tag={tag} />
                 ))}
             </div>
             {/* PUSH TO BOOTOM */}

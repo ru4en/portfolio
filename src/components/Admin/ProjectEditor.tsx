@@ -118,11 +118,11 @@ const ProjectEditor: React.FC<{
                 {/* Tags Section */}
                 <div className="w-full">
                     <label htmlFor={`tags`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Tags</label>
-                    <div className="flex flex-wrap space-x-2 mt-2">
+                    <div className="flex p-2 space-x-2 flex-wrap gap-x-1 gap-y-2 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700">
                         {project.tags.map((tag: string, tagIndex: number) => (
                             <TagComponent 
                                 key={tagIndex} 
-                                tag={tag} 
+                                tag={tag}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleTagChange(tagIndex, e.target.value)} 
                                 onRemove={() => removeTag(tagIndex)} 
                             />
