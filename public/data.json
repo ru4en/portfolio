@@ -29,33 +29,55 @@
             "name": "React",
             "icon": "react.svg",
             "level": 10
+        },
+        {
+            "name": "Node.js",
+            "icon": "nodejs.svg",
+            "level": 8
+        },
+        {
+            "name": "AWS",
+            "icon": "aws.svg",
+            "level": 7
+        },
+        {
+            "name": "Docker",
+            "icon": "docker.svg",
+            "level": 6
+        },
+        {
+            "name": "Kubernetes",
+            "icon": "kubernetes.svg",
+            "level": 5
+        },
+        {
+            "name": "Terraform",
+            "icon": "terraform.svg",
+            "level": 4
         }
     ],
 
     "projects": [
         {
-            "id": 1,
-            "title": "Project 1",
+            "title": "Project 1 title here dijd jdiejf isje fje ifjewijfie weifj",
             "description": "This is a project description",
-            "image": "project1.jpg",
+            "image": "",
             "url": "https://www.google.com",
             "tags": ["React", "TailwindCSS", "Vite"],
-            "repo": ""
+            "repo": "https://git.com/repo"
         },
         {
-            "id": 2,
             "title": "Project 2",
-            "description": "This is a project description",
-            "image": "project2.jpg",
+            "description": "This is a project description si ijs project description si ijs project description si ijs project description si ijs project description si ijs project description si ijs",
+            "image": "https://github.com/ru4en/interactive-periodic-table/blob/main/ipt.png?raw=true",
             "url": "https://www.google.com",
-            "tags": ["React", "TailwindCSS", "Vite"],
+            "tags": ["React", "TailwindCSS", "Vite", "D3.js", "CSS", "HTML", "JavaScript", "Python", "pandas", "numpy", "matplotlib", "seaborn", "scikit-learn", "Jupyter Notebook"],
             "repo": ""
         }
     ],
 
     "education": [
         {
-            "id": 1,
             "degree": "BSc Computer Science",
             "school": "University of Reading",
             "start": "2021",
@@ -78,7 +100,6 @@
 
     "experience": [
         {
-            "id": 1,
             "role": "DevOps Engineer",
             "company": "Company A",
             "start": "2021",

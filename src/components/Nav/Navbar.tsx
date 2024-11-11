@@ -27,7 +27,18 @@ const Navbar: React.FC = () => {
     localStorage.setItem('dark-mode', JSON.stringify(checked));
   };
 
-  const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+    const nav = document.querySelector('.navbar');
+    if (isMenuOpen && isTop) {
+      nav?.classList.remove('bg-gray-200', 'dark:bg-gray-800', 'dark:bg-opacity-80');
+      nav?.classList.add('bg-transparent', 'shadow-none');
+    } else {
+      nav?.classList.remove('bg-transparent', 'shadow-none');
+      nav?.classList.add('bg-gray-200', 'dark:bg-gray-800', 'dark:bg-opacity-80');
+    }
+  }
+
 
   useEffect(() => {
     // Only apply scroll effect on the index page

@@ -10,9 +10,9 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 const TagComponent: React.FC<{
-    tag: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onRemove: () => void;
+  tag: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onRemove?: () => void;
 }> = ({ tag, onChange, onRemove }) => {
 
   // Icon mapping inside the component
@@ -67,18 +67,25 @@ const TagComponent: React.FC<{
         className="mr-3 text-lg"
         style={{ color: 'currentColor' }}
       />
-      <input
-        type="text"
-        value={tag}
-        className="bg-transparent border-none outline-none text-gray-800 dark:text-gray-200 w-full min-w-0"
-        onChange={onChange}
-        aria-label={`Tag ${tag}`}
-        style={{
-          minWidth: tag.length === 0 ? '80px' : 'auto',
-          maxWidth: `calc(${tag.length}ch + .5rem)`,
-        }}
-      />
-      <button type="button" onClick={onRemove} className="text-red-500">×</button>
+      {/* Conditionally render input field and delete button */}
+      {onChange ? (
+        <input
+          type="text"
+          value={tag}
+          className="bg-transparent border-none outline-none text-gray-800 dark:text-gray-200 w-full min-w-0"
+          onChange={onChange}
+          aria-label={`Tag ${tag}`}
+          style={{
+            minWidth: tag.length === 0 ? '80px' : 'auto',
+            maxWidth: `calc(${tag.length}ch + .5rem)`,
+          }}
+        />
+      ) : (
+        <span>{tag}</span>  // Just display the tag when no `onChange` is provided
+      )}
+      {onRemove && (
+        <button type="button" onClick={onRemove} className="text-red-500">×</button>
+      )}
     </span>
   );
 };

@@ -65,11 +65,12 @@ const ContactMe: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-900 text-white font-mono">
-      <div className="container mx-auto px-4 max-w-3xl flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-bold text-center m-10">Contact Me</h2>
+  
+  <section id="contact" className="p-3 font-mono top-0 z-[-2] h-screen w-screen bg-[radial-gradient(#aaaaaa_1px,transparent_1px)] [background-size:25px_25px]">
+      <div className="container mx-auto max-w-3xl flex flex-col items-center justify-center">
+        <h2 className="text-3xl font-bold text-center m-10">{'</ Contact Me >'}</h2>
         <div className="flex justify-center w-full">
-          <div className="bg-gray-800 p-8 rounded-lg shadow-md max-w-lg w-full">
+          <div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full">
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-lg">Name</label>

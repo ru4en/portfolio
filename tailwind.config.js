@@ -50,9 +50,31 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
-  	}
-  },
+  		},
+		animation: {
+			'gradient': 'gradient 15s ease infinite'
+  	},
+	keyframes: {
+		gradient: {
+			'0%, 100%': {
+				'background-size': '400% 400%',
+				'background-position': '100% 50%',
+				'background-size': '400% 400%',
+				'rotate': '0deg'
+			},
+			'50%': {
+				'background-size': '200% 200%',
+				'background-position': '100% 50%',
+				'background-size': '200% 100%',
+			}
+		}
+	}  },
   plugins: [
   require("tailwindcss-animate")],
+  variants: {
+  	extend: {
+  		backgroundColor: ['odd', 'even']
+  	}
+  }
+}
 }
