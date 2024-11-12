@@ -70,8 +70,9 @@ const ExperienceEditor: React.FC<{
                     <label htmlFor={`start-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Start Date</label>
                     <input
                         id={`start-${index}`}
-                        type="text"
-                        value={experience.start}
+                        type="date"
+                        // @ts-ignore
+                        value={experience.start ? experience.start.split('T')[0] : ''}
                         placeholder="e.g., January 2020"
                         className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         onChange={(e) => handleChange('start', e.target.value)}
@@ -82,8 +83,9 @@ const ExperienceEditor: React.FC<{
                     <label htmlFor={`end-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">End Date</label>
                     <input
                         id={`end-${index}`}
-                        type="text"
-                        value={experience.end}
+                        type="date"
+                        // @ts-ignore
+                        value={experience.end ? experience.end.split('T')[0] : ''}
                         placeholder="e.g., January 2021"
                         className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         onChange={(e) => handleChange('end', e.target.value)}
@@ -117,8 +119,8 @@ const ExperienceEditor: React.FC<{
 
                                 {/* Tags Section */}
                                 <div className="w-full">
-                    <label htmlFor={`tags`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Tags</label>
-                    <div className="flex flex-wrap space-x-2 mt-2">
+                    <label htmlFor={`tags`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300 pb-2">Tags</label>
+                    <div className="flex p-2 space-x-2 flex-wrap gap-x-1 gap-y-2 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700">
                         {experience.technologies.map((tag, tagIndex) => (
                             <TagComponent 
                                 key={tagIndex} 

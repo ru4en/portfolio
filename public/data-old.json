@@ -1,0 +1,146 @@
+
+{
+    "site": {
+        "title": "Ruben's Portfolio",
+        "description": "This is a my portfolio site, where I showcase my work and projects.",
+        "author": "Ruben",
+        "image": "site.jpg",
+        "keywords": ["portfolio", "web development", "react", "node.js", "aws", "devops", "ruben", "lopes"]
+    },
+
+    "socials": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/ru4en/"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/ruben-lopes-uk/"
+        }
+    ],
+
+    "about": {
+        "role": "DevOps Engineer",
+        "description": "I am a DevOps Engineer with a passion for web development. I have experience with React, Node.js, and AWS.",
+        "image": "profile.jpg"
+    },
+ 
+
+    "skills": [
+        {
+            "name": "React",
+            "icon": "react.svg",
+            "level": 10
+        },
+        {
+            "name": "Node.js",
+            "icon": "nodejs.svg",
+            "level": 8
+        },
+        {
+            "name": "AWS",
+            "icon": "aws.svg",
+            "level": 7
+        },
+        {
+            "name": "Docker",
+            "icon": "docker.svg",
+            "level": 6
+        },
+        {
+            "name": "Kubernetes",
+            "icon": "kubernetes.svg",
+            "level": 5
+        },
+        {
+            "name": "Terraform",
+            "icon": "terraform.svg",
+            "level": 4
+        }
+    ],
+
+    "projects": [
+        {
+            "title": "Project 1 title here dijd jdiejf isje fje ifjewijfie weifj",
+            "description": "This is a project description",
+            "image": "",
+            "url": "https://www.google.com",
+            "tags": ["React", "TailwindCSS", "Vite"],
+            "repo": "https://git.com/repo"
+        },
+        {
+            "title": "Project 2",
+            "description": "This is a project description si ijs project description si ijs project description si ijs project description si ijs project description si ijs project description si ijs",
+            "image": "https://github.com/ru4en/interactive-periodic-table/blob/main/ipt.png?raw=true",
+            "url": "https://www.google.com",
+            "tags": ["React", "TailwindCSS", "Vite", "D3.js", "CSS", "HTML", "JavaScript", "Python", "pandas", "numpy", "matplotlib", "seaborn", "scikit-learn", "Jupyter Notebook"],
+            "repo": ""
+        }
+    ],
+
+    "education": [
+        {
+            "degree": "BSc Computer Science",
+            "school": "University of Reading",
+            "start": "2021",
+            "end": "2025",
+            "image": "https://www.reading.ac.uk/homepage/web/multimediafiles/legacy-uor-home-mobile.png",
+            "description": "This is a description of my degree",
+            "grade": "1st",
+            "modules": [
+                {
+                    "name": "Software Engineering",
+                    "grade": "1st"
+                },
+                {
+                    "name": "Web Development",
+                    "grade": "1st"
+                }
+            ]
+        },
+        {
+            "degree": "A-Levels",
+            "school": "School A",
+            "start": "2023-01-15T00:00:00.000Z",
+            "end": "2021-01-15T00:00:00.000Z",
+            "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
+            "description": "This is a description of my A-Levels",
+            "grades": "D*DD",
+            "modules": [
+                {
+                    "name": "Computer Science",
+                    "grade": "D*"
+                },
+                {
+                    "name": "Mathematics",
+                    "grade": "D"
+                },
+                {
+                    "name": "Physics",
+                    "grade": "D"
+                }
+            ]
+        }
+    ],
+
+    "experience": [
+        {
+            "role": "DevOps Engineer",
+            "company": "Company A",
+            "start": "2021",
+            "end": "Present",
+            "image": "companya.jpg",
+            "description": "This is a description of my role",
+            "technologies": ["AWS", "Node.js"]
+        },
+        {
+            "role": "Web Developer",
+            "company": "Company B",
+            "start": "2020",
+            "end": "2021",
+            "image": "companyb.jpg",
+            "description": "This is a description of my role",
+            "technologies": ["React", "TailwindCSS"]
+        }
+    ]  
+}

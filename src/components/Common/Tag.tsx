@@ -13,7 +13,7 @@ const TagComponent: React.FC<{
 
   return (
     <button type="button" onClick={onClick} className="focus:outline-none">
-    <span className={`bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full px-3 py-1 text-sm font-semibold flex items-center transition-all duration-200 hover:bg-gray-400 dark:hover:bg-gray-600 hover:scale-105 ${className || ''}`}>
+    <span className={`rounded-full px-3 py-1 text-sm font-semibold flex items-center transition-all duration-200 ${className || 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200  hover:bg-gray-400 dark:hover:bg-gray-600 hover:scale-105'}`}>
       <SuperIcon name={tag} className="w-4 h-4 mr-1" />
   {
     onChange ? (

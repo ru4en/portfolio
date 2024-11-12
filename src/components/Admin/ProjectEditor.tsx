@@ -128,13 +128,13 @@ const ProjectEditor: React.FC<{
                             />
                         ))}
                     </div>
-                    <button type="button" onClick={addTag} className="mt-2 text-blue-500">+ Add Tag</button>
+                    <button type="button" onClick={addTag} className="mt-2 text-blue-500 hover:text-blue-600">+ Add Tag</button>
                 </div>
 
                 {/* Remove Project Button */}
                 <button
                     onClick={removeProject}
-                    className="mt-4 px-4 py-2 text-sm font-semibold text-red-600 border border-red-600 rounded-lg"
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-red-300"
                 >
                     Remove Project
                 </button>

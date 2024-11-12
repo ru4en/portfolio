@@ -85,12 +85,13 @@ const EducationEditor: React.FC<{
                     <label htmlFor={`graduation-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
                         Graduation Year
                     </label>
-                    <div className="flex items-center mt-2 space-x-2">
-                        <label className="text-xs font-semibold text-gray-700 dark:text-gray-300">Start Date</label>
+                    <div className="flex flex-col sm:flex-row sm:space-x-4">
+                        <label className="text-xs font-semibold text-gray-700 dark:text-gray-300 pt-2">Start Date</label>
                         <input
                             id={`start-${index}`}
                             type="date"
-                            value={education.start}
+                            // @ts-ignore
+                            value={education.start ? education.start.split('T')[0] : ''}
                             className="block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                             onChange={(e) => handleInputChange('start', e.target.value)}
                             aria-label="Start Date"
@@ -99,7 +100,8 @@ const EducationEditor: React.FC<{
                         <input
                             id={`end-${index}`}
                             type="date"
-                            value={education.end}
+                            // @ts-ignore
+                            value={education.end ? education.end.split('T')[0] : ''}
                             className="block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                             onChange={(e) => handleInputChange('end', e.target.value)}
                             aria-label="End Date"
@@ -166,17 +168,17 @@ const EducationEditor: React.FC<{
                         </div>
                     ))}
                     <button
-                        className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-green-300 w-full mt-2"
+                        className="mt-2 text-blue-500 hover:text-blue-600"
                         onClick={addModule}
                         aria-label="Add module"
                     >
-                        Add Module
+                        + Add Module
                     </button>
                 </div>
     
                 <div>
                     <button
-                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-red-300 w-full mt-4"
+                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-red-300"
                         onClick={() => removeEducation(index)}
                         aria-label="Remove education"
                     >

@@ -1,9 +1,9 @@
-// Define types based on JSON structure
-
 export interface SiteInfo {
     title: string;
     description: string;
     author: string;
+    image: string;
+    keywords: string[];
 }
 
 export interface SocialLink {
@@ -39,8 +39,8 @@ export interface Module {
 export interface Education {
     degree: string;
     school: string;
-    start: string;
-    end: string;
+    start: Date;
+    end: Date;
     image: string;
     description: string;
     grade: string;
@@ -50,8 +50,8 @@ export interface Education {
 export interface Experience {
     role: string;
     company: string;
-    start: string;
-    end: string;
+    start: Date;
+    end: Date;
     image: string;
     description: string;
     technologies: string[];

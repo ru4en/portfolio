@@ -1,35 +1,45 @@
 import { useState } from 'react';
 import data from '../../../public/data.json';
 import { Experience } from '../Types';
-import Tag from '../Common/Tag';
+import TagComponent from '../Common/Tag';
 
 const ExperienceCard = ({ experience }: { experience: Experience }) => {
     return (
-        <div className="w-[350px] flex flex-col p-4 rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 dark:text-white min-h-[400px] hover:shadow-lg transition duration-300 transform hover:bg-gray-300 dark:hover:bg-gray-900">
-            <img 
-                src={experience.image || 'https://rubenlopes.uk/placeholder_image.png'} 
-                alt={experience.company} 
-                className="rounded-lg w-full h-48 object-cover object-center shadow-md hover:shadow-lg transition duration-300 hover:scale-105"
+        <div className="flex w-full items-center space-x-4 sm:space-x-6 lg:space-x-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 flex-col md:flex-row">
+            <img
+                src={experience.image || 'https://rubenlopes.uk/placeholder_image.png'}
+                alt={experience.company}
+                className="object-cover object-center w-52 filter grayscale contrast-0 md:w-48"
             />
-            <h2 className="text-lg font-semibold mt-4 line-clamp-2">{experience.role} at {experience.company}</h2>
-            <p className="text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">{experience.description}</p>
-            <div className="flex flex-wrap mt-2" style={{ maxHeight: '4rem', overflow: 'hidden' }}>
-                {experience.technologies && experience.technologies.map((tech, index) => (
-                    <Tag key={index} tag={tech} />
-                ))}
-            </div>
-            <div className="mt-2 text-gray-600 dark:text-gray-400">
-                <p>{experience.start} - {experience.end}</p>
+            <div className="flex flex-col space-y-2">
+            <h3> {experience.company}</h3>
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">{experience.role}</h2>
+                <p className="text-sm text-blue-500 dark:text-blue-400">
+                                {new Date(experience.start).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}
+                                {' - '}
+                                {new Date(experience.end).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}
+                            </p>
+                <div className="flex flex-wrap mt-2 gap-2">
+                    {experience.technologies && experience.technologies.map((tech, index) => (
+                        <TagComponent key={index} tag={tech} />
+                    ))}
+                </div>
+                <div className="mt-2 text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">{experience.description}</p>
+                </div>
             </div>
         </div>
     );
 };
 
 const ExperienceSection = () => {
-    const experience = data?.experience || [];
+    const experience = (data?.experience || []).map((exp: any) => ({
+        ...exp,
+        start: new Date(exp.start),
+        end: new Date(exp.end),
+    }));
     const [selectedTech, setSelectedTech] = useState<string | null>(null);
 
-    // Generate a list of unique technologies
     const technologies = experience.reduce((acc: string[], exp: Experience) => {
         exp.technologies.forEach(tech => {
             if (!acc.includes(tech)) {
@@ -39,33 +49,31 @@ const ExperienceSection = () => {
         return acc;
     }, []);
 
-    // Optionally, remove duplicates
-    const uniqueTechnologies = Array.from(new Set(technologies));
+    const uniqueTechnologies: string[] = Array.from(new Set(technologies));
 
-    // Filter experience based on the selected technology
     const filteredExperience = selectedTech
         ? experience.filter((exp) => exp.technologies.includes(selectedTech))
         : experience;
 
     return (
-        <div className="flex flex-col items-center space-y-4 shadow-md py-4 bg-gray-100 dark:bg-gray-950 dark:text-white">
-            <h2 className="text-2xl font-semibold">{'</ Experience >'}</h2>
+        <div className="flex flex-col items-center space-y-4 py-4 bg-gradient-to-b from-cyan-200 to-teal-300 dark:from-cyan-900 dark:to-teal-800 dark:text-white p-4">
+            <h2 className="text-2xl font-semibold">{'Work Experience'}</h2>
             <p>Here is an overview of my professional experience.</p>
 
-            {/* Technologies Filter */}
-            <div className="flex flex-wrap justify-center space-x-2">
-                {uniqueTechnologies.map((tech, techIndex) => (
-                    <Tag 
+            <div className="flex flex-wrap justify-center gap-2">
+                {uniqueTechnologies.map((tech: string, techIndex: number) => (
+                    <TagComponent 
                         key={techIndex} 
                         tag={tech} 
-                        onClick={() => setSelectedTech(selectedTech === tech ? null : tech)} 
-                        className={selectedTech === tech ? 'bg-blue-500 text-white dark:bg-blue-700 hover:bg-blue-600 dark:hover:bg-blue-800' : ''}
+                        onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}
+                        isSelected={tech === selectedTech}
+                        className={selectedTech === tech ? 'text-white bg-blue-500' : ''}
                     />
                 ))}
             </div>
 
-            <div className="w-full overflow-x-auto px-4">  
-                <div className="flex space-x-4 justify-center p-5" style={{ width: 'fit-content' }}>
+            <div className="flex flex-col items-center space-y-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {filteredExperience.map((exp, index) => (
                         <ExperienceCard key={index} experience={exp} />
                     ))}

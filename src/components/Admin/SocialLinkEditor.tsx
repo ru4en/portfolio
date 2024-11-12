@@ -1,5 +1,6 @@
 import React from 'react';
 import { SocialLink } from '../Types';
+import SuperIcons from '../Common/SuperIcons';
 
 const SocialLinkEditor: React.FC<{
     link: SocialLink;
@@ -23,6 +24,7 @@ const SocialLinkEditor: React.FC<{
     return (
         <div className="p-6 mb-6 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <div className="flex flex-col space-y-4 w-full">
+                <SuperIcons name={link.name} className="w-12 h-12 text-gray-800 dark:text-white" />
                 <div className="w-full">
                     <label htmlFor={`name-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Name</label>
                     <input
@@ -49,7 +51,7 @@ const SocialLinkEditor: React.FC<{
                 </div>
                 <div>
                     <button
-                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-red-300 w-full"
+                        className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md font-semibold focus:outline-none focus:ring-2 focus:ring-red-300"
                         onClick={() => removeSocial(index)}
                         aria-label="Remove social link"
                     >

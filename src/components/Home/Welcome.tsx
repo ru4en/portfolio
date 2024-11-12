@@ -28,23 +28,26 @@ a Full Stack Developer.`;
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
   return (
-    <div className="shadow-lg relative flex flex-col items-center justify-center h-screen bg-gradient-to-br from-teal-400 to-blue-500 dark:from-gray-800 dark:to-gray-900 overflow-hidden">
-      <div className="flex flex-col items-center container mx-auto text-center">
-        <div className="flex text-4xl md:text-6xl font-bold items-center space-x-2 text-white mt-20">
-          <Typewriter fullText={fullText} />
-        </div>
-        <div className="flex flex-row items-center mt-4">
-          {data.socials.map((social, index) => (
-            <Socials key={index} name={String(social.name)} url={social.url ?? '#'} />
-          ))}
+      <div className="relative flex flex-col items-center justify-center h-screen bg-green-900 dark:bg-gray-900 shadow-lg overflow-hidden text-green-200 dark:text-green-400">
+        <div className="absolute inset-0 opacity-100 [background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] dark:[background-size:25px_25px]"></div>
+    
+        {/* Main content */}
+        <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-br overflow-hidden">
+          <div className="flex flex-col items-center container mx-auto text-center h-[100vh]">
+            <div className="flex text-4xl md:text-6xl font-bold items-center space-x-2 text-white dark:text-green-500 mt-20">
+              <Typewriter fullText={fullText} />
+            </div>
+            <div className="flex flex-row items-center mt-4">
+              {data.socials.map((social, index) => (
+                <Socials key={index} name={String(social.name)} url={social.url ?? '#'} />
+              ))}
+            </div>
+          </div>
+    
+          <TerminalPopup />
         </div>
       </div>
-
-      <TerminalPopup />
-    </div>
-  );
-};
-
+    );
+    }  
 export default Welcome;

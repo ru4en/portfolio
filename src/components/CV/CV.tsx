@@ -1,9 +1,9 @@
 
 const CVViewer = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-20 px-4 dark:bg-gray-600 dark:text-white">
+    <div className="min-h-screen flex flex-col items-center py-20 px-4 from-gray-100 to-gray-400 bg-gradient-to-br dark:from-gray-800 dark:to-gray-950">
       {/* Content Area */}
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6">
+      <div className="w-full max-w-4xl rounded-lg p-6">
         <div className="flex justify-center items-center h-screen relative">
           {/* Embed the PDF */}
           <embed

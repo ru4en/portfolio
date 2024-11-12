@@ -70,7 +70,7 @@ const Admin = () => {
         if (jsonData) {
             setJsonData({
                 ...jsonData,
-                education: [...jsonData.education, { degree: '', school: '', start: '', end: '', image: '', description: '', grade: '', modules: [] }],
+                education: [...jsonData.education, { degree: '', school: '', start: new Date(), end: new Date(), image: '', description: '', grade: '', modules: [] }],
             });
         }
     }
@@ -79,21 +79,21 @@ const Admin = () => {
         if (jsonData) {
             setJsonData({
                 ...jsonData,
-                experience: [...jsonData.experience, { role: '', company: '', start: '', end: '', image: '', description: '', technologies: [] }],
+                experience: [...jsonData.experience, { role: '', company: '', start: new Date(), end: new Date(), image: '', description: '', technologies: [] }],
             });
         }
     }
 
 
     return (
-        <div className="min-h-screen bg-white flex flex-col items-center py-20 px-4 dark:bg-gray-900 font-sans">
+        <div className="min-h-screen bg-gray-100 flex flex-col items-center py-20 px-4 dark:bg-gray-900 font-sans">
             <h1 className="text-3xl font-semibold mb-8">Admin Panel</h1>
             <div className="w-full max-w-4xl rounded-lg p-6">
                 <h2 className="text-2xl font-semibold mb-4">JSON Data</h2>
 
                 {jsonData ? (
                     <>
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">Site Info</h3>
                             <SiteInfoEditor
                                 siteInfo={jsonData.site}
@@ -103,7 +103,7 @@ const Admin = () => {
                             />
                         </section>
 
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">Social Links</h3>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                   {jsonData.socials.map((link, index) => (
@@ -135,13 +135,13 @@ const Admin = () => {
                               </div>
                                   <button
                                 onClick={addSocial}
-                                className="m-4 bg-blue-500 w-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"                                
+                                className="bg-blue-500 w-100 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                             >
                                 Add Social Link
                             </button>
                         </section>
 
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">About Info</h3>
                             <AboutInfoEditor
                                 aboutInfo={jsonData.about}
@@ -151,7 +151,7 @@ const Admin = () => {
                             />
                         </section>
 
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">Skills</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {jsonData.skills.map((skill, index) => (
@@ -181,15 +181,15 @@ const Admin = () => {
                             </div>
                             <button
                                 onClick={addSkill}
-                                className="m-4 bg-blue-500 w-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                className="bg-blue-500 w-100 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                             >
                                 Add Skill
                             </button>
                         </section>
 
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">Projects</h3>
-                            <div className="space-y-2">
+                            <div className="space-y-2 mb-4">
                             {jsonData.projects.map((project, index) => (
                             <ProjectEditor
                                 key={index}
@@ -214,18 +214,18 @@ const Admin = () => {
                                 }
                             />
                         ))}
+                            </div>
                             <button
                                 onClick={addProject}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                className="bg-blue-500 w-100 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                             >
                                 Add Project
                             </button>
-                            </div>
                         </section>
 
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">Education</h3>
-                            <div className="space-y-2">
+                            <div className="space-y-2 mb-4">
                                 { jsonData.education.map((education, index) => (
                                     <EducationEditor 
                                         key={index}
@@ -250,18 +250,18 @@ const Admin = () => {
                                         }
                                     />
                                 ))}
-                                <button
+                            </div>
+                            <button
                                     onClick={() => addEducation()}
-                                    className="m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                                 >
                                     Add Education
                                 </button>
-                            </div>
                         </section>
 
-                        <section>
+                        <section className="backdrop-filter backdrop-blur-lg bg-white dark:bg-gray-600 p-4 rounded-lg shadow-lg mb-6 flex flex-col">
                             <h3 className="font-semibold text-lg mb-2">Experience</h3>
-                            <div className="space-y-2">
+                            <div className="space-y-2 mb-4">
                                 { jsonData.experience.map((experience, index) => (
                                     <ExperienceEditor 
                                         key={index}
@@ -286,13 +286,13 @@ const Admin = () => {
                                         }
                                     />
                                 ))}
-                                <button
+                            </div>
+                            <button
                                     onClick={() => addExperience()}
-                                    className="m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
                                 >
                                     Add Experience
                                 </button>
-                            </div>
                         </section>
 
                         <div>
@@ -308,7 +308,7 @@ const Admin = () => {
                                     a.click();
                                     URL.revokeObjectURL(url);
                                 }}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+                                className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl mt-4"
                             >
                                 Save
                             </button>

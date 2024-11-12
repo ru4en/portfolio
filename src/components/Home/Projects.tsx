@@ -5,7 +5,7 @@ import Tag from '../Common/Tag';
 
 const ProjectCard = ({ project }: { project: Project }) => {
     return (
-        <div className="w-[350px] flex flex-col p-4 rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 dark:text-white min-h-[450px] hover:shadow-lg transition duration-300 transform hover:bg-gray-300 dark:hover:bg-gray-900">
+        <div className="w-[350px] flex flex-col p-4 rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 dark:text-white min-h-[450px] hover:shadow-lg transition duration-300 transform hover:bg-gray-300 dark:hover:bg-gray-700">
             <a href={project.url || project.repo} target="_blank" rel="noopener noreferrer">
                 <img 
                     src={project.image || 'https://rubenlopes.uk/placeholder_image.png'} 
@@ -84,7 +84,8 @@ const Projects = () => {
         : projects;
 
     return (
-        <div className="flex flex-col items-center space-y-4 shadow-md py-4 bg-gray-100 dark:bg-gray-950 dark:text-white">
+        <div className="flex flex-col items-center space-y-4 shadow-md py-4 from-gray-100 to-gray-200 bg-gradient-to-br dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-400 to-gray-100
+         dark:text-white">
             <h2 className="text-2xl font-semibold">{'</ Projects >'}</h2>
             <p>Here are some of the projects I have worked on.</p>
 
@@ -95,7 +96,7 @@ const Projects = () => {
                         key={tagIndex} 
                         tag={tag} 
                         onClick={() => setSelectedTag(selectedTag === tag ? null : tag)} 
-                        className={selectedTag === tag ? 'bg-blue-500 text-white dark:bg-blue-700 hover:bg-blue-600 dark:hover:bg-blue-800' : ''}
+                        className={selectedTag === tag ? 'bg-green-500 dark:bg-green-700 text-white' : ''}
                     />
                 ))}
             </div>

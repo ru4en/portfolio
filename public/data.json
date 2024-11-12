@@ -1,11 +1,20 @@
-
 {
     "site": {
-        "title": "Ruben's Portfolio",
-        "description": "This is a my portfolio site, where I showcase my work and projects.",
-        "author": "Ruben"
+        "title": "TEST Portfolio",
+        "description": "This is a FAKE site, where I showcase my work and projects. ONLY A TEST",
+        "author": "Ruben",
+        "image": "site.jpg",
+        "keywords": [
+            "portfolio",
+            "web development",
+            "react",
+            "node.js",
+            "aws",
+            "devops",
+            "ruben",
+            "lopes"
+        ]
     },
-
     "socials": [
         {
             "name": "GitHub",
@@ -14,76 +23,94 @@
         {
             "name": "LinkedIn",
             "url": "https://www.linkedin.com/in/ruben-lopes-uk/"
+        },
+        {
+            "name": "FACEBOOK",
+            "url": "FACEBOOK.com"
+        },
+        {
+            "name": "instagram",
+            "url": ""
+        },
+        {
+            "name": "discord",
+            "url": ""
         }
     ],
-
     "about": {
         "role": "DevOps Engineer",
-        "description": "I am a DevOps Engineer with a passion for web development. I have experience with React, Node.js, and AWS.",
-        "image": "profile.jpg"
+        "description": "I am a DevOps Engineer with a passion for web development. I have experience with React, Node.js, and AWS.ijfcioj wdjoajoid xoajdxp asp xipasxpa sp",
+        "image": "https://avatars.githubusercontent.com/u/60962448?v=4"
     },
- 
-
     "skills": [
         {
-            "name": "React",
-            "icon": "react.svg",
+            "name": "Python",
+            "icon": "terraform.svg",
+            "level": 4
+        },
+        {
+            "name": "Typescript",
+            "level": 0
+        },
+        {
+            "name": "Perl",
             "level": 10
         },
         {
-            "name": "Node.js",
-            "icon": "nodejs.svg",
+            "name": "Tailwind.css",
             "level": 8
         },
         {
-            "name": "AWS",
-            "icon": "aws.svg",
-            "level": 7
-        },
-        {
-            "name": "Docker",
-            "icon": "docker.svg",
-            "level": 6
-        },
-        {
-            "name": "Kubernetes",
-            "icon": "kubernetes.svg",
-            "level": 5
-        },
-        {
-            "name": "Terraform",
-            "icon": "terraform.svg",
-            "level": 4
+            "name": "Bootstrap.css",
+            "level": 10
         }
     ],
-
     "projects": [
         {
-            "title": "Project 1 title here dijd jdiejf isje fje ifjewijfie weifj",
+            "title": "nice site",
             "description": "This is a project description",
             "image": "",
-            "url": "https://www.google.com",
-            "tags": ["React", "TailwindCSS", "Vite"],
+            "url": "https://www.ruebn.com",
+            "tags": [
+                "React",
+                "TailwindCSS",
+                "Vite",
+                "python"
+            ],
             "repo": "https://git.com/repo"
         },
         {
-            "title": "Project 2",
-            "description": "This is a project description si ijs project description si ijs project description si ijs project description si ijs project description si ijs project description si ijs",
+            "title": "bad site",
+            "description": "This is a project description si ijs shit site",
             "image": "https://github.com/ru4en/interactive-periodic-table/blob/main/ipt.png?raw=true",
             "url": "https://www.google.com",
-            "tags": ["React", "TailwindCSS", "Vite", "D3.js", "CSS", "HTML", "JavaScript", "Python", "pandas", "numpy", "matplotlib", "seaborn", "scikit-learn", "Jupyter Notebook"],
+            "tags": [
+                "React",
+                "TailwindCSS",
+                "Vite",
+                "D3.js",
+                "CSS",
+                "HTML",
+                "JavaScript",
+                "Python",
+                "pandas",
+                "numpy",
+                "matplotlib",
+                "seaborn",
+                "scikit-learn",
+                "Jupyter Notebook"
+            ],
             "repo": ""
         }
     ],
-
     "education": [
         {
             "degree": "BSc Computer Science",
             "school": "University of Reading",
-            "start": "2021",
-            "end": "2025",
+            "start": "2024-12-01",
+            "end": "2024-08-14",
             "image": "https://www.reading.ac.uk/homepage/web/multimediafiles/legacy-uor-home-mobile.png",
-            "description": "This is a description of my degree",
+            "description": "This is a description of my degree which is shit!!",
             "grade": "1st",
             "modules": [
                 {
@@ -93,14 +120,22 @@
                 {
                     "name": "Web Development",
                     "grade": "1st"
+                },
+                {
+                    "name": "Pineapple studdies",
+                    "grade": "Failed"
+                },
+                {
+                    "name": "Bird Law ",
+                    "grade": "First Class PASS"
                 }
             ]
         },
         {
             "degree": "A-Levels",
-            "school": "School A",
-            "start": "2019",
-            "end": "2021",
+            "school": "OLD COLLEGE",
+            "start": "2009-01-15",
+            "end": "2021-01-15T00:00:00.000Z",
             "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
             "description": "This is a description of my A-Levels",
             "grades": "D*DD",
@@ -110,35 +145,42 @@
                     "grade": "D*"
                 },
                 {
-                    "name": "Mathematics",
+                    "name": "Physics",
                     "grade": "D"
                 },
                 {
-                    "name": "Physics",
-                    "grade": "D"
+                    "name": "SILLY BTEC",
+                    "grade": "FAILED"
                 }
             ]
         }
     ],
-
     "experience": [
         {
             "role": "DevOps Engineer",
-            "company": "Company A",
-            "start": "2021",
-            "end": "Present",
-            "image": "companya.jpg",
-            "description": "This is a description of my role",
-            "technologies": ["AWS", "Node.js"]
+            "company": "HP",
+            "start": "2023-09-01",
+            "end": "2024-10-01",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hewlett-Packard_logo_1964.svg/1024px-Hewlett-Packard_logo_1964.svg.png",
+            "description": "<p> href='google.com'</p> is a description of my role",
+            "technologies": [
+                "AWS",
+                "Node.js",
+                "Python",
+                "k3s"
+            ]
         },
         {
             "role": "Web Developer",
-            "company": "Company B",
-            "start": "2020",
-            "end": "2021",
+            "company": "union!",
+            "start": "2025-02-14",
+            "end": "2025-08-08",
             "image": "companyb.jpg",
             "description": "This is a description of my role",
-            "technologies": ["React", "TailwindCSS"]
+            "technologies": [
+                "React",
+                "TailwindCSS"
+            ]
         }
-    ]  
+    ]
 }
