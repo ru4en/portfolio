@@ -1,18 +1,20 @@
 {
     "site": {
-        "title": "TEST Portfolio",
-        "description": "This is a FAKE site, where I showcase my work and projects. ONLY A TEST",
-        "author": "Ruben",
+        "title": "Ruben Lopes Portfolio",
+        "description": "This is my professional portfolio, showcasing my work, projects, and experiences in software engineering, DevOps, and cybersecurity.",
+        "author": "Ruben Lopes",
         "image": "site.jpg",
         "keywords": [
             "portfolio",
             "web development",
             "react",
-            "node.js",
+            "python",
             "aws",
             "devops",
-            "ruben",
-            "lopes"
+            "ruben lopes",
+            "cybersecurity",
+            "automation",
+            "software engineering"
         ]
     },
     "socials": [
@@ -22,95 +24,94 @@
         },
         {
             "name": "LinkedIn",
-            "url": "https://www.linkedin.com/in/ruben-lopes-uk/"
+            "url": "https://www.linkedin.com/in/ru4en"
         },
         {
-            "name": "FACEBOOK",
-            "url": "FACEBOOK.com"
+            "name": "Facebook",
+            "url": "https://www.facebook.com"
         },
         {
-            "name": "instagram",
+            "name": "Instagram",
             "url": ""
         },
         {
-            "name": "discord",
+            "name": "Discord",
             "url": ""
         }
     ],
     "about": {
-        "role": "DevOps Engineer",
-        "description": "I am a DevOps Engineer with a passion for web development. I have experience with React, Node.js, and AWS.ijfcioj wdjoajoid xoajdxp asp xipasxpa sp",
+        "role": "Software Engineer & DevOps Specialist",
+        "description": "I am a Software Engineer and DevOps Specialist with hands-on experience in developing full-stack applications, managing CI/CD pipelines, and deploying cloud-based services. My expertise lies in Python, Django, React, TypeScript, Docker, and cloud solutions. Passionate about optimizing processes and building scalable systems, I strive to create innovative solutions that bridge the gap between theory and practical applications.",
         "image": "https://avatars.githubusercontent.com/u/60962448?v=4"
     },
     "skills": [
         {
             "name": "Python",
-            "icon": "terraform.svg",
-            "level": 4
+            "icon": "python.svg",
+            "level": 9
         },
         {
-            "name": "Typescript",
-            "level": 0
-        },
-        {
-            "name": "Perl",
-            "level": 10
-        },
-        {
-            "name": "Tailwind.css",
+            "name": "TypeScript",
+            "icon": "typescript.svg",
             "level": 8
         },
         {
-            "name": "Bootstrap.css",
-            "level": 10
+            "name": "React",
+            "icon": "react.svg",
+            "level": 8
+        },
+        {
+            "name": "Tailwind CSS",
+            "icon": "tailwind.svg",
+            "level": 7
+        },
+        {
+            "name": "Docker",
+            "icon": "docker.svg",
+            "level": 8
         }
     ],
     "projects": [
         {
-            "title": "nice site",
-            "description": "This is a project description",
-            "image": "",
-            "url": "https://www.ruebn.com",
-            "tags": [
-                "React",
-                "TailwindCSS",
-                "Vite",
-                "python"
-            ],
-            "repo": "https://git.com/repo"
-        },
-        {
-            "title": "bad site",
-            "description": "This is a project description si ijs shit site",
+            "title": "Interactive Periodic Table",
+            "description": "A web-based interactive periodic table visualized with D3.js, offering data insights and analytics features using Python libraries such as NumPy, Pandas, and Matplotlib.",
             "image": "https://github.com/ru4en/interactive-periodic-table/blob/main/ipt.png?raw=true",
-            "url": "https://www.google.com",
+            "url": "https://www.rubenlopes.uk/interactive-periodic-table",
             "tags": [
                 "React",
-                "TailwindCSS",
-                "Vite",
                 "D3.js",
                 "CSS",
                 "HTML",
-                "JavaScript",
                 "Python",
-                "pandas",
-                "numpy",
-                "matplotlib",
-                "seaborn",
-                "scikit-learn",
-                "Jupyter Notebook"
+                "NumPy",
+                "Pandas",
+                "Matplotlib"
             ],
-            "repo": ""
+            "repo": "https://github.com/ru4en/interactive-periodic-table"
+        },
+        {
+            "title": "Go Analytics API Server",
+            "description": "An API server built with Go and a TypeScript frontend, designed to handle data collection, storage, and visualization for site analytics.",
+            "image": "https://www.rubenlopes.uk/go-api-analytics.png",
+            "url": "https://www.rubenlopes.uk/go-analytics",
+            "tags": [
+                "Go",
+                "TypeScript",
+                "SQL",
+                "API",
+                "Backend"
+            ],
+            "repo": "https://github.com/ru4en/go-analytics"
         }
     ],
     "education": [
         {
             "degree": "BSc Computer Science",
             "school": "University of Reading",
-            "start": "2024-12-01",
-            "end": "2024-08-14",
+            "start": "2021-09-01",
+            "end": "2025-07-01",
             "image": "https://www.reading.ac.uk/homepage/web/multimediafiles/legacy-uor-home-mobile.png",
-            "description": "This is a description of my degree which is shit!!",
+            "description": "Currently pursuing a Bachelor’s degree in Computer Science, with a focus on AI, cybersecurity, and distributed systems. Achieved top marks in key modules such as Software Engineering, Web Development, and Data Science.",
             "grade": "1st",
             "modules": [
                 {
@@ -122,22 +123,18 @@
                     "grade": "1st"
                 },
                 {
-                    "name": "Pineapple studdies",
-                    "grade": "Failed"
-                },
-                {
-                    "name": "Bird Law ",
-                    "grade": "First Class PASS"
+                    "name": "Data Science",
+                    "grade": "1st"
                 }
             ]
         },
         {
-            "degree": "A-Levels",
-            "school": "OLD COLLEGE",
-            "start": "2009-01-15",
-            "end": "2021-01-15T00:00:00.000Z",
+            "degree": "BTEC Level 3 in Computing",
+            "school": "New College Swindon",
+            "start": "2017-09-01",
+            "end": "2021-06-30",
             "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
-            "description": "This is a description of my A-Levels",
+            "description": "Completed BTEC Level 3 in Computing with Distinction* (D*DD), covering foundational skills in computer science, programming, and problem-solving.",
             "grades": "D*DD",
             "modules": [
                 {
@@ -147,39 +144,39 @@
                 {
                     "name": "Physics",
                     "grade": "D"
-                },
-                {
-                    "name": "SILLY BTEC",
-                    "grade": "FAILED"
                 }
             ]
         }
     ],
     "experience": [
         {
-            "role": "DevOps Engineer",
-            "company": "HP",
-            "start": "2023-09-01",
-            "end": "2024-10-01",
+            "role": "DevOps Engineer (Industrial Placement)",
+            "company": "HP Inc. - Wolf Security",
+            "start": "2023-07-01",
+            "end": "2024-06-30",
             "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hewlett-Packard_logo_1964.svg/1024px-Hewlett-Packard_logo_1964.svg.png",
-            "description": "<p> href='google.com'</p> is a description of my role",
+            "description": "During my time at HP, I developed and deployed backend services using Python (Django), created CI/CD pipelines with Jenkins, and gained hands-on experience with cloud technologies, Docker, and virtualized environments.",
             "technologies": [
-                "AWS",
-                "Node.js",
                 "Python",
-                "k3s"
+                "Django",
+                "React",
+                "TypeScript",
+                "Docker",
+                "Jenkins"
             ]
         },
         {
-            "role": "Web Developer",
-            "company": "union!",
-            "start": "2025-02-14",
-            "end": "2025-08-08",
-            "image": "companyb.jpg",
-            "description": "This is a description of my role",
+            "role": "Website Developer Assistant",
+            "company": "Reading Students’ Union",
+            "start": "2024-10-01",
+            "end": "Present",
+            "image": "https://www.reading.ac.uk/~/media/home/images/brand/rusu.jpg",
+            "description": "Responsible for front-end development and UI/UX enhancements on the Reading Students’ Union website, implementing responsive design and creating a custom UI library aligned with the brand.",
             "technologies": [
                 "React",
-                "TailwindCSS"
+                "HTML",
+                "CSS",
+                "JavaScript"
             ]
         }
     ]

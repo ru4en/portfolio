@@ -90,8 +90,11 @@ const EducationEditor: React.FC<{
                         <input
                             id={`start-${index}`}
                             type="date"
-                            // @ts-ignore
-                            value={education.start ? education.start.split('T')[0] : ''}
+                            value={
+                                typeof education.start === "string" 
+                                    ? education.start.split('T')[0]
+                                    : education.start?.toISOString().split('T')[0] || ''
+                                }
                             className="block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                             onChange={(e) => handleInputChange('start', e.target.value)}
                             aria-label="Start Date"
@@ -101,7 +104,11 @@ const EducationEditor: React.FC<{
                             id={`end-${index}`}
                             type="date"
                             // @ts-ignore
-                            value={education.end ? education.end.split('T')[0] : ''}
+                            value={
+                                typeof education.end === "string" 
+                                    ? education.end.split('T')[0]
+                                    : education.end?.toISOString().split('T')[0] || ''
+                                }
                             className="block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                             onChange={(e) => handleInputChange('end', e.target.value)}
                             aria-label="End Date"

@@ -39,8 +39,8 @@ export interface Module {
 export interface Education {
     degree: string;
     school: string;
-    start: Date;
-    end: Date;
+    start: Date | string;
+    end: Date | string;
     image: string;
     description: string;
     grade: string;
@@ -50,8 +50,8 @@ export interface Education {
 export interface Experience {
     role: string;
     company: string;
-    start: Date;
-    end: Date;
+    start: Date | string;
+    end: Date | string;
     image: string;
     description: string;
     technologies: string[];
