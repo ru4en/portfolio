@@ -34,35 +34,47 @@ const ContactMe: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setFormStatus('Sending...');
-
+  
     try {
-      const response = await fetch('https://forms.rlab.uk/portfolio', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+      const formBody = new URLSearchParams({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
       });
-
+  
+      const response = await fetch(
+        'https://send.pageclip.co/hkKqTgb3JqRLL16rUVVGGAQIBBx1ZWku/Website',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formBody.toString(),
+        }
+      );
+  
       if (response.ok) {
-        setFormStatus('Message Sent! I\'ll get back to you soon.');
-        toast.success('Message Sent! I\'ll get back to you soon.');
+        setFormStatus("Message Sent! I'll get back to you soon.");
+        toast.success("Message Sent! I'll get back to you soon.");
         setFormData({
           name: '',
           email: '',
           message: ''
         });
       } else {
-        setFormStatus('Failed to send message. Please try again.');
+        const errorText = await response.text();
+        setFormStatus(`Failed to send message: ${errorText}`);
         toast.error('Failed to send message. Please try again.');
       }
     } catch (error) {
-      setFormStatus('Failed to send message. Please try again.');
+      setFormStatus(`Error: ${error}`);
+      console.error("Submission error:", error);
       toast.error('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
   
