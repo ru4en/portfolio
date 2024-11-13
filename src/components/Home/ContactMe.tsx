@@ -81,6 +81,12 @@ const ContactMe: React.FC = () => {
   <section id="contact" className="p-3 font-mono top-0 z-[-2] h-screen w-screen bg-[radial-gradient(#aaaaaa_1px,transparent_1px)] [background-size:25px_25px]">
       <div className="container mx-auto max-w-3xl flex flex-col items-center justify-center">
         <h2 className="text-2xl font-semibold m-10">{'</ Contact Me >'}</h2>
+
+        <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+          Have a question or want to work together? Feel free to send me a message!
+          or email me at <a href="mailto:hello@rubenlopes.uk" className="text-green-500 dark:text-green-400 hover:underline">hello@rubenlopes.uk</a>
+        </p>
+
         <div className="flex justify-center w-full">
           <div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full">
             <form onSubmit={handleSubmit}>
