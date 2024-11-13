@@ -98,7 +98,7 @@ Welcome to Ruben's Portfolio!
       {/* Terminal Body */}
       <div
         ref={textContainerRef}
-        className="mt-4 space-y-2 overflow-y-auto relative"
+        className="mt-4 space-y-2 overflow-y-auto relative text-green-600 dark:text-green-500"
         style={{ height: `${height - 80}px` }}
       >
         <pre

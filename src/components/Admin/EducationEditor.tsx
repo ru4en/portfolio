@@ -103,7 +103,6 @@ const EducationEditor: React.FC<{
                         <input
                             id={`end-${index}`}
                             type="date"
-                            // @ts-ignore
                             value={
                                 typeof education.end === "string" 
                                     ? education.end.split('T')[0]

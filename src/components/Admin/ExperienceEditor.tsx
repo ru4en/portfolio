@@ -13,7 +13,7 @@ const ExperienceEditor: React.FC<{
         const updatedExperiences = [...experiences];
         updatedExperiences[index] = {
             ...updatedExperiences[index],
-            [field]: field === 'start' || field === 'end' ? new Date(value) : value
+            [field]: value,
         };
         setExperiences(updatedExperiences);
     };
@@ -96,7 +96,7 @@ const ExperienceEditor: React.FC<{
                             }
                         placeholder="e.g., January 2020"
                         className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
-                        onChange={(e) => handleChange('start', e.target.value)}
+                        onChange={(e) => handleChange('end', e.target.value)}
                         aria-label="Start Date"
                     />
                 </div>

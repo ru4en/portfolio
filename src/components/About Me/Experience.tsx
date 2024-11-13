@@ -9,7 +9,7 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
             <img
                 src={experience.image || 'https://rubenlopes.uk/placeholder_image.png'}
                 alt={experience.company}
-                className="object-cover object-center w-52 filter grayscale contrast-0 md:w-48"
+                className="object-cover object-center w-52 md:w-48"
             />
             <div className="flex flex-col space-y-2">
             <h3> {experience.company}</h3>
@@ -25,7 +25,7 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
                     ))}
                 </div>
                 <div className="mt-2 text-gray-600 dark:text-gray-400">
-                <p className="text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">{experience.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">{experience.description}</p>
                 </div>
             </div>
         </div>
