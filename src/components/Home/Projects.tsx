@@ -101,7 +101,7 @@ const Projects = () => {
                 ))}
             </div>
 
-            <div className="w-full overflow-x-auto px-4">
+            <div className="w-full overflow-x-auto">
                 <div className="flex space-x-4 justify-center p-5" style={{ width: 'fit-content' }}>
                     {filteredProjects.map((project, index) => (
                         <ProjectCard key={index} project={project} />
