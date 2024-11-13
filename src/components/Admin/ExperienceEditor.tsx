@@ -90,9 +90,9 @@ const ExperienceEditor: React.FC<{
                         id={`end-${index}`}
                         type="date"
                         value={
-                            typeof experience.start === "string" 
-                                ? experience.start.split('T')[0]
-                                : experience.start?.toISOString().split('T')[0] || ''
+                            typeof experience.end === "string" 
+                                ? experience.end.split('T')[0]
+                                : experience.end?.toISOString().split('T')[0] || ''
                             }
                         placeholder="e.g., January 2020"
                         className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"

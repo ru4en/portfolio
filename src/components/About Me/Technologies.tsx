@@ -5,7 +5,7 @@ const Technologies = () => {
     const skills = data.skills;
 
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black shadow-lg overflow-hidden text-black dark:text-white">
+        <div className="relative flex flex-col items-center justify-center p-9 bg-white dark:bg-black shadow-lg overflow-hidden text-black dark:text-white min-h-screen">
             {/* Blueprint-style background */}
             <div className="absolute inset-0 opacity-100 
                 [background-image:linear-gradient(to_right,_rgba(0,0,0,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(0,0,0,0.1)_1px,_transparent_1px)] 

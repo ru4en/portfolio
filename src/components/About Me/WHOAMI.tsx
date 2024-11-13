@@ -2,7 +2,7 @@ import data from "../../../public/data.json";
 
 const WHOAMI = () => {
     return (
-        <div className="relative flex flex-col items-center justify-center h-screen bg-white dark:bg-black shadow-lg overflow-hidden text-black dark:text-white">
+        <div className="relative flex flex-col items-center justify-center bg-white dark:bg-black shadow-lg overflow-hidden text-black dark:text-white pt-20 max-h-content min-h-screen">
             <div className="absolute inset-0 opacity-100
                 [background-image:linear-gradient(to_right,_rgba(0,0,0,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(0,0,0,0.1)_1px,_transparent_1px)] 
                 [background-size:20px_20px] 
