@@ -1,13 +1,16 @@
 {
   "name": "www.rubenlopes.uk",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "homepage": "https://www.rubenlopes.uk",
+  "description": "Portfolio website of Ruben Lopes",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
@@ -15,6 +18,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "gh-pages": "^6.2.0",
     "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
