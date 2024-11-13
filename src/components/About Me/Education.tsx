@@ -30,7 +30,7 @@ const Education = () => {
                                 </p>
                             )}
                             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 m-4">{edu.description}</p>
-                            
+
                             {/* Modules Section */}
                             <ModuleSection modules={edu.modules} />
                         </div>
@@ -45,14 +45,19 @@ const ModuleSection = ({ modules }: { modules: Module[] }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
-        <div className="w-full bg-gray-100 dark:bg-gray-900 mt-4 transition-all duration-300 ease-in-out p-2 rounded-lg">
+        <div
+            className="w-full bg-gray-100 dark:bg-gray-900 mt-4 transition-all duration-300 ease-in-out p-2 rounded-lg cursor-pointer"
+            onClick={() => setIsVisible(!isVisible)} // Toggle visibility when the div is clicked
+        >
             <button
                 className="text-blue-500 dark:text-blue-400 font-semibold mb-4 text-lg"
-                onClick={() => setIsVisible(!isVisible)}
+                onClick={(e) => {
+                    e.stopPropagation(); // Prevent the button click from triggering the div's onClick
+                    setIsVisible(!isVisible);
+                }}
             >
                 {isVisible ? 'Hide Modules' : 'Show Modules'}
             </button>
-
             {/* Conditionally render modules */}
             {isVisible && (
                 <ul className="flex flex-wrap mt-2 gap-2 sm:flex-row flex-col w-full justify-center">
