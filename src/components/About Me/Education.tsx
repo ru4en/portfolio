@@ -46,11 +46,11 @@ const ModuleSection = ({ modules }: { modules: Module[] }) => {
 
     return (
         <div
-            className="w-full bg-gray-100 dark:bg-gray-900 mt-4 transition-all duration-300 ease-in-out p-2 rounded-lg cursor-pointer"
+            className="w-full bg-gray-100 dark:bg-gray-900 mt-4 transition-all duration-300 ease-in-out p-2 rounded-lg cursor-pointer opacity-80 hover:opacity-100"
             onClick={() => setIsVisible(!isVisible)} // Toggle visibility when the div is clicked
         >
             <button
-                className="text-blue-500 dark:text-blue-400 font-semibold mb-4 text-lg"
+                className="text-blue-500 dark:text-blue-400 font-semibold m-1 text-lg"
                 onClick={(e) => {
                     e.stopPropagation(); // Prevent the button click from triggering the div's onClick
                     setIsVisible(!isVisible);
