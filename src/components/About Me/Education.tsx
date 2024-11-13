@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import data from '../../../public/data.json';
-import { Education as EducationType, Module } from '../Types';
+import { Module } from '../Types';
 
 const Education = () => {
     const education = data.education;
@@ -24,7 +24,7 @@ const Education = () => {
                                 {new Date(edu.end).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}
                             </p>
                             {edu.grade && (
-                                <p className="text-sm rounded-lg px-2 py-1 inline-block w-max ring-2 ring-blue-500">
+                                <p className="text-sm rounded-lg px-2 py-1 inline-block w-max ring-2 ring-blue-500 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-400 dark:hover:text-white cursor-pointer">
                                     {'Grade: '}
                                     {edu.grade}
                                 </p>
@@ -55,13 +55,14 @@ const ModuleSection = ({ modules }: { modules: Module[] }) => {
 
             {/* Conditionally render modules */}
             {isVisible && (
-                <ul className="flex flex-wrap mt-2 gap-2 sm:flex-row flex-col w-full">
+                <ul className="flex flex-wrap mt-2 gap-2 sm:flex-row flex-col w-full justify-center">
                     {modules.map((module, index) => (
                         <li
                             key={index}
-                            className="text-xs text-gray-600 dark:text-gray-400 md:text-sm w-full break-words"
+                            className="text-xs text-gray-600 dark:text-gray-400 md:text-sm w-full break-words sm:w-auto"
                         >
-                            <span className="font-semibold sm:ring-2 ring-blue-500 rounded-lg px-2 py-1 sm:inline-block w-auto text-blue-500 dark:text-blue-400">
+                            <span className="font-semibold sm:ring-2 ring-blue-500 rounded-lg px-2 py-1 sm:inline-block w-auto text-blue-500 dark:text-blue-400
+                                hover:bg-blue-500 hover:text-white dark:hover:bg-blue-400 dark:hover:text-white cursor-pointer">
                                 {module.name}:
                                 <span className="m-2 text-gray-600 dark:text-gray-400">{module.grade}</span>
                             </span>
