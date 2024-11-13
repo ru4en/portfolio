@@ -10,12 +10,14 @@ import Admin from "../components/Admin/Admin";
 import AboutMe from "../components/About Me/AboutMe";
 import Blog from "../components/Blog/Blog";
 import NotFound from "../components/NotFound";
+import Bugger from "../lib/Bugger";
 
 
 function AppRouter() {
   return (
     <Router>
       <div>
+        <Bugger />
         <Navbar />
         <Routes>
         <Route path="/" element={<Home />} />
