@@ -1,53 +1,67 @@
+// import React, { useEffect } from 'react';
+// import { useLocation } from 'react-router-dom';
 
+// const Bugger: React.FC = () => {
+//   const location = useLocation();  // Hook to access the current route location
 
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+//   useEffect(() => {
+//     const expirationTime = 30 * 60 * 1000; // Set timeout to 30 minutes (in milliseconds)
+//     const hasVisitedBefore = localStorage.getItem('hasVisited');
+//     const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+//     const currentPage = location.pathname; // Use location.pathname for current route
+//     const currentTime = new Date().getTime(); // Current time in milliseconds
 
-const Bugger: React.FC = () => {
-    const location = useLocation();
+//     // Check if the localStorage has the 'hasVisited' flag and whether it has expired
+//     if (hasVisitedBefore && lastVisitTimestamp && (currentTime - parseInt(lastVisitTimestamp)) < expirationTime) {
+//       // User has visited before and the session is still valid
+//       if (localStorage.getItem('lastVisitedPage') !== currentPage) {
+//         // If the user visits a new page, log the new visit
+//         logVisit(currentPage, currentTime);
+//       }
+//     } else {
+//       // If the session has expired or user hasn't visited, log the visit
+//       logVisit(currentPage, currentTime);
+//     }
+//   }, [location]);
 
-    useEffect(() => {
-        const hasVisitedBefore = localStorage.getItem('hasVisited');
-        const currentPage = location.pathname;
+//   const logVisit = (currentPage: string, currentTime: number) => {
+//     fetch('https://api.ipify.org?format=json')
+//       .then(response => response.json())
+//       .then(data => {
+//         const userIp = data.ip;
 
-        if (!hasVisitedBefore || localStorage.getItem('lastVisitedPage') !== currentPage) {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const userIp = data.ip;
+//         const formData = new FormData();
+//         formData.append('message', `User IP: ${userIp}, Page: ${currentPage}`);
+//         formData.append('_gotcha', '');  // Honeypot field to prevent spam
 
-                    const formData = new FormData();
-                    formData.append('ip', userIp);
-                    formData.append('page', currentPage);
-                    formData.append('_gotcha', '');
+//         fetch('https://formbold.com/s/9x24r', {
+//           method: 'POST',
+//           body: formData,
+//           headers: {
+//             'Accept': 'application/json',
+//           },
+//         })
+//         .then(response => {
+//           if (response.ok) {
+//             console.log('IP and page logged successfully');
+//             localStorage.setItem('hasVisited', 'true');
+//             localStorage.setItem('lastVisitedPage', currentPage);
+//             localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+//           } else {
+//             console.log('Error logging IP and page, response:', response);
+//           }
+//         })
+//         .catch(error => {
+//           console.log('Error submitting form:', error);
+//         });
 
-                    fetch('https://getform.io/f/bejjlvya', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json',
-                        },
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            console.log('IP and page logged successfully');
-                            localStorage.setItem('hasVisited', 'true');
-                            localStorage.setItem('lastVisitedPage', currentPage);
-                        } else {
-                            console.log('Error logging IP and page');
-                        }
-                    })
-                    .catch(error => {
-                        console.log('Error:', error);
-                    });
-                })
-                .catch(error => {
-                    console.log('Error fetching IP:', error);
-                });
-        }
-    }, [location]);
+//       })
+//       .catch(error => {
+//         console.log('Error fetching IP:', error);
+//       });
+//   };
 
-    return null;
-};
+//   return null;
+// };
 
-export default Bugger;
+// export default Bugger;

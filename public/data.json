@@ -282,7 +282,7 @@
             "end": "2021-06-30",
             "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
             "description": "Completed BTEC Level 3 in Computing with Distinction* (D*DD), covering foundational skills in computer science, programming, and problem-solving.",
-            "grades": "D*DD",
+            "grade": "D*D D",
             "modules": [
                 {
                     "name": "Principles of Computer Science",
@@ -336,12 +336,11 @@
                     "name": "Systems Methodology",
                     "grade": "Distinction"
                 }
-            ],
-            "grade": "Distinction* Distinction Distinction"
+            ]
         }
     ],
     "experience": [
-        {
+                {
             "role": "Website Developer Assistant",
             "company": "Reading Students’ Union",
             "start": "2024-09-01",
