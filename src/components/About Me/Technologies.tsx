@@ -27,7 +27,7 @@ const Technologies = () => {
                         hover:scale-105 hover:shadow-xl"
                     >
                         {/* Icon */}
-                        <SuperIcon name={skill.name} className="w-12 h-12 text-gray-800 dark:text-white" />
+                        <SuperIcon name={skill.name} className="text-gray-800 dark:text-white text-center" size="4xl" />
                         <div className="flex flex-col items-center space-y-2 w-full">
                             <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{skill.name}</h3>
                             

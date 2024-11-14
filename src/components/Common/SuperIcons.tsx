@@ -1,13 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTag, faCode, faLaptop, faMobileAlt, faCogs, faTerminal, faDatabase, faBoxOpen, faDharmachakra
-} from '@fortawesome/free-solid-svg-icons';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import {
-  faReact, faAngular, faVuejs, faNodeJs, faPython, faJava, faSwift, faPhp, faHtml5, faCss3, faJs,
-  faGithub, faLinkedin, faAndroid, faAws, faDocker, faLinux, faWindows
-} from '@fortawesome/free-brands-svg-icons';
 
 const SuperIcons: React.FC<{
   name: string;
@@ -16,60 +7,53 @@ const SuperIcons: React.FC<{
   onRemove?: () => void;
   onClick?: () => void;
   className?: string;
-}> = ({ name, className }) => {
-
-  // Icon mapping inside the component
-  const tagIconMap: { [key: string]: IconDefinition } = {
-    'web': faLaptop,
-    'mobile': faMobileAlt,
-    'development': faCode,
-    'automation': faCogs,
-    'default': faTag,
-    'react': faReact,
-    'angular': faAngular,
-    'vue': faVuejs,
-    'node': faNodeJs,
-    'python': faPython,
-    'java': faJava,
-    'swift': faSwift,
-    'php': faPhp,
-    'html': faHtml5,
-    'css': faCss3,
-    'javascript': faJs,
-    'github': faGithub,
-    'linkedin': faLinkedin,
-    'android': faAndroid,
-    'aws': faAws,
-    'docker': faDocker,
-    'kubernetes': faDharmachakra,
-    'vm': faBoxOpen,
-    'terraform': faCogs,
-    'linux': faLinux,
-    'windows': faWindows,
-    'go': faCode,
-    'typescript': faCode,
-    'bash': faTerminal,
-    'powershell': faTerminal,
-    'tailwind': faCode,
-    'bootstrap': faCode,
-    'django': faPython,
-    'numpy': faPython,
-    'matplotlib': faPython,
-    'postgresql': faDatabase,
-    'js': faJs,
-    'ts': faJs,
-    'py': faPython,
-    'pearl': faCode,
-    'ruby': faCode,
-    'rust': faCode,
+  style?: React.CSSProperties;
+  size?: 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl'; // Custom size options
+}> = ({ name, className, size = 'base' }) => {
+  // Icon mapping for Devicon inside the component
+  const tagIconMap: { [key: string]: string } = {
+    'html': 'devicon-html5-plain',
+    'windows': 'devicon-windows11-original',
+    'databases': 'devicon-postgresql-plain',
+    'c, c++': 'devicon-cplusplus-plain',
+    'vm': 'devicon-vsphere-plain ',
+    'security': 'devicon-ssh-plain',
+    'embeded systems': 'devicon-embeddedc-plain',
+    'css': 'devicon-css3-plain'
   };
 
+
+
+  const iconName = tagIconMap[name.toLowerCase()] || tagIconMap['default'];
+
+  // Custom size values for each size option
+  const sizeMap: { [key: string]: string } = {
+    sm: '0.5rem', // Small size
+    base: '1rem', // Default size
+    lg: '3rem', // Large size
+    xl: '4rem', // Extra Large size
+    '2xl': '5rem', // 2x Large size
+    '3xl': '6rem', // 3x Large size
+    '4xl': '7rem', // 4x Large size
+    '5xl': '8rem', // 5x Large size
+  };
+
+  // Assign the size dynamically based on the `size` prop
+  const iconSize = sizeMap[size] || sizeMap.base;
+
   return (
-    <FontAwesomeIcon
-      icon={tagIconMap[name.toLowerCase()] || tagIconMap[(name.split('.').pop() || '').toLowerCase()] || tagIconMap[(name.split('-').pop() || '').toLowerCase()] || tagIconMap['default']}
-      className={`mr-3 text-lg ${className}`}
-      style={{ color: 'currentColor' }}
-    />
+    <i
+      className={`${className} ${iconName} align-middle devicon-${name.toLowerCase()}-plain`}
+      style={{
+        color: 'currentColor',
+        width: iconSize,
+        height: iconSize,
+        maxWidth: '100%',
+        maxHeight: '100%',
+        objectFit: 'contain',
+        fontSize: iconSize, // Adjust the font size based on the `size` prop
+      }}
+    ></i>
   );
 };
 

@@ -25,7 +25,7 @@ const SkillEditor: React.FC<{
     return (
         <div className="p-6 mb-6 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <div className="flex flex-col space-y-4 w-full">
-                <SuperIcons name={skill.name} className="w-12 h-12 text-gray-800 dark:text-white" />
+                <SuperIcons name={skill.name} className="text-gray-800 dark:text-white" size="xl" />
                 <div className="w-full">
                     <label htmlFor={`name-${index}`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Skill Name</label>
                     <input
