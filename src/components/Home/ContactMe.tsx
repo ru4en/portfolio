@@ -88,7 +88,7 @@ const ContactMe: React.FC = () => {
         </p>
 
         <div className="flex justify-center w-full">
-        <div className="relative group w-full max-w-lg rounded-xl p-1 
+        <div className="relative group w-full max-w-lg rounded-2xl p-1 
           bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 
           hover:from-green-500 hover:via-blue-500 hover:to-green-500 
           transition-all duration-500 ease-in-out shadow-xl">

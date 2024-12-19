@@ -6,8 +6,8 @@ import data from '../../../public/data.json';
 import Socials from '../Common/Socials';
 
 const Welcome = () => {
-  const fullText = `Hello, World!\n
-I am Ruben, a student and developer. Welcome to my website!`;
+  const fullText = `Hello! I am Ruben, \n
+  a student and developer. Welcome to my website!`;
 
   useEffect(() => {
     // Handle mouse move for background interaction
