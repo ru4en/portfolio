@@ -85,7 +85,22 @@ body {
     align-items: center;
     height: 100vh;
   }
-  
+
+  h1::selection {
+    text-shadow: 0 0 10px #00ff0015, 0 0 40px #00ff0075;
+    transition: text-shadow 0.2s;
+  }
+
+  h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+  }
+
+  h1.char:selection {
+    text-shadow: 0 0 10px #ff000015, 0 0 40px #ff000075;
+  }
+
   .card {
     background-color: hsl(var(--card));
     border-radius: var(--radius);

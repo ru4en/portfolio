@@ -77,9 +77,9 @@ const ContactMe: React.FC = () => {
   
 
   return (
-  
+
   <section id="contact" className="p-3 font-mono top-0 z-[-2] h-screen w-screen bg-[radial-gradient(#aaaaaa_1px,transparent_1px)] [background-size:25px_25px]">
-      <div className="container mx-auto max-w-3xl flex flex-col items-center justify-center">
+        <div className="container mx-auto max-w-3xl flex flex-col items-center justify-center">
         <h2 className="text-2xl font-semibold m-10">{'</ Contact Me >'}</h2>
 
         <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
@@ -88,8 +88,18 @@ const ContactMe: React.FC = () => {
         </p>
 
         <div className="flex justify-center w-full">
-          <div className="bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg w-full">
-            <form onSubmit={handleSubmit}>
+        <div className="relative group w-full max-w-lg rounded-xl p-1 
+          bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 
+          hover:from-green-500 hover:via-blue-500 hover:to-green-500 
+          transition-all duration-500 ease-in-out shadow-xl">
+  <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 
+          blur-xl opacity-50 group-hover:opacity-100 group-hover:blur-2xl 
+          transition-all duration-500 ease-in-out"></div>
+  
+  <div className="relative bg-gray-400 dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-lg w-full 
+          bg-opacity-90 backdrop-blur-md transform transition-transform duration-500 ease-in-out">
+      
+    <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-lg">Name</label>
                 <input
@@ -98,7 +108,7 @@ const ContactMe: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 mt-2 bg-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
+                  className="w-full px-4 py-2 mt-2 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
                   required
                 />
               </div>
@@ -111,7 +121,7 @@ const ContactMe: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 mt-2 bg-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
+                  className="w-full px-4 py-2 mt-2 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
                   required
                 />
               </div>
@@ -124,7 +134,7 @@ const ContactMe: React.FC = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
-                  className="w-full px-4 py-2 mt-2 bg-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
+                  className="w-full px-4 py-2 mt-2 bg-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-700"
                   required
                 />
               </div>
@@ -132,7 +142,7 @@ const ContactMe: React.FC = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="w-full py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full py-2 bg-green-700 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -145,6 +155,7 @@ const ContactMe: React.FC = () => {
               </div>
             )}
           </div>
+        </div>
         </div>
       </div>
       <ToastContainer />

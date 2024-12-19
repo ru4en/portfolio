@@ -6,9 +6,8 @@ import data from '../../../public/data.json';
 import Socials from '../Common/Socials';
 
 const Welcome = () => {
-  const fullText = `Hello, World!
-I am Ruben Lopes,
-a Full Stack Developer.`;
+  const fullText = `Hello, World!\n
+I am Ruben, a student and developer. Welcome to my website!`;
 
   useEffect(() => {
     // Handle mouse move for background interaction
@@ -35,8 +34,10 @@ a Full Stack Developer.`;
         {/* Main content */}
         <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-br overflow-hidden">
           <div className="flex flex-col items-center container mx-auto text-center h-[100vh]">
-            <div className="flex text-4xl md:text-6xl font-bold items-center space-x-2 text-white dark:text-green-500 mt-20">
-              <Typewriter fullText={fullText} />
+            <div className="flex text-4xl md:text-6xl font-bold items-center space-x-2 text-white dark:text-green-500 mt-20 p-3">
+              <h1>
+                <Typewriter fullText={fullText} />
+              </h1>
             </div>
             <div className="flex flex-wrap overflow-x-auto justify-center p-5 md:px-20">
               {data.socials.map((social, index) => (

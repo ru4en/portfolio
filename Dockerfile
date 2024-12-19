@@ -1,21 +1,11 @@
-FROM golang:alpine AS builder
-
+FROM node:21-alpine3.20 AS builder
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
-COPY backend/go.mod .
-COPY backend/go.sum .
-
-RUN go mod download
-
-COPY backend/ .
-
-ENV CGO_ENABLED=0
-RUN go build -o portfolio.rubenlopes.uk .
-
-FROM alpine:latest
-
-COPY --from=builder /app/portfolio.rubenlopes.uk /portfolio.rubenlopes.uk
-
-RUN chmod +x /portfolio.rubenlopes.uk
-
-CMD ["/portfolio.rubenlopes.uk"]
+FROM nginx:stable-alpine AS runner
+COPY --from=builder /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
