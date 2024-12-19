@@ -6,7 +6,7 @@ import data from '../../../public/data.json';
 import Socials from '../Common/Socials';
 
 const Welcome = () => {
-  const fullText = `Hello! I am Ruben, \n
+  const fullText = `Hello! I am Ruben,\n
   a student and developer. Welcome to my website!`;
 
   useEffect(() => {
@@ -45,8 +45,9 @@ const Welcome = () => {
               ))}
             </div>
           </div>
-    
+          <div className="w-screen h-screen">
           <TerminalPopup />
+          </div>
         </div>
       </div>
     );

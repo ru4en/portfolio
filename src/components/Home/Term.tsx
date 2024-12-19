@@ -77,7 +77,7 @@ const TerminalPopup = () => {
   }, []);
 
   return (
-    <div className="relative group  rounded-xl shadow-lg mb-3 p-5:hover backdrop-blur-md transition-all duration-300 mx-9">
+    <div className="relative group  rounded-xl shadow-lg mb-3 p-5:hover backdrop-blur-md transition-all duration-300 mx-5 sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80">
       <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 
           opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover
           transition-all duration-500 ease-in-out"></div>
