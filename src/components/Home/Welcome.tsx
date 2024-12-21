@@ -23,7 +23,7 @@ const Welcome = () => {
   }, []);
 
   return (
-    <div className="relative bg-gray-700 dark:bg-gray-900 shadow-lg overflow-hidden text-green-200 dark:text-green-400 min-h-screen cursor-grab">
+    <div className="relative bg-gray-700 dark:bg-gray-900 shadow-lg overflow-hidden dark:text-green-400 min-h-screen">
       {/* Cursor glow effect */}
       <style>{`
         .cursor-glow {
@@ -45,20 +45,20 @@ const Welcome = () => {
       ></div>
 
       {/* Main content */}
-      <div className="flex flex-col overflow-hidden w-full h-full">
+      <div className="flex flex-col w-full h-full">
         <div className="flex flex-col items-center text-center justify-center pt-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
-          <div className="text-4xl md:text-6xl font-bold space-x-2 text-green-500 p-3 drop-shadow-lg">
-            <h1 className="">
+          <div className="text-4xl md:text-6xl font-bold space-x-2 text-gray-100 drop-shadow-lg dark:text-green-400">
+            <h1 className="transition-transform duration-500 ease-in-out transform">
               <Typewriter fullText={fullText} />
             </h1>
           </div>
-          <div className="flex p-5 md:px-20">
+          <div className="flex pb-5 md:px-20 z-10">
             {data.socials.map((social, index) => (
               <Socials key={index} name={String(social.name)} url={social.url ?? '#'} />
             ))}
           </div>
         </div>
-        <div className="pb-20 z-0 absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3">
+        <div className="">
           <TerminalPopup />
         </div>
       </div>

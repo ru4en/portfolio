@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Draggable from 'react-draggable';
-import { SquareTerminal } from 'lucide-react';
+import { SquareTerminal, Terminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import CLI from '../Common/CLI';
 
@@ -10,18 +10,9 @@ const TerminalPopup = () => {
   const [userInput, setUserInput] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [isMaximized, setIsMaximized] = useState(false);
-  const [isTerminalVisible, setTerminalVisible] = useState(true);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isTerminalVisible, setIsTerminalVisible] = useState(true);
+  const [position, setPosition] = useState({ x: 0, y: 200 });
   const textContainerRef = useRef<HTMLDivElement>(null);
-
-  const handleSetTerminalVisible = (isVisible: boolean) => {
-    setTerminalVisible(isVisible);
-    const terminalPopupBtn = document.getElementById('terminal-popup-btn');
-    if (terminalPopupBtn) {
-      terminalPopupBtn.style.display = isVisible ? 'opacity-0' : 'opacity-100';
-    }
-  };
-
   const fullText = `
   This is an interactive terminal.\n
   Type 'help' for a list of available commands.
@@ -40,7 +31,7 @@ const TerminalPopup = () => {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [isTyping]);
+  }, [isTyping, fullText]);
 
   useEffect(() => {
     if (textContainerRef.current) {
@@ -71,8 +62,8 @@ const TerminalPopup = () => {
     }, 0);
   };
 
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth <= 768 ? window.innerWidth * 0.9 : window.innerWidth * 0.6);
+  const [height, setHeight] = useState(window.innerHeight * 0.6);
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,144 +71,131 @@ const TerminalPopup = () => {
       setHeight(window.innerHeight * 0.6);
     };
 
-    handleResize();
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
+  const toggleMaximize = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const terminalPopup = document.getElementById('terminal-popup');
+    const terminalContent = document.getElementById('terminal-popup1');
+
+    if (terminalPopup && terminalContent) {
+      terminalPopup.classList.toggle('rounded-xl');
+      terminalContent.classList.toggle('rounded-lg');
+      terminalPopup.classList.toggle('fixed');
+      terminalPopup.classList.toggle('inset-0');
+      terminalPopup.classList.toggle('w-full');
+      terminalPopup.classList.toggle('h-full');
+      terminalPopup.classList.toggle('max-w-full');
+      terminalPopup.classList.toggle('overflow-hidden');
+      terminalPopup.classList.toggle('shadow-lg');
+      terminalPopup.classList.toggle('z-50');
+      terminalContent.classList.toggle('h-full');
+      window.scrollTo(0, 0);
+
+      let bgShade = document.getElementById('terminal-popup-bg-shade');
+      if (!bgShade) {
+        bgShade = document.createElement('div');
+        bgShade.id = 'terminal-popup-bg-shade';
+        bgShade.className = 'fixed inset-0 bg-black bg-opacity-50 z-40 hidden';
+        document.body.appendChild(bgShade);
+      }
+      bgShade.classList.toggle('hidden');
+    }
+    setIsMaximized(!isMaximized);
+    if (!isMaximized) {
+      setPosition({ x: 0, y: 0 });
+    }
+  };
+
+  const closeTerminal = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsTerminalVisible(false);
+    if (isMaximized) {
+      toggleMaximize(e); // Ensure the terminal is restored to its original state before closing
+    }
+    setText('');
+  };
+
   return (
-    <div>
-      {/* Terminal Icon */}
+    <div className="absolute inset-0 flex items-center justify-center">
       <div
         id="terminal-popup-btn"
-        className={`
-          fixed
-          bottom-5
-          right-5
-          bg-white
-          hover:bg-green-500
-          hover:text-white
-          text-green-500
-          dark:bg-gray-800
-          rounded-full
-          shadow-lg
-          p-3
-          cursor-pointer
-          backdrop-blur-md
-          hover:scale-110
-          hover:rotate-12
-          dark:hover:bg-gray-700
-          dark:hover:text-gray-200
-          z-50
-          transition-transform
-          transform
-          duration-300
-          fade-in
-          fade-out
-          ${isTerminalVisible ? 'opacity-0' : 'opacity-100'}
-        `}
-        onClick={() => handleSetTerminalVisible(true)}
+        className={`fixed bg-white hover:bg-green-500 hover:text-white text-green-500 dark:bg-gray-800 rounded-full shadow-lg p-3 bottom-5 right-5 cursor-pointer backdrop-blur-md hover:scale-110 transition-transform duration-900 ease-in-out quicksand ${isTerminalVisible ? 'opacity-10' : 'opacity-100'}`}
+        onClick={() => setIsTerminalVisible(true)}
+        style={{ zIndex: 1000 }}
       >
-        <SquareTerminal size={32} />
+        <Terminal size={32} />
       </div>
       <Draggable
-        handle="#terminal-popup1"
+        handle=".terminal-header"
         disabled={!isTerminalVisible || isMaximized}
         position={isMaximized ? { x: 0, y: 0 } : position}
         onStop={(_, data) => setPosition({ x: data.x, y: data.y })}
         enableUserSelectHack={false}
+        bounds="parent"
       >
-        <div className={`relative group rounded-xl shadow-lg mb-3 backdrop-blur-md
-        mx-5 sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 z-50 fade-in duration-75 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`}
-        id="terminal-popup">
-          <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 z-0 transition-opacity duration-700
-              opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover"></div>
-
-          {/* Terminal Popup */}
-              <div
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 backdrop-blur-lg opacity-90 border border-gray-200 dark:border-gray-700"
-                id="terminal-popup1"
-              >
-                {/* Terminal Header */}
-                <div className="flex items-center justify-between space-x-4">
-                  <div className="flex space-x-2">
-                    <div
-                      className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600 cursor-pointer"
-                      onClick={() => { handleSetTerminalVisible(false); setText(''); }}
-                    ></div>
-                    <div
-                      className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation(); // Prevent event from affecting the shell
-                        const terminalPopup = document.getElementById('terminal-popup');
-                        if (terminalPopup) {
-                          terminalPopup.classList.toggle('mx-5');
-                          terminalPopup.classList.toggle('sm:mx-20');
-                          terminalPopup.classList.toggle('md:mx-40');
-                          terminalPopup.classList.toggle('lg:mx-60');
-                          terminalPopup.classList.toggle('xl:mx-80');
-                          terminalPopup.classList.toggle('rounded-xl');
-                          document.getElementById('terminal-popup1')?.classList.toggle('rounded-lg');
-                          terminalPopup.classList.toggle('top-0');
-                          terminalPopup.classList.toggle('left-0');
-                          terminalPopup.classList.toggle('right-0');
-                          terminalPopup.classList.toggle('bottom-0');
-                        }
-                        setIsMaximized(!isMaximized);
-                        if (!isMaximized) {
-                          setPosition({ x: 0, y: 0 });
-                        }
-                      }}
-                    ></div>
-                    <div
-                      className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-600 cursor-pointer"
-                      onClick={() => { handleSetTerminalVisible(false) }}
-                    ></div>
-                  </div>
-                  <SquareTerminal size={22} />
-                </div>
-
-                {/* Terminal Body */}
+        <div className={`relative group rounded-xl shadow-lg mb-3 backdrop-blur-md fade-in duration-75 z-20 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`} id="terminal-popup">
+          <div
+            className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover"
+            id="terminal-popup-bg-shade"
+          ></div>
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg backdrop-blur-lg opacity-90 border border-gray-200 dark:border-gray-700" id="terminal-popup1">
+            <div className="flex items-center justify-between space-x-4 p-2 cursor-move">
+              <div className="flex gap-2">
                 <div
-                  ref={textContainerRef}
-                  className="mt-4 space-y-2 overflow-y-auto relative text-green-600 dark:text-green-500 cursor-text"
-                  style={{ height: `${height - 80}px` }}
-                >
-                  <pre
-                    className="text-lg whitespace-pre-wrap break-words"
-                    style={{ fontFamily: 'monospace', width: `${width - 40}px` }}
-                  >
-                    {text}
-                  </pre>
-
-                  {/* User Input */}
-                  <div className="flex items-center space-x-2 relative">
-                    <p className="text-green-500 pt-2">
-                      <span className="text-green-300 pr-2">λ</span>
-                      <span className="text-yellow-500">guest</span>
-                      <span className="text-blue-500">@</span>
-                      <span className="text-teal-400">rubenlopes.uk</span>
-                      <span className="dark:text-white text-lg pl-2 pr-1">{"►"}</span>
-                    </p>
-
-                    <input
-                      type="text"
-                      value={userInput}
-                      onChange={handleInputChange}
-                      onKeyDown={handleKeyPress}
-                      className="w-full mt-2 p-2 bg-transparent outline-none cursor-text dark:hover:bg-gray-700 rounded-lg"
-                      placeholder="$"
-                    />
-                  </div>
-                </div>
+                  className="p-1.5 bg-red-500 rounded-full hover:bg-red-600 cursor-pointer xs:p-2"
+                  onClick={closeTerminal}
+                ></div>
+                <div
+                  className="p-1.5 bg-yellow-500 rounded-full hover:bg-yellow-600 cursor-pointer xs:p-2"
+                  onClick={toggleMaximize}
+                ></div>
+                <div
+                  className="p-1.5 bg-green-500 rounded-full hover:bg-green-600 cursor-pointer xs:p-2"
+                  onClick={closeTerminal}
+                ></div>
+              </div>
+              <div className="rounded-full cursor-pointer terminal-header w-[100%] flex items-center justify-center transition-all duration-300 hover:bg-gray-300 dark:hover:bg-gray-900 dark:hover:text-green-500 hover:bg-opacity-50 dark:hover:bg-opacity-50">
+                Terminal
+              </div>
+              <SquareTerminal size={22} />
+            </div>
+            <div
+              ref={textContainerRef}
+              className="space-y-2 overflow-y-auto relative terminal-header text-green-600 dark:text-green-500 cursor-text bg-gray-100 dark:bg-gray-900 rounded-lg text-sm md:text-md"
+              style={{ height: `${height - 80}px` }}
+              id="terminal-popup-body"
+            >
+              <pre className="whitespace-pre-wrap break-words p-2 text-sm md:text-md" style={{ fontFamily: 'monospace', width: `${width - 40}px` }}>
+                {text}
+              </pre>
+              <div className="flex items-center space-x-2 relative p-2">
+                <p className="text-green-500 pt-2">
+                  <span className="text-green-300 pr-2">λ</span>
+                  <span className="text-yellow-500">guest</span>
+                  <span className="text-blue-500">@</span>
+                  <span className="text-teal-400">rubenlopes.uk</span>
+                  <span className="dark:text-white text-lg pl-2 pr-1">{"►"}</span>
+                </p>
+                <input
+                  type="text"
+                  value={userInput}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyPress}
+                  className="w-full mt-2 p-2 bg-transparent outline-none cursor-text dark:hover:bg-gray-700 rounded-lg"
+                  placeholder="$"
+                />
               </div>
             </div>
+          </div>
+        </div>
       </Draggable>
     </div>
   );
-}
+};
 
 export default TerminalPopup;
