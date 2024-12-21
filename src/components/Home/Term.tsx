@@ -127,7 +127,7 @@ const TerminalPopup = () => {
         handle="#terminal-popup1"
         disabled={!isTerminalVisible || isMaximized}
         position={isMaximized ? { x: 0, y: 0 } : position}
-        onStop={(e, data) => setPosition({ x: data.x, y: data.y })}
+        onStop={(_, data) => setPosition({ x: data.x, y: data.y })}
       >
         <div className={`relative group rounded-xl shadow-lg mb-3 backdrop-blur-md
         mx-5 sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 z-50 fade-in duration-75 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`}
