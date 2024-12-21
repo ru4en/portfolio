@@ -14,7 +14,7 @@ const TerminalPopup = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const textContainerRef = useRef<HTMLDivElement>(null);
 
-  const setIsTerminalVisible = (isVisible: boolean) => {
+  const handleSetTerminalVisible = (isVisible: boolean) => {
     setTerminalVisible(isVisible);
     const terminalPopupBtn = document.getElementById('terminal-popup-btn');
     if (terminalPopupBtn) {
@@ -119,7 +119,7 @@ const TerminalPopup = () => {
           fade-out
           ${isTerminalVisible ? 'opacity-0' : 'opacity-100'}
         `}
-        onClick={() => setIsTerminalVisible(true)}
+        onClick={() => handleSetTerminalVisible(true)}
       >
         <SquareTerminal size={32} />
       </div>
@@ -128,6 +128,7 @@ const TerminalPopup = () => {
         disabled={!isTerminalVisible || isMaximized}
         position={isMaximized ? { x: 0, y: 0 } : position}
         onStop={(_, data) => setPosition({ x: data.x, y: data.y })}
+        enableUserSelectHack={false}
       >
         <div className={`relative group rounded-xl shadow-lg mb-3 backdrop-blur-md
         mx-5 sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 z-50 fade-in duration-75 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`}
@@ -145,7 +146,7 @@ const TerminalPopup = () => {
                   <div className="flex space-x-2">
                     <div
                       className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600 cursor-pointer"
-                      onClick={() => { setIsTerminalVisible(false); setText(''); }}
+                      onClick={() => { handleSetTerminalVisible(false); setText(''); }}
                     ></div>
                     <div
                       className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 cursor-pointer"
@@ -173,7 +174,7 @@ const TerminalPopup = () => {
                     ></div>
                     <div
                       className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-600 cursor-pointer"
-                      onClick={() => { setIsTerminalVisible(false) }}
+                      onClick={() => { handleSetTerminalVisible(false) }}
                     ></div>
                   </div>
                   <SquareTerminal size={22} />
