@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Draggable from 'react-draggable';
 import { SquareTerminal } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import CLI from '../Common/CLI';
@@ -8,8 +9,18 @@ const TerminalPopup = () => {
   const [text, setText] = useState('');
   const [userInput, setUserInput] = useState('');
   const [isTyping, setIsTyping] = useState(true);
-  const [isPopupVisible, setIsPopupVisible] = useState(true);
+  const [isMaximized, setIsMaximized] = useState(false);
+  const [isTerminalVisible, setTerminalVisible] = useState(true);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const textContainerRef = useRef<HTMLDivElement>(null);
+
+  const setIsTerminalVisible = (isVisible: boolean) => {
+    setTerminalVisible(isVisible);
+    const terminalPopupBtn = document.getElementById('terminal-popup-btn');
+    if (terminalPopupBtn) {
+      terminalPopupBtn.style.display = isVisible ? 'opacity-0' : 'opacity-100';
+    }
+  };
 
   const fullText = `
   This is an interactive terminal.\n
@@ -79,106 +90,132 @@ const TerminalPopup = () => {
 
   return (
     <div>
-          {/* Terminal Icon */}
-          <div
-          className="
-            fixed
-            bottom-5
-            right-5
-            bg-white
-            hover:bg-green-500
-            hover:text-white
-            text-green-500
-            dark:bg-gray-800
-            rounded-full
-            shadow-lg
-            p-3
-            cursor-pointer
-            backdrop-blur-md
-            transition-all
-            duration-300
-            hover:scale-110
-            transform
-            hover:rotate-12
-            dark:hover:bg-gray-700
-            dark:hover:text-gray-200
-            z-50
-            {isPopupVisible ? 'hidden' : 'block'}
-          "
-          onClick={() => setIsPopupVisible(!isPopupVisible)}
-        >
-          <SquareTerminal size={32} />
-        </div>
-    <div className="relative group rounded-xl shadow-lg mb-3 p-5:hover backdrop-blur-md transition-all duration-300 mx-5 sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 transform transition-transform duration-500 ease-in-out">
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 
-          opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover
-          transition-all duration-500 ease-in-out"></div>
+      {/* Terminal Icon */}
+      <div
+        id="terminal-popup-btn"
+        className={`
+          fixed
+          bottom-5
+          right-5
+          bg-white
+          hover:bg-green-500
+          hover:text-white
+          text-green-500
+          dark:bg-gray-800
+          rounded-full
+          shadow-lg
+          p-3
+          cursor-pointer
+          backdrop-blur-md
+          hover:scale-110
+          hover:rotate-12
+          dark:hover:bg-gray-700
+          dark:hover:text-gray-200
+          z-50
+          transition-transform
+          transform
+          duration-300
+          fade-in
+          fade-out
+          ${isTerminalVisible ? 'opacity-0' : 'opacity-100'}
+        `}
+        onClick={() => setIsTerminalVisible(true)}
+      >
+        <SquareTerminal size={32} />
+      </div>
+      <Draggable
+        handle="#terminal-popup1"
+        disabled={!isTerminalVisible || isMaximized}
+        position={isMaximized ? { x: 0, y: 0 } : position}
+        onStop={(e, data) => setPosition({ x: data.x, y: data.y })}
+      >
+        <div className={`relative group rounded-xl shadow-lg mb-3 backdrop-blur-md
+        mx-5 sm:mx-20 md:mx-40 lg:mx-60 xl:mx-80 z-50 fade-in duration-75 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`}
+        id="terminal-popup">
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 z-0 transition-opacity duration-700
+              opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover"></div>
 
-      {/* Terminal Popup */}
-      {isPopupVisible && (
-        <div className="bg-gray-400 dark:bg-gray-800 rounded-xl terminal-popup transform transition-transform duration-500 
-        fade-in ease-in-out fade-out">
-          <div
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 backdrop-blur-lg transition-all duration-300 opacity-90"
-          >
-            {/* Terminal Header */}
-            <div className="flex items-center justify-between space-x-4">
-              <div className="flex space-x-2">
-                <div
-                  className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600 cursor-pointer"
-                  onClick={() => setIsPopupVisible(false)}
-                ></div>
-                <div
-                  className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 cursor-pointer"
-                  onClick={() => console.log('Minimise button clicked')}
-                ></div>
-                <div
-                  className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-600 cursor-pointer"
-                  onClick={() => console.log('Expand button clicked')}
-                ></div>
-              </div>
-              <SquareTerminal size={22} />
-            </div>
-
-            {/* Terminal Body */}
-            <div
-              ref={textContainerRef}
-              className="mt-4 space-y-2 overflow-y-auto relative text-green-600 dark:text-green-500"
-              style={{ height: `${height - 80}px` }}
-            >
-              <pre
-                className="text-lg whitespace-pre-wrap break-words"
-                style={{ fontFamily: 'monospace', width: `${width - 40}px` }}
+          {/* Terminal Popup */}
+              <div
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 backdrop-blur-lg opacity-90" id="terminal-popup1"
               >
-                {text}
-              </pre>
+                {/* Terminal Header */}
+                <div className="flex items-center justify-between space-x-4">
+                  <div className="flex space-x-2">
+                    <div
+                      className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-600 cursor-pointer"
+                      onClick={() => { setIsTerminalVisible(false); setText(''); }}
+                    ></div>
+                    <div
+                      className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-600 cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent event from affecting the shell
+                        const terminalPopup = document.getElementById('terminal-popup');
+                        if (terminalPopup) {
+                          terminalPopup.classList.toggle('mx-5');
+                          terminalPopup.classList.toggle('sm:mx-20');
+                          terminalPopup.classList.toggle('md:mx-40');
+                          terminalPopup.classList.toggle('lg:mx-60');
+                          terminalPopup.classList.toggle('xl:mx-80');
+                          terminalPopup.classList.toggle('rounded-xl');
+                          document.getElementById('terminal-popup1')?.classList.toggle('rounded-lg');
+                          terminalPopup.classList.toggle('top-0');
+                          terminalPopup.classList.toggle('left-0');
+                          terminalPopup.classList.toggle('right-0');
+                          terminalPopup.classList.toggle('bottom-0');
+                        }
+                        setIsMaximized(!isMaximized);
+                        if (!isMaximized) {
+                          setPosition({ x: 0, y: 0 });
+                        }
+                      }}
+                    ></div>
+                    <div
+                      className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-600 cursor-pointer"
+                      onClick={() => { setIsTerminalVisible(false) }}
+                    ></div>
+                  </div>
+                  <SquareTerminal size={22} />
+                </div>
 
-              {/* User Input */}
-              <div className="flex items-center space-x-2 relative">
-                <p className="text-green-500 pt-2">
-                  <span className="text-green-300 pr-2">λ</span>
-                  <span className="text-yellow-500">guest</span>
-                  <span className="text-blue-500">@</span>
-                  <span className="text-teal-400">rubenlopes.uk</span>
-                  <span className="dark:text-white text-lg pl-2 pr-1">{"►"}</span>
-                </p>
+                {/* Terminal Body */}
+                <div
+                  ref={textContainerRef}
+                  className="mt-4 space-y-2 overflow-y-auto relative text-green-600 dark:text-green-500 cursor-text"
+                  style={{ height: `${height - 80}px` }}
+                >
+                  <pre
+                    className="text-lg whitespace-pre-wrap break-words"
+                    style={{ fontFamily: 'monospace', width: `${width - 40}px` }}
+                  >
+                    {text}
+                  </pre>
 
-                <input
-                  type="text"
-                  value={userInput}
-                  onChange={handleInputChange}
-                  onKeyDown={handleKeyPress}
-                  className="w-full mt-2 p-2 bg-transparent outline-none cursor-text dark:hover:bg-gray-700 transition duration-300 rounded-lg"
-                  placeholder="$"
-                />
+                  {/* User Input */}
+                  <div className="flex items-center space-x-2 relative">
+                    <p className="text-green-500 pt-2">
+                      <span className="text-green-300 pr-2">λ</span>
+                      <span className="text-yellow-500">guest</span>
+                      <span className="text-blue-500">@</span>
+                      <span className="text-teal-400">rubenlopes.uk</span>
+                      <span className="dark:text-white text-lg pl-2 pr-1">{"►"}</span>
+                    </p>
+
+                    <input
+                      type="text"
+                      value={userInput}
+                      onChange={handleInputChange}
+                      onKeyDown={handleKeyPress}
+                      className="w-full mt-2 p-2 bg-transparent outline-none cursor-text dark:hover:bg-gray-700 rounded-lg"
+                      placeholder="$"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
-    </div>
+      </Draggable>
     </div>
   );
-};
+}
 
 export default TerminalPopup;
