@@ -43,10 +43,10 @@ const Navbar: React.FC = () => {
   }, [location]);
 
   return (
-    <div className="fixed top-0 w-full z-20 px-4">
+    <div className={`fixed top-0 w-full px-4 ${!isMenuOpen && isTop && location.pathname === '/' ? 'z-20' : 'z-50'}`}>
       <nav
         className={`mt-2 mx-auto navbar navbar-expand-md py-2 px-4 shadow-md rounded-xl backdrop-blur-md transition-all duration-300 w-full max-w-7xl 
-          ${!isMenuOpen && isTop && location.pathname === '/' ? 'shadow-none backdrop-blur-none text-white' : 'bg-gray-200 bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 text-gray-800 dark:text-white'}`}
+          ${!isMenuOpen && isTop && location.pathname === '/' ? 'shadow-none backdrop-blur-none text-white z-50' : 'bg-gray-200 bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 text-gray-800 dark:text-white z-50'}`}
       >
         <div className="navbar-content flex items-center w-full">
           <div className="logo flex items-center">
