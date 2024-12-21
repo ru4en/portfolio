@@ -125,7 +125,10 @@ const TerminalPopup = () => {
       <div
         id="terminal-popup-btn"
         className={`fixed bg-white hover:bg-green-500 hover:text-white text-green-500 dark:bg-gray-800 rounded-full shadow-lg p-3 bottom-5 right-5 cursor-pointer backdrop-blur-md hover:scale-110 transition-transform duration-900 ease-in-out quicksand ${isTerminalVisible ? 'opacity-10' : 'opacity-100'}`}
-        onClick={() => setIsTerminalVisible(true)}
+        onClick={() => {
+          setIsTerminalVisible(true);
+          window.scrollTo(0, 0);
+        }}
         style={{ zIndex: 1000 }}
       >
         <Terminal size={32} />
