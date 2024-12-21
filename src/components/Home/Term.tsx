@@ -137,7 +137,8 @@ const TerminalPopup = () => {
 
           {/* Terminal Popup */}
               <div
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 backdrop-blur-lg opacity-90" id="terminal-popup1"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 backdrop-blur-lg opacity-90 border border-gray-200 dark:border-gray-700"
+                id="terminal-popup1"
               >
                 {/* Terminal Header */}
                 <div className="flex items-center justify-between space-x-4">
