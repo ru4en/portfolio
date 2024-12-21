@@ -28,24 +28,23 @@ const Welcome = () => {
     };
   }, []);
   return (
-      <div className="relative flex flex-col items-center justify-center h-screen bg-green-900 dark:bg-gray-900 shadow-lg overflow-hidden text-green-200 dark:text-green-400 pt-9 px-20">
+      <div className="relative bg-gray-700 dark:bg-gray-900 shadow-lg overflow-hidden text-green-200 dark:text-green-400 min-h-screen">
         <div className="absolute inset-0 opacity-100 [background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] dark:[background-size:25px_25px]"></div>
-    
         {/* Main content */}
-        <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-br overflow-hidden">
-          <div className="flex flex-col items-center container mx-auto text-center h-[100vh]">
-            <div className="flex text-4xl md:text-6xl font-bold items-center space-x-2 text-white dark:text-green-500 mt-20 p-3">
+        <div className="flex flex-col overflow-hidden">
+          <div className="flex flex-col items-center text-center justify-center pt-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
+            <div className="text-4xl md:text-6xl font-bold space-x-2 text-green-500 p-3">
               <h1>
                 <Typewriter fullText={fullText} />
               </h1>
             </div>
-            <div className="flex flex-wrap overflow-x-auto justify-center p-5 md:px-20">
+            <div className="flex  p-5 md:px-20">
               {data.socials.map((social, index) => (
                 <Socials key={index} name={String(social.name)} url={social.url ?? '#'} />
               ))}
             </div>
           </div>
-          <div className="w-screen h-screen">
+          <div className="pb-20">
           <TerminalPopup />
           </div>
         </div>
