@@ -85,7 +85,10 @@ const TerminalPopup = () => {
             fixed
             bottom-5
             right-5
-            bg-gray-400
+            bg-white
+            hover:bg-green-500
+            hover:text-white
+            text-green-500
             dark:bg-gray-800
             rounded-full
             shadow-lg
