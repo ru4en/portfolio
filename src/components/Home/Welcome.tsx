@@ -47,7 +47,7 @@ const Welcome = () => {
       {/* Main content */}
       <div className="flex flex-col w-full h-full">
         <div className="flex flex-col items-center text-center justify-center pt-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
-          <div className="text-4xl md:text-6xl font-bold space-x-2 text-gray-100 drop-shadow-lg dark:text-green-400">
+          <div className="text-3xl md:text-6xl font-bold space-x-2 text-gray-100 drop-shadow-lg dark:text-green-400">
             <h1 className="transition-transform duration-500 ease-in-out transform">
               <Typewriter fullText={fullText} />
             </h1>

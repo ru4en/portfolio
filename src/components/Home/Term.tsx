@@ -169,9 +169,11 @@ const TerminalPopup = () => {
             </div>
             <div
               ref={textContainerRef}
-              className="space-y-2 overflow-y-auto relative terminal-header text-green-600 dark:text-green-500 cursor-text bg-gray-100 dark:bg-gray-900 rounded-lg text-sm md:text-md"
+              className="space-y-2 overflow-y-auto relative text-green-600 dark:text-green-500 cursor-text bg-gray-100 dark:bg-gray-900 rounded-lg text-sm md:text-md"
               style={{ height: `${height - 80}px` }}
               id="terminal-popup-body"
+              
+
             >
               <pre className="whitespace-pre-wrap break-words p-2 text-sm md:text-md" style={{ fontFamily: 'monospace', width: `${width - 40}px` }}>
                 {text}
