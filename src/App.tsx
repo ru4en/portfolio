@@ -28,6 +28,7 @@ function App() {
           <div className="spinner"></div>
         </div>
       )}
+      
       <div className={`App ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-1000 ease-in-out`}>
         <AppRouter />
       </div>
