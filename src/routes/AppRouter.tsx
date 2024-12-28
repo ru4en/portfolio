@@ -8,7 +8,7 @@ import Admin from "../components/Admin/Admin";
 import AboutMe from "../components/About Me/AboutMe";
 import Blog from "../components/Blog/Blog";
 import NotFound from "../components/NotFound";
-// import Bugger from "../lib/Bugger";
+import Projects from "../components/Projects/Projects";
 
 function AppRouter() {
   return (
@@ -20,6 +20,7 @@ function AppRouter() {
           <Route path="/" element={<Home />} />
           <Route path="/about-me" element={<AboutMe />} />
           <Route path="/cv" element={<CV />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />

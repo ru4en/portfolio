@@ -14,17 +14,17 @@ compose:
 down:
 	docker-compose down
 
-test:
-	npm run test
 
+watch:
+	docker compose watch
+
+test:
+	echo "No tests yet lol"
 lint:
 	npm run lint
 
 clean:
 	rm -rf node_modules
-
-watch:
-	npm run watch
 
 
 # CV

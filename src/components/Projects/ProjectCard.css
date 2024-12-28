@@ -1,0 +1,53 @@
+.card-flip {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.card-back {
+    opacity: 0;
+  transform: rotateY(180deg);
+  transition: opacity 0.6s ease-in-out;
+}
+
+.flipped {
+    opacity: 1;
+  transform: rotateY(180deg);
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    }
+  
+.controller {
+    /* ALL ANIMATION */
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+    }
+
+.controller:hover {
+    /* ALL ANIMATION */
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
