@@ -77,12 +77,12 @@ const Projects = () => {
     }, [focusedIndex, isSelected, centeredIndex]);
 
     return (
-        <div className="flex flex-col items-center justify-center bg-white dark:bg-black shadow-lg overflow-hidden text-black dark:text-white pt-20 min-h-screen">
+        <div className="flex flex-col items-center justify-center bg-gray-300 dark:bg-gray-950 shadow-lg overflow-hidden text-black dark:text-white pt-20 min-h-screen">
             <div className="absolute inset-0 opacity-100 [background-image:linear-gradient(to_right,_rgba(0,0,0,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(0,0,0,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] dark:[background-size:25px_25px]" />
             
             <div className="absolute z-20 top-20 controller">
                 <h1 className="text-4xl  font-bold text-center ">Projects</h1>
-                <p className="text-lg text-center m-9 color-green-500 dark:text-green-500">
+                <p className="text-lg text-center m-9 color-green-500 dark:text-green-500 hidden md:block">
                     {data.projects.length} projects <br />
                     check out my github for more projects.
                 </p>

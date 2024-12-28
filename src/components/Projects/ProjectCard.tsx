@@ -34,7 +34,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           preserve-3d cursor-pointer shadow-xl hover:ring-4 hover:top-4  rounded-xl ring-green-500
           ${isFlipped ? 'flipped' : ''}
           ${isFullscreen ? 'w-[90vw] h-[80vh] sm:w-[80vw] sm:h-[70vh] lg:w-[70vw] lg:h-[60vh] '
-            : 'w-[300px] sm:w-[350px] lg:w-[400px] h-[300px]'}
+            : 'w-[250px] h-[270px] sm:w-[300px] lg:w-[350px]'}
         `}
       >
         {/* Front */}
@@ -44,7 +44,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 opacity-100 opacity-0
                 absolute inset-0 backface-hidden rounded-xl  p-4
               bg-gradient-to-br from-white via-blue-50 to-blue-100
-              dark:from-gray-700 dark:via-gray-800 dark:to-black
+              dark:from-gray-600 dark:via-gray-800 dark:to-gray-900
               transition-all duration-700 ease-in-out
             `}
           >
