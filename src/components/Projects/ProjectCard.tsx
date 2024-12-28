@@ -65,14 +65,15 @@ const ProjectCard = ({ project }: { project: Project }) => {
             className={`
                 opacity-0
               absolute inset-0 backface-hidden
-              rounded-xl overflow-hidden shadow-xl p-10
+              rounded-xl shadow-xl p-10
               bg-gradient-to-br from-green-600 via-green-500 to-cyan-600
-              text-white  flipped
+              text-white  flipped w-full h-full
+              overflow-scroll
               duration-500 ease-in-out transition-all
               delay-200
             `}
           >
-            <div className="flex flex-col max-h-[200px] max-w-[300px] mb-4">
+            <div className="flex flex-col max-h-[200px] max-w-[300px] p-4 gap-4">
                 <img
                     src={project.image || './placeholder.png'}
                  alt={project.title} className="w-full h-48 object-cover rounded-md mt-4 shadow-md transition duration-500 ease-in-out" />
