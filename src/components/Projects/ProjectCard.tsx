@@ -29,12 +29,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
     >
       <div
         onClick={handleFlip}
-        className={`
-          duration-700 ease-in-out transform-gpu 
+        className={` 
+          duration-700 ease-in-out transform-gpu
           preserve-3d cursor-pointer shadow-xl hover:ring-4 hover:top-4  rounded-xl ring-green-500
           ${isFlipped ? 'flipped' : ''}
           ${isFullscreen ? 'w-[90vw] h-[80vh] sm:w-[80vw] sm:h-[70vh] lg:w-[70vw] lg:h-[60vh] '
-            : 'w-[250px] h-[270px] sm:w-[300px] lg:w-[350px]'}
+            : 'w-[250px] h-[300px] sm:w-[300px] lg:w-[350px]'}
         `}
       >
         {/* Front */}
@@ -68,7 +68,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               rounded-xl shadow-xl p-10
               bg-gradient-to-br from-green-600 via-green-500 to-cyan-600
               text-white  flipped w-full h-full
-              overflow-scroll
+              overflow-scroll pt-12
               duration-500 ease-in-out transition-all
               delay-200
             `}

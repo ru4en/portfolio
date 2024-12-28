@@ -90,10 +90,10 @@ const Projects = () => {
             <div className="absolute inset-0 flex items-center justify-center">
                 <button
                     className="absolute controller left-0 top-1/2 
-                        transform -translate-y-1/2 p-20 to-transparent bg-gradient-to-r dark:to-transparent dark:text-white shadow-lg opacity-50 hover:opacity-100 transition duration-300 z-20 h-screen 
+                        transform -translate-y-1/2 to-transparent bg-gradient-to-r dark:to-transparent dark:text-white shadow-lg opacity-50 hover:opacity-100 transition duration-300 z-20 h-screen 
                         from-zinc-900/[.60] hover:from-zinc-900/[.80] dark:from-zinc-600/[.30]
                         dark:hover:from-zinc-600/[.80] hover:from-zinc-900/[.80]
-                        transition-all duration-800 ease-in-out transform "
+                        transition-all duration-800 ease-in-out transform  p-10 md:p-20"
                     onClick={() => {
                         const scrollContainer = document.getElementById('projects');
                         if (scrollContainer) {
@@ -142,10 +142,10 @@ const Projects = () => {
 
                 <button
                     className="absolute controller right-0 top-1/2
-                        transform -translate-y-1/2 p-20 to-transparent bg-gradient-to-l  dark:to-transparent dark:text-white shadow-lg opacity-50 hover:opacity-100 transition duration-300 z-20 h-screen
+                        transform -translate-y-1/2 to-transparent bg-gradient-to-l  dark:to-transparent dark:text-white shadow-lg opacity-50 hover:opacity-100 transition duration-300 z-20 h-screen
                         from-zinc-900/[.60] hover:from-zinc-900/[.80] dark:from-zinc-600/[.30]
                         dark:hover:from-zinc-600/[.80] hover:from-zinc-900/[.80]
-                        transition-all duration-800 ease-in-out transform 
+                        transition-all duration-800 ease-in-out transform p-10 md:p-20
                     "
                     onClick={() => {
                         const scrollContainer = document.getElementById('projects');
