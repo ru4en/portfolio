@@ -26,7 +26,7 @@ const Background = ({ iconNames }: { iconNames: string[] }) => {
           pointerEvents: 'none',
         }}
       />
-      <div className="grid grid-cols-8 gap-20 opacity-10 hover:opacity-20 transition-opacity duration-500">
+      <div className="grid opacity-10 gap-4 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
         {icons.map((iconName, index) => (
           <div
             key={index}

@@ -79,7 +79,7 @@ const ContactMe: React.FC = () => {
   return (
 
   <section id="contact" className="p-3 font-mono top-0 z-[-2] pb-20 min-h-screen  bg-[radial-gradient(#aaaaaa_1px,transparent_1px)] [background-size:25px_25px]">
-    <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+    <script src="https://s.pageclip.co/v1/pageclip.js"></script>
     <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen"></link>
         <div className="container mx-auto max-w-3xl flex flex-col items-center justify-center">
         <h2 className="text-2xl font-semibold m-10">{'</ Contact Me >'}</h2>
