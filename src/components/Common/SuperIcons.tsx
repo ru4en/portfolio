@@ -22,9 +22,7 @@ const SuperIcons: React.FC<{
     'css': 'devicon-css3-plain'
   };
 
-
-
-  const iconName = tagIconMap[name.toLowerCase()] || tagIconMap['default'];
+  const iconName = tagIconMap[name.toLowerCase()] ?? tagIconMap['default'];
 
   // Custom size values for each size option
   const sizeMap: { [key: string]: string } = {

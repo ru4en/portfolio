@@ -175,7 +175,7 @@ const TerminalPopup = () => {
               
 
             >
-              <pre className="whitespace-pre-wrap break-words p-2 text-sm md:text-md" style={{ fontFamily: 'monospace', width: `${width - 40}px` }}>
+              <pre className="whitespace-pre-wrap break-words p-2 text-sm md:text-md" style={{ fontFamily: 'monospace', width: `${width - 40}px`, backgroundColor: 'transparent' }}>
                 {text}
               </pre>
               <div className="flex items-center space-x-2 relative p-2">

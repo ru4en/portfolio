@@ -7,6 +7,7 @@ import CV from "../components/CV/CV";
 import Admin from "../components/Admin/Admin";
 import AboutMe from "../components/About Me/AboutMe";
 import Blog from "../components/Blog/Blog";
+import BlogPost from "../components/Blog/BlogPost";
 import NotFound from "../components/NotFound";
 import Projects from "../components/Projects/Projects";
 
@@ -22,6 +23,7 @@ function AppRouter() {
           <Route path="/cv" element={<CV />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

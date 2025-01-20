@@ -1,41 +1,76 @@
-const Blog = () => {
-    return (
-      <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-r from-cyan-400 to-light-blue-500 dark:from-cyan-800 dark:to-teal-800">
-        <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8">
-          {/* Heading */}
-          <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white">Blog</h1>
-          <p className="text-center text-lg text-gray-700 dark:text-gray-300 mt-2">
-            Watch out for blog posts here soon!
-          </p>
-  
-          {/* Blog Posts
-          <div className="w-full overflow-x-auto px-4 mt-8">
-            <div className="flex flex-wrap gap-8 justify-center">
-              <div className="min-w-[280px] flex flex-col p-6 bg-white rounded-lg shadow-lg transition-all transform hover:scale-105 hover:shadow-xl duration-300">
-                <img 
-                  src="path/to/default-icon.png"  // Default icon if image is missing
-                  alt="Blog Title" 
-                  className="w-full h-48 object-cover object-center rounded-md"
-                />
-                <h2 className="text-xl font-semibold mt-4 dark:text-black">Blog Title</h2>
-                <p className="text-gray-600 dark:text-gray-300 mt-2">Blog Description</p>
-                <a href="path/to/blog" target="_blank" rel="noreferrer" className="text-blue-500 hover:underline mt-4">Read more</a>
-              </div>
-              {/* Add more blog posts here, if needed
-            </div>
-          </div>
-        </div>
-        */}
-        </div>
+import { useEffect, useState } from 'react';
+import { Post } from '../Types';
+import { getBlogPost } from './BlogParser';
+import { BlogCard } from './BlogCard';
 
-        {/* Temporary */}
-        <div className="w-full bg-white dark:bg-gray-800 p-4 shadow-lg text-center absolute bottom-0 left-0 right-0">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Stay Tuned!</h2>
-            <p className="text-gray-600 dark:text-gray-400">Blog posts coming soon!</p>
-        </div>
+const Blog = () => {
+  const [blogPosts, setBlogPosts] = useState<Post[]>([]);
+  const [error, setError] = useState<string>('');
+
+  useEffect(() => {
+    const loadBlogPosts = async () => {
+      try {
+        const response = await fetch('/blogs/published.json');
+        if (!response.ok) throw new Error('Failed to fetch blog list');
+        
+        const { files } = await response.json();
+        const posts = await Promise.all(
+          files.map(async (filename: string) => {
+            const response = await fetch(`/blogs/${filename}`);
+            if (!response.ok) return null;
+            
+            const content = await response.text();
+            const parsed = getBlogPost(content);
+            
+            return {
+              ...parsed,
+              slug: filename.replace('.md', ''),
+            };
+          })
+        );
+
+        setBlogPosts(posts.filter(Boolean));
+      } catch (err) {
+        setError('Failed to load blog posts');
+        console.error(err);
+      }
+    };
+
+    loadBlogPosts();
+  }, []);
+
+  return (
+    <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-r from-cyan-400 to-light-blue-500 dark:from-cyan-800 dark:to-teal-800">
+      <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8">
+        <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-12">
+          Blog
+        </h1>
+
+        {error && (
+          <div className="text-center p-4 bg-red-100 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
+
+        {!error && blogPosts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts.map((post) => (
+              <BlogCard key={post.slug} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-lg shadow">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
+              Stay Tuned!
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Blog posts coming soon!
+            </p>
+          </div>
+        )}
       </div>
-    );
-  };
-  
-  export default Blog;
-  
+    </div>
+  );
+};
+
+export default Blog;

@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Adjust the timeout duration as needed
+    }, 200); // Adjust the timeout duration as needed
 
     return () => clearTimeout(timer);
   }, []);

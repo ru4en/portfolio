@@ -23,3 +23,107 @@
 .preloader .spinner {
   margin-top: 20px; /* Adjust the spacing as needed */
 }
+
+pre {
+  border-radius: 0.75rem !important;
+  padding: 1.5rem !important;
+  margin: 2rem 0 !important;
+  overflow-x: auto !important;
+}
+
+code {
+  font-family: 'Fira Code', monospace !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+.dark pre {
+  background: rgba(42, 49, 66, 0.616);
+}
+
+a {
+  color: hsl(var(--primary));
+  text-decoration: none;
+}
+
+.markdown h1 {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  color: hsl(var(--primary));
+}
+
+.markdown h2 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: hsl(var(--primary));
+}
+
+.markdown h3 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  color: hsl(var(--primary));
+}
+
+.markdown h4 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  color: hsl(var(--primary));
+}
+
+.markdown h5 {
+  font-size: 1rem;
+  margin-top: 2rem;
+  color: hsl(var(--primary));
+}
+
+.markdown h6 {
+  font-size: 0.875rem;
+  margin-top: 2rem;
+  color: hsl(var(--primary));
+}
+
+.markdown p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.markdown ul {
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.markdown ol {
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.markdown li {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.markdown a {
+  color: hsl(var(--primary));
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+.markdown blockquote {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  border-left: 4px solid hsl(var(--primary));
+  padding-left: 1rem;
+}
+
+.markdown pre {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(42, 49, 66, 0.616);
+}

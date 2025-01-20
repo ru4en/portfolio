@@ -8,13 +8,14 @@ const TagComponent: React.FC<{
   onRemove?: () => void;
   onClick?: () => void;
   className?: string;
-}> = ({ tag, isSelected, onChange, onRemove, onClick, className }) => {
+  hideIcon?: boolean;
+}> = ({ tag, isSelected, onChange, onRemove, onClick, className, hideIcon = false }) => {
 
 
   return (
     <button type="button" onClick={onClick} className="focus:outline-none">
     <span className={`rounded-full px-3 py-1 text-sm font-semibold flex items-center transition-all duration-200 ${className || 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200  hover:bg-gray-400 dark:hover:bg-gray-600 hover:scale-105'}`}>
-      <SuperIcon name={tag} className="w-4 h-4 mr-1" />
+      {!hideIcon && <SuperIcon name={tag} className="w-4 h-4 mr-1" />}
   {
     onChange ? (
       <input

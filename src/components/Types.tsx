@@ -66,3 +66,15 @@ export interface ProjectData {
     education: Education[];
     experience: Experience[];
 }
+
+
+export interface Post {
+  date: Date;
+  title: string;
+  authors?: string[];
+  icons?: string[];
+  description?: string;
+  slug?: string;
+  content: string;
+  tags?: string[];
+}
