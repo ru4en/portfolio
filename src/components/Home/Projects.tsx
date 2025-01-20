@@ -8,7 +8,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <div className="w-[350px] flex flex-col p-4 rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 dark:text-white min-h-[450px] hover:shadow-lg transition duration-300 transform hover:bg-gray-300 dark:hover:bg-gray-700">
             <a href={project.url || project.repo} target="_blank" rel="noopener noreferrer">
                 <img 
-                    src={project.image || 'https://rubenlopes.uk/placeholder_image.png'} 
+                    src={project.image || 'placeholder.png'} 
                     alt={project.title} 
                     className="rounded-lg w-full h-48 object-cover object-center shadow-md hover:shadow-lg transition duration-300 hover:scale-105"
                 />

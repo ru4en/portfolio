@@ -40,7 +40,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-r from-cyan-400 to-light-blue-500 dark:from-cyan-800 dark:to-teal-800">
+    <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-br from-gray-500 via-gray-300 to-white dark:from-cyan-800 dark:to-teal-800">
       <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8">
         <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-12">
           Blog
