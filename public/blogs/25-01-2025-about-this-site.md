@@ -1,11 +1,11 @@
 ---
 
-title: Hello World!  
-date: 19-01-2025  
+title: About This Site
+date: 25-01-2025
 author: Ruben Lopes  
-description: Starting off the blog with an introduction to my website and myself.  
-tags: introduction, blog, website
-icons: python:devicon, typescript:devicon, docker:devicon
+description: A technical overview of my website, the stack I used, and what you can expect to find here.  
+tags: website, stack, overview
+icons: python:devicon, star:material-icons, phone:fontawesome
 
 ---
 
@@ -33,6 +33,27 @@ class Ruben:
         self.languages = ["Python", "TypeScript", "Go"]
         self.tools = ["Docker", "Kubernetes", "Terraform"]
 ```  
+
+```python
+self.skills = {
+    "Python": "Advanced",
+    "TypeScript": "Intermediate",
+    "Go": "Beginner",
+    "Docker": "Advanced",
+    "Kubernetes": "Intermediate",
+    "Terraform": "Intermediate",
+    "AWS": "Intermediate",
+    "Azure": "Intermediate",
+    "GCP": "Intermediate"
+}
+```  
+
+```python
+self.socials = {
+    "LinkedIn": "https://www.linkedin.com/in/rubenlopes98/"
+}
+```  
+
 
 Basically, I’m a final-year Computer Science student who loves building things, solving problems, and playing around with tech.  
 

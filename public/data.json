@@ -1,400 +1,216 @@
 {
-    "site": {
-        "title": "Rubens Portfolio",
-        "description": "This is my professional portfolio, showcasing my work, projects, and experiences in software engineering, DevOps, and cybersecurity.",
-        "author": "Ruben Lopes",
-        "image": "logo-small.png",
-        "keywords": [
-            "portfolio",
-            "web development",
-            "react",
-            "python",
-            "aws",
-            "devops",
-            "ruben lopes",
-            "cybersecurity",
-            "automation",
-            "software engineering"
-        ]
-    },
-    "socials": [
-        {
-            "name": "GitHub",
-            "url": "https://github.com/ru4en/"
-        },
-        {
-            "name": "LinkedIn",
-            "url": "https://www.linkedin.com/in/ru4en"
-        }
-    ],
-    "about": {
-        "role": "DevOps & Software Engineer Specialist",
-        "description": "I am a final year Computer Science student, with professional experience in DevOps, web development, and computational science. My goal is to establish a career as a Software Engineer and DevOps Specialist, drawing on my hands-on experience in full-stack application development, CI/CD pipeline management, and cloud service deployment. Proficient in Python, Django, React, TypeScript, Docker, and cloud solutions, I am passionate about optimising processes and designing scalable systems.",
-        "image": "https://avatars.githubusercontent.com/u/60962448?v=4"
-    },
-    "skills": [
-        {
-            "name": "Python",
-            "icon": "python.svg",
-            "level": 9
-        },
-        {
-            "name": "TypeScript",
-            "icon": "typescript.svg",
-            "level": 8
-        },
-        {
-            "name": "React",
-            "icon": "react.svg",
-            "level": 7
-        },
-        {
-            "name": "CSS",
-            "icon": "tailwind.svg",
-            "level": 7
-        },
-        {
-            "name": "Docker",
-            "icon": "docker.svg",
-            "level": 8
-        },
-        {
-            "name": "Linux",
-            "level": 8
-        },
-        {
-            "name": "Windows",
-            "level": 6
-        },
-        {
-            "name": "JavaScript",
-            "level": 7
-        },
-        {
-            "name": "Databases",
-            "level": 8
-        },
-        {
-            "name": "Go",
-            "level": 3
-        },
-        {
-            "name": "C, C++",
-            "level": 5
-        },
-        {
-            "name": "VM",
-            "level": 4
-        },
-        {
-            "name": "Git",
-            "level": 7
-        },
-        {
-            "name": "Jenkins",
-            "level": 6
-        },
-        {
-            "name": "Bash",
-            "level": 7
-        },
-        {
-            "name": "Security",
-            "level": 6
-        },
-        {
-            "name": "Embeded Systems",
-            "level": 5
-        }
-    ],
-    "projects": [
-        {
-            "title": "Interactive Periodic Table",
-            "description": "A Simple web-based interactive periodic table.",
-            "image": "https://github.com/ru4en/interactive-periodic-table/blob/main/ipt.png?raw=true",
-            "url": "https://www.rubenlopes.uk/interactive-periodic-table",
-            "tags": [
-                "CSS",
-                "HTML",
-                "JavaScript"
-            ],
-            "repo": "https://github.com/ru4en/interactive-periodic-table"
-        },
-        {
-            "title": "Shell Out",
-            "description": "A simple web-based application that provides disposable, isolated containers to create temporary terminals. This tool enables users to launch secure, ephemeral terminal sessions within a browser environment.",
-            "image": "",
-            "url": "",
-            "tags": [
-                "Go",
-                "TypeScript",
-                "React",
-                "Docker"
-            ],
-            "repo": "https://github.com/ru4en/shell-out"
-        },
-        {
-            "title": "Invite Tracker",
-            "description": "self-hostable party invitation tracker that allows you to manage event invitations, Create QR invites and track RSVPs independently. ",
-            "image": "",
-            "url": "https://invite-tracker.rlab.uk",
-            "tags": [
-                "HTML",
-                "Javascript",
-                "Go",
-                "CSS",
-                "Docker"
-            ],
-            "repo": "https://github.com/ru4en/invite-tracker"
-        },
-        {
-            "title": "Qnote",
-            "description": "A quick and simple command line based note taking app. ",
-            "image": "https://github.com/ru4en/qnote/raw/7aaccbd8173f4df7b78aea9eec860ceedd0124bf/list-example.png",
-            "url": "",
-            "tags": [
-                "Python"
-            ],
-            "repo": "https://github.com/ru4en/qnote"
-        },
-        {
-            "title": "Momentum",
-            "description": "A PDF Document manager.",
-            "image": "https://raw.githubusercontent.com/ru4en/momentum/main/ss.png",
-            "url": "",
-            "tags": [
-                "Python",
-                "HTML",
-                "Javascript",
-                "Django"
-            ],
-            "repo": "https://github.com/ru4en/momentum"
-        },
-        {
-            "title": "Project Management Tool ",
-            "description": "One of my First year C Courseworks was to make a project management tool designed to simplify the setup of a development environment for a specified stack. It automates the process of configuring and initializing the necessary tools, filestructure, dependencies, and configurations, making it easier for developers to get started ",
-            "image": "",
-            "url": "",
-            "tags": [
-                "C",
-                "Bash",
-                "HTML"
-            ],
-            "repo": "https://github.com/ru4en/cs1pc20_project_man_tool"
-        }
-    ],
-    "education": [
-        {
-            "degree": "BSc Computer Science",
-            "school": "University of Reading",
-            "start": "2021-09-01",
-            "end": "2025-06-01",
-            "image": "https://www.reading.ac.uk/homepage/web/multimediafiles/legacy-uor-home-mobile.png",
-            "description": "Currently in my final year of a Bachelor's in Computer Science, with a focus on AI, cybersecurity, and software engineering. Achieved top marks in key modules such as Software Engineering, Computational Mathematics, Databases, and Security.",
-            "grade": "1st (Predicted)",
-            "modules": [
-                {
-                    "name": "Applications of Computer Science",
-                    "grade": "C"
-                },
-                {
-                    "name": "Fundamentals of Computer Science",
-                    "grade": "B"
-                },
-                {
-                    "name": "Mathematics and Computation",
-                    "grade": "A"
-                },
-                {
-                    "name": "Programming in C/C++",
-                    "grade": "A"
-                },
-                {
-                    "name": "SE: Fundamentals and Professional Development",
-                    "grade": "A"
-                },
-                {
-                    "name": "Student Enterprise",
-                    "grade": "D"
-                },
-                {
-                    "name": "Algorithms and Operating Systems",
-                    "grade": "A"
-                },
-                {
-                    "name": "Computer Architecture and Networking",
-                    "grade": "A"
-                },
-                {
-                    "name": "Compilers",
-                    "grade": "A"
-                },
-                {
-                    "name": "Databases and Information Security",
-                    "grade": "A"
-                },
-                {
-                    "name": "Programming in Java ",
-                    "grade": "A"
-                },
-                {
-                    "name": "Programming in Python for Data Science",
-                    "grade": "C"
-                },
-                {
-                    "name": "Service-Oriented System Applications",
-                    "grade": "B"
-                },
-                {
-                    "name": "Software System Design with UML",
-                    "grade": "B"
-                },
-                {
-                    "name": "Industrial Year",
-                    "grade": "+"
-                },
-                {
-                    "name": "Artificial Intelligence and Machine Learning",
-                    "grade": "+"
-                },
-                {
-                    "name": "Data Integration and Information Visualisation",
-                    "grade": "+"
-                },
-                {
-                    "name": "Degree Project",
-                    "grade": "+"
-                },
-                {
-                    "name": "Image Analysis and Visual Intelligence",
-                    "grade": "+"
-                },
-                {
-                    "name": "Text Mining and Natural Language Processing",
-                    "grade": "+"
-                }
-            ]
-        },
-        {
-            "degree": "BTEC Level 3 in Computing",
-            "school": "New College Swindon",
-            "start": "2017-09-01",
-            "end": "2021-06-30",
-            "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
-            "description": "Completed BTEC Level 3 in Computing with Distinction* (D*DD), covering foundational skills in computer science, programming, and problem-solving.",
-            "grade": "D*D D",
-            "modules": [
-                {
-                    "name": "Principles of Computer Science",
-                    "grade": "Pass"
-                },
-                {
-                    "name": "Fundamentals of Computer Systems",
-                    "grade": "Merit"
-                },
-                {
-                    "name": "Planning and Management of Computing Projects",
-                    "grade": "Merit"
-                },
-                {
-                    "name": "Software Design and Development Project",
-                    "grade": "Distinction"
-                },
-                {
-                    "name": "IT Systems Security and Encryption",
-                    "grade": "Merit"
-                },
-                {
-                    "name": "Business Applications of social media",
-                    "grade": "Merit"
-                },
-                {
-                    "name": "The Impact of Computing",
-                    "grade": "Merit"
-                },
-                {
-                    "name": "Human-computer Interaction",
-                    "grade": "Distinction"
-                },
-                {
-                    "name": "Computer Games Development",
-                    "grade": "Distinction"
-                },
-                {
-                    "name": "Website Development",
-                    "grade": "Distinction"
-                },
-                {
-                    "name": "Relational Database Development",
-                    "grade": "Distinction"
-                },
-                {
-                    "name": "Systems Analysis and Design",
-                    "grade": "Distinction"
-                },
-                {
-                    "name": "Systems Methodology",
-                    "grade": "Distinction"
-                }
-            ]
-        }
-    ],
-    "experience": [
-                {
-            "role": "Website Developer Assistant",
-            "company": "Reading Students’ Union",
-            "start": "2024-09-01",
-            "end": "2025-07-01",
-            "image": "https://assets-cdn.sums.su/RD/website-assets/Images/website-images/RSU-DEEPBLUE-LOGO-RGB.webp",
-            "description": "Responsible for front-end development and UI/UX enhancements on the Reading Students’ Union website, implementing responsive design and creating a custom UI library aligned with the brand.",
-            "technologies": [
-                "HTML",
-                "CSS",
-                "JavaScript"
-            ]
-        },
-        {
-            "role": "DevOps Engineer (Industrial Placement)",
-            "company": "HP Inc. - Wolf Security",
-            "start": "2023-07-01",
-            "end": "2024-06-30",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hewlett-Packard_logo_1964.svg/1024px-Hewlett-Packard_logo_1964.svg.png",
-            "description": "During my time at HP, I developed and deployed backend services using Python (Django), created CI/CD pipelines with Jenkins, and gained hands-on experience with cloud technologies, Docker, and virtualized environments.",
-            "technologies": [
-                "Python",
-                "Django",
-                "React",
-                "TypeScript",
-                "Docker",
-                "Jenkins"
-            ]
-        },
-        {
-            "role": "Audio Visual Assistant",
-            "company": "University of Reading - IT",
-            "start": "2022-11-13T01:22:18.309Z",
-            "end": "2023-06-13T01:22:18.309Z",
-            "image": "http://www.reading.ac.uk/web/multimediafiles/legacy-uor-home.png",
-            "description": "Responsible for the testing and diagnosing of audio-visual equipment across the University campus and ensuring the smooth operation of AV systems.",
-            "technologies": [
-                "Windows"
-            ]
-        },
-        {
-            "role": "Computational Scientist Summer Placement",
-            "company": "UKRI - Science And Technology Facilities Council (ISIS)",
-            "start": "2022-06-01",
-            "end": "2022-09-01",
-            "image": "https://www.ukri.org/wp-content/uploads/2022/03/ukri-stfc-square-logo.png",
-            "description": "During the Summer of 2022 I worked at the Rutherford Appleton Laboratory on a scientific Analysis Software called SasView. ",
-            "technologies": [
-                "Python",
-                "Qt",
-                "C",
-                "Numpy",
-                "Matplotlib",
-                "Git"
-            ]
-        }
+  "site": {
+    "title": "Rubens Portfolio",
+    "description": "This is my professional portfolio, showcasing my work, projects, and experiences in software engineering, DevOps, and cybersecurity.",
+    "author": "Ruben Lopes",
+    "image": "logo-small.png",
+    "keywords": [
+      "portfolio",
+      "web development",
+      "react",
+      "python",
+      "aws",
+      "devops",
+      "ruben lopes",
+      "cybersecurity",
+      "automation",
+      "software engineering"
     ]
+  },
+  "socials": [
+    { "name": "GitHub", "url": "https://github.com/ru4en/" },
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ru4en" }
+  ],
+  "about": {
+    "role": "DevOps & Software Engineer Specialist",
+    "description": "I am a final year Computer Science student, with professional experience in DevOps, web development, and computational science. My goal is to establish a career as a Software Engineer and DevOps Specialist, drawing on my hands-on experience in full-stack application development, CI/CD pipeline management, and cloud service deployment. Proficient in Python, Django, React, TypeScript, Docker, and cloud solutions, I am passionate about optimising processes and designing scalable systems.",
+    "image": "https://avatars.githubusercontent.com/u/60962448?v=4"
+  },
+  "skills": [
+    { "name": "Python", "level": 9 },
+    { "name": "TypeScript", "level": 8 },
+    { "name": "React", "level": 7 },
+    { "name": "CSS3", "level": 7 },
+    { "name": "Docker", "level": 8 },
+    { "name": "Linux", "level": 8 },
+    { "name": "Windows", "level": 6 },
+    { "name": "JavaScript", "level": 7 },
+    { "name": "Database", "level": 8 },
+    { "name": "Go", "level": 3 },
+    { "name": "C", "level": 5 },
+    { "name": "Proxmox", "level": 4 },
+    { "name": "Git", "level": 7 },
+    { "name": "Jenkins", "level": 6 },
+    { "name": "GNUbash", "level": 7 },
+    { "name": "Security:material-icons", "level": 6 },
+    { "name": "Hardware:material-icons", "level": 3 },
+    { "name": "HTML5", "level": 9 }
+  ],
+  "projects": [
+    {
+      "title": "Interactive Periodic Table",
+      "description": "A Simple web-based interactive periodic table.",
+      "image": "https://github.com/ru4en/interactive-periodic-table/blob/main/ipt.png?raw=true",
+      "url": "https://www.rubenlopes.uk/interactive-periodic-table",
+      "tags": ["CSS3", "HTML5", "JavaScript"],
+      "repo": "https://github.com/ru4en/interactive-periodic-table"
+    },
+    {
+      "title": "Shell Out",
+      "description": "A simple web-based application that provides disposable, isolated containers to create temporary terminals. This tool enables users to launch secure, ephemeral terminal sessions within a browser environment.",
+      "image": "",
+      "url": "",
+      "tags": ["Go", "TypeScript", "React", "Docker"],
+      "repo": "https://github.com/ru4en/shell-out"
+    },
+    {
+      "title": "Invite Tracker",
+      "description": "self-hostable party invitation tracker that allows you to manage event invitations, Create QR invites and track RSVPs independently. ",
+      "image": "",
+      "url": "https://invite-tracker.rlab.uk",
+      "tags": ["HTML5", "Javascript", "Go", "Docker", "CSS3"],
+      "repo": "https://github.com/ru4en/invite-tracker"
+    },
+    {
+      "title": "Qnote",
+      "description": "A quick and simple command line based note taking app. ",
+      "image": "https://github.com/ru4en/qnote/raw/7aaccbd8173f4df7b78aea9eec860ceedd0124bf/list-example.png",
+      "url": "",
+      "tags": ["Python"],
+      "repo": "https://github.com/ru4en/qnote"
+    },
+    {
+      "title": "Momentum",
+      "description": "A PDF Document manager.",
+      "image": "https://raw.githubusercontent.com/ru4en/momentum/main/ss.png",
+      "url": "",
+      "tags": ["Python", "HTML5", "Javascript", "Django"],
+      "repo": "https://github.com/ru4en/momentum"
+    },
+    {
+      "title": "Project Management Tool ",
+      "description": "One of my First year C Courseworks was to make a project management tool designed to simplify the setup of a development environment for a specified stack. It automates the process of configuring and initializing the necessary tools, filestructure, dependencies, and configurations, making it easier for developers to get started ",
+      "image": "",
+      "url": "",
+      "tags": ["C", "GNUBash", "HTML5"],
+      "repo": "https://github.com/ru4en/cs1pc20_project_man_tool"
+    }
+  ],
+  "education": [
+    {
+      "degree": "BSc Computer Science",
+      "school": "University of Reading",
+      "start": "2021-09-01",
+      "end": "2025-06-01",
+      "image": "https://www.reading.ac.uk/homepage/web/multimediafiles/legacy-uor-home-mobile.png",
+      "description": "Currently in my final year of a Bachelor's in Computer Science, with a focus on AI, cybersecurity, and software engineering. Achieved top marks in key modules such as Software Engineering, Computational Mathematics, Databases, and Security.",
+      "grade": "1st (Predicted)",
+      "modules": [
+        { "name": "Applications of Computer Science", "grade": "C" },
+        { "name": "Fundamentals of Computer Science", "grade": "B" },
+        { "name": "Mathematics and Computation", "grade": "A" },
+        { "name": "Programming in C/C++", "grade": "A" },
+        {
+          "name": "SE: Fundamentals and Professional Development",
+          "grade": "A"
+        },
+        { "name": "Student Enterprise", "grade": "D" },
+        { "name": "Algorithms and Operating Systems", "grade": "A" },
+        { "name": "Computer Architecture and Networking", "grade": "A" },
+        { "name": "Compilers", "grade": "A" },
+        { "name": "Databases and Information Security", "grade": "A" },
+        { "name": "Programming in Java ", "grade": "A" },
+        { "name": "Programming in Python for Data Science", "grade": "C" },
+        { "name": "Service-Oriented System Applications", "grade": "B" },
+        { "name": "Software System Design with UML", "grade": "B" },
+        { "name": "Industrial Year", "grade": "+" },
+        {
+          "name": "Artificial Intelligence and Machine Learning",
+          "grade": "+"
+        },
+        {
+          "name": "Data Integration and Information Visualisation",
+          "grade": "+"
+        },
+        { "name": "Degree Project", "grade": "+" },
+        { "name": "Image Analysis and Visual Intelligence", "grade": "+" },
+        { "name": "Text Mining and Natural Language Processing", "grade": "+" }
+      ]
+    },
+    {
+      "degree": "BTEC Level 3 in Computing",
+      "school": "New College Swindon",
+      "start": "2017-09-01",
+      "end": "2021-06-30",
+      "image": "https://www.newcollege.ac.uk/wp-content/themes/C4/assets/images/global/logo-colour.svg",
+      "description": "Completed BTEC Level 3 in Computing with Distinction* (D*DD), covering foundational skills in computer science, programming, and problem-solving.",
+      "grade": "D*D D",
+      "modules": [
+        { "name": "Principles of Computer Science", "grade": "Pass" },
+        { "name": "Fundamentals of Computer Systems", "grade": "Merit" },
+        {
+          "name": "Planning and Management of Computing Projects",
+          "grade": "Merit"
+        },
+        {
+          "name": "Software Design and Development Project",
+          "grade": "Distinction"
+        },
+        { "name": "IT Systems Security and Encryption", "grade": "Merit" },
+        { "name": "Business Applications of social media", "grade": "Merit" },
+        { "name": "The Impact of Computing", "grade": "Merit" },
+        { "name": "Human-computer Interaction", "grade": "Distinction" },
+        { "name": "Computer Games Development", "grade": "Distinction" },
+        { "name": "Website Development", "grade": "Distinction" },
+        { "name": "Relational Database Development", "grade": "Distinction" },
+        { "name": "Systems Analysis and Design", "grade": "Distinction" },
+        { "name": "Systems Methodology", "grade": "Distinction" }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Website Developer Assistant",
+      "company": "Reading Students’ Union",
+      "start": "2024-09-01",
+      "end": "2025-07-01",
+      "image": "https://assets-cdn.sums.su/RD/website-assets/Images/website-images/RSU-DEEPBLUE-LOGO-RGB.webp",
+      "description": "Responsible for front-end development and UI/UX enhancements on the Reading Students’ Union website, implementing responsive design and creating a custom UI library aligned with the brand.",
+      "technologies": ["HTML5", "CSS3", "JavaScript"]
+    },
+    {
+      "role": "DevOps Engineer (Industrial Placement)",
+      "company": "HP Inc. - Wolf Security",
+      "start": "2023-07-01",
+      "end": "2024-06-30",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hewlett-Packard_logo_1964.svg/1024px-Hewlett-Packard_logo_1964.svg.png",
+      "description": "During my time at HP, I developed and deployed backend services using Python (Django), created CI/CD pipelines with Jenkins, and gained hands-on experience with cloud technologies, Docker, and virtualized environments.",
+      "technologies": [
+        "Python",
+        "Django",
+        "React",
+        "TypeScript",
+        "Docker",
+        "Jenkins"
+      ]
+    },
+    {
+      "role": "Audio Visual Assistant",
+      "company": "University of Reading - IT",
+      "start": "2022-11-13T01:22:18.309Z",
+      "end": "2023-06-13T01:22:18.309Z",
+      "image": "http://www.reading.ac.uk/web/multimediafiles/legacy-uor-home.png",
+      "description": "Responsible for the testing and diagnosing of audio-visual equipment across the University campus and ensuring the smooth operation of AV systems.",
+      "technologies": ["Windows"]
+    },
+    {
+      "role": "Computational Scientist Summer Placement",
+      "company": "UKRI - Science And Technology Facilities Council (ISIS)",
+      "start": "2022-06-01",
+      "end": "2022-09-01",
+      "image": "https://www.ukri.org/wp-content/uploads/2022/03/ukri-stfc-square-logo.png",
+      "description": "During the Summer of 2022 I worked at the Rutherford Appleton Laboratory on a scientific Analysis Software called SasView. ",
+      "technologies": ["Python", "Qt", "C", "Numpy", "Matplotlib", "Git"]
+    }
+  ]
 }

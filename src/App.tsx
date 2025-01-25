@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import AppRouter from './routes/AppRouter';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,6 +17,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       {isLoading && (
         <div className="preloader">
           {/* Adding a slow fade-in for the logo */}

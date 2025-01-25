@@ -10,7 +10,10 @@ const TagComponent: React.FC<{
   className?: string;
   hideIcon?: boolean;
 }> = ({ tag, isSelected, onChange, onRemove, onClick, className, hideIcon = false }) => {
-
+  let name = tag;
+  if (tag.split(':').length > 1) {
+    name = tag.split(':')[0];
+  }
 
   return (
     <button type="button" onClick={onClick} className="focus:outline-none">
@@ -30,7 +33,7 @@ const TagComponent: React.FC<{
         }}
       />
     ) : (
-      <span>{tag}</span>  // Just display the tag when no `onChange` is provided
+      <span>{name}</span>  // Just display the tag when no `onChange` is provided
     )
   }
   {

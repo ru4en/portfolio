@@ -1,49 +1,110 @@
+
 import data from '../../../public/data.json'; // Assuming data contains your skills array
 import SuperIcon from '../Common/SuperIcons';
+
 
 const Technologies = () => {
     const skills = data.skills;
 
-    return (
-        <div className="relative flex flex-col items-center justify-center p-9 bg-white dark:bg-black shadow-lg overflow-hidden text-black dark:text-white min-h-screen">
-            {/* Blueprint-style background */}
-            <div className="absolute inset-0 opacity-100 
-                [background-image:linear-gradient(to_right,_rgba(0,0,0,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(0,0,0,0.1)_1px,_transparent_1px)] 
-                [background-size:20px_20px] 
-                dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] 
-                dark:[background-size:25px_25px]"></div>
+    skills.forEach((skill) => {
+    // Store original full name in icon first
+    skill.icon = String(skill.name);
+    });
+    skills.sort((a, b) => b.level - a.level);   
 
-            <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white m-8">Technologies I Work With</h2>
-            <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
+    return (
+        <div className="relative flex flex-col items-center justify-center p-9 min-h-screen
+            bg-gradient-to-br from-white via-gray-50 to-white
+            dark:from-black dark:via-gray-900 dark:to-black">
+            
+            {/* Animated Blueprint Background */}
+            <div className="absolute inset-0 opacity-70 animate-pulse-slow
+                [background-image:linear-gradient(to_right,_rgba(59,130,246,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(59,130,246,0.1)_1px,_transparent_1px)]
+                [background-size:30px_30px] 
+                dark:[background-image:linear-gradient(to_right,_rgba(147,197,253,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(147,197,253,0.05)_1px,_transparent_1px)]">
+            </div>
+    
+            <h2 className="text-4xl font-bold text-center bg-clip-text text-transparent 
+                bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500
+                animate-text-shine m-8">
+                Technologies I Work With
+            </h2>
+    
+            <p className="text-lg text-center text-gray-600 dark:text-gray-300 mb-12
+                max-w-2xl mx-auto animate-fade-in">
                 Here are some of the technologies I have experience with.
             </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
+    
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4  cursor-pointer 
+                w-full max-w-7xl mx-auto">
                 {skills.map((skill, index) => (
-                    <div
-                        key={index}
-                        className="group relative flex flex-col items-center space-y-4 rounded-lg shadow-lg p-6 transition-all bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-sm
-                        hover:ring-4 hover:ring-blue-500 hover:ring-opacity-50
-                        hover:scale-105 hover:shadow-xl"
-                    >
-                        {/* Icon */}
-                        <SuperIcon name={skill.name} className="text-gray-800 dark:text-white text-center" size="4xl" />
-                        <div className="flex flex-col items-center space-y-2 w-full">
-                            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{skill.name}</h3>
-                            
-                            {/* Progress Bar for Proficiency */}
-                            <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                                <div 
-                                    className={`h-2.5 rounded-full ${skill.level >= 8 ? 'bg-green-500' : skill.level >= 5 ? 'bg-yellow-500' : 'bg-red-500'}`}
-                                    style={{ width: `${(skill.level / 10) * 100}%` }}
-                                ></div>
+                    <div key={index}
+                        className="group relative flex flex-col items-center space-y-4 p-8
+                            rounded-xl backdrop-blur-xl hover:ring-4
+                            bg-white/80 dark:bg-gray-800/80
+                            shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+                            dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
+                            hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)]
+                            dark:hover:shadow-[0_20px_50px_rgba(59,130,246,0.2)]
+                            transform perspective-1000
+                            hover:scale-105 hover:-translate-y-2
+                            transition-all duration-500 ease-out
+                            animate-float
+                            border border-gray-200/50 dark:border-gray-700/50
+                            hover:border-blue-500/50 dark:hover:border-blue-400/50">
+    
+                        <div className="relative">
+                            <SuperIcon 
+                                name={skill.icon || skill.name || 'react'}
+                                className="text-gray-700 dark:text-gray-200
+                                    transform transition-all duration-500
+                                    group-hover:scale-110 group-hover:-translate-y-2 group-hover:saturate-200
+                                    group-hover:text-blue-500 dark:group-hover:text-blue-400
+                                    drop-shadow-lg"
+                                size="4xl"
+                            />
+                            <div className="absolute -inset-1 bg-cyan-500/20 rounded-full blur-xl
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                             </div>
+                        </div>
+    
+                        <h3 className="text-xl font-semibold text-gray-800 dark:text-white
+                            group-hover:text-blue-500 dark:group-hover:text-blue-400
+                            transition-colors duration-300">
+                            {skill.name.split(':')[0]}
+                        </h3>
+    
+                        <div className="w-full">
+                            <div className="relative w-full h-3 bg-gray-200 dark:bg-gray-700
+                                rounded-full overflow-hidden
+                                transition-all duration-300
+                                group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                                <div 
+                                    className={`absolute h-full rounded-full
+                                        transition-all duration-1000 ease-out
+                                        ${skill.level >= 8 
+                                            ? 'bg-gradient-to-r from-green-400 to-emerald-500' 
+                                            : skill.level >= 5 
+                                                ? 'bg-gradient-to-r from-yellow-400 to-amber-500'
+                                                : 'bg-gradient-to-r from-red-400 to-rose-500'}
+                                        animate-shimmer`}
+                                    style={{ width: `${(skill.level / 10) * 100}%` }}
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent
+                                        via-white/30 to-transparent animate-shine"></div>
+                                </div>
+                            </div>
+                            <span className="block text-xs text-center mt-2 text-gray-500 dark:text-gray-400
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                {skill.level * 10}% Proficiency
+                            </span>
                         </div>
                     </div>
                 ))}
             </div>
         </div>
     );
-};
+
+}
 
 export default Technologies;

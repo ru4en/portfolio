@@ -31,7 +31,7 @@ const Blog = () => {
 
         setBlogPosts(posts.filter(Boolean));
       } catch (err) {
-        setError('Failed to load blog posts');
+        setError('Failed to load blog posts!');
         console.error(err);
       }
     };
@@ -45,32 +45,20 @@ const Blog = () => {
         <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-12">
           Blog
         </h1>
-
-        {error && (
-          <div className="text-center p-4 bg-red-100 text-red-700 rounded-lg">
-            {error}
-          </div>
-        )}
-
-        {!error && blogPosts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-lg shadow">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
-              Stay Tuned!
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              Blog posts coming soon!
-            </p>
-          </div>
-        )}
+        {error && 
+        <div className="card bg-red-500 text-white text-center p-4
+        absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <i className="fas fa-exclamation-triangle mr-2"></i>
+          {error}
+        </div>}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {blogPosts.map((post) => (
+            <BlogCard key={post.slug} post={post} />
+          ))}
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Blog;

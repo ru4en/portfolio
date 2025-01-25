@@ -52,7 +52,7 @@ const Admin = () => {
         if (jsonData) {
             setJsonData({
                 ...jsonData,
-                skills: [...jsonData.skills, { name: '', level: 0 as number }],
+                skills: [...jsonData.skills, { name: '', level: 0 as number, icon: null }],
             });
         }
     }

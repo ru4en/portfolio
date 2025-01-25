@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import { ChevronRight } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const Navbar: React.FC = () => {
   }, [isDarkMode]);
 
   const toggleDarkMode = (checked: boolean) => {
+    toast.info(`Switching to ${checked ? 'dark' : 'light'} mode`);
     setDarkMode(checked);
     localStorage.setItem('dark-mode', JSON.stringify(checked));
   };

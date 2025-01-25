@@ -7,7 +7,7 @@ interface BlogCardProps {
 }
 
 export const BlogCard = ({ post }: BlogCardProps) => (
-  <article className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]">
+  <article className="group  hover:ring-4 cursor-pointer relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]">
     {/* Gradient Border */}
     <div className="absolute inset-0 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     

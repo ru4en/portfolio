@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import { Post } from '../Types';
 import TagComponent from '../Common/Tag';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, ChevronLeft } from 'lucide-react';
 import Background from '../Common/Background';
+import { copyToClipboard } from '../Common/Clipboard';
+
+const BUTTON_STYLES = "p-2 bg-gray-400 hover:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-500 transition-all duration-200";
 
 const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
   const [readingProgress, setReadingProgress] = useState(0);
@@ -25,6 +28,35 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const goBack = () => {
+    window.history.back();
+  };
+
+  const addCopyButtons = (): void => {
+    const pres = document.querySelectorAll('pre');
+
+    pres.forEach((pre) => {
+      if (pre.querySelector('.copy-button')) return;
+      const copyButton = document.createElement('button');
+      copyButton.className = `${BUTTON_STYLES} copy-button`;
+      const icon = document.createElement('span');
+      icon.className = 'fas fa-copy';
+      copyButton.appendChild(icon);
+
+      const handleClick = async () => {
+        const text = pre.textContent;
+        if (!text) return;
+          copyToClipboard(text);
+        };
+
+      copyButton.addEventListener('click', handleClick);
+      pre.appendChild(copyButton);
+    });
+  };
+  useEffect(() => {
+    addCopyButtons();
+  }, []);
+
   return (
     <div className="min-h-screen">
     <Background iconNames={post.icons || []} />
@@ -38,12 +70,22 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
 
       <div className="p-6 md:p-12 lg:p-20 max-w-4xl mx-auto">
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl mt-12 backdrop-blur-md">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl mt-12 backdrop-blur-md ring-4 ring-cyan-400/50">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-500 bg-opacity-20
           to-green-400 dark:from-blue-900 dark:via-cyan-800 dark:to-green-600
           filter blur-3xl" />
           <div className="relative px-6 py-16 md:py-24 lg:py-32">
             <div className="max-w-4xl mx-auto text-center">
+              <button
+                onClick={goBack}
+                aria-label="Go back to blogs"
+                className="absolute top-4 left-4 p-2 shadow-lg rounded-lg text-gray-800 dark:text-gray-200
+                bg-white dark:bg-cyan-800 bg-opacity-90 dark:bg-opacity-90 transition-all duration-300
+                backdrop-blur-lg dark:backdrop-blur-lg hover:scale-110 flex items-center gap-2"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-800 dark:text-gray-200" />
+                <span className="text-sm font-medium hidden sm:block">/blogs</span>
+              </button>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
                 {post.title}
               </h1>
@@ -62,10 +104,9 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
           </div>
         </div>
 
-        {/* Main Content */}
         <article className="max-w-4xl mx-auto mt-12">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 hover:shadow-2xl border dark:border-gray-700
-          transition-shadow duration-300 backdrop-blur-md dark:backdrop-blur-lg bg-opacity-50 dark:bg-opacity-50
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12  hover:shadow-2xl
+          transition-shadow duration-300 backdrop-blur-md dark:backdrop-blur-lg bg-opacity-50 dark:bg-opacity-50 ring-4 ring-gray-300/50 dark:ring-cyan-700/50
           ">
             <div className="flex flex-wrap gap-3 mb-8">
               {post.tags?.map((tag) => (
@@ -109,11 +150,10 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
           </div>
         </article>
       </div>
-      {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 p-4 bg-gradient-to-r from-green-400 to-cyan-400 
-          rounded-full shadow-lg text-white transition-all duration-300 hover:shadow-2xl
+          rounded-full shadow-lg text-white transition-all duration-300 hover:shadow-2xl z-50
           ${showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         <ChevronUp className="w-6 h-6" />

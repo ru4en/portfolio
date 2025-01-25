@@ -20,6 +20,7 @@ export interface AboutInfo {
 export interface Skill {
     name: string;
     level: number;
+    icon: string | null;
 }
 
 export interface Project {
