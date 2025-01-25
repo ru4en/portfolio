@@ -18,12 +18,11 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
             <img
                 src={experience.image || 'https://rubenlopes.uk/placeholder_image.png'}
                 alt={experience.company}
-                                            className="object-cover object-center w-52 md:w-48 rounded-lg
-                                transform transition-all duration-500
-                                grayscale brightness-[1.15] contrast-125
-                                dark:grayscale dark:brightness-[.75] dark:invert
-                                transition-[filter,transform] duration-500 ease-out"
-                        />
+                className="object-cover object-center w-52 md:w-48 rounded-lg
+                    grayscale brightness-[1.15] contrast-125 transform
+                    dark:grayscale dark:brightness-[.75] dark:invert
+                    transition-[filter,transform] duration-500 ease-out"
+                />
             <div className="flex flex-col space-y-4">
                 <h3 className="text-xl font-bold bg-clip-text text-transparent 
                     bg-gradient-to-r from-blue-600 to-cyan-500

@@ -1,14 +1,12 @@
 
-import data from '../../../public/data.json'; // Assuming data contains your skills array
+import data from '../../../public/data.json';
 import SuperIcon from '../Common/SuperIcons';
-
+import { Skill } from '../Types';
 
 const Technologies = () => {
-    const skills = data.skills;
-
-    skills.forEach((skill) => {
-    // Store original full name in icon first
-    skill.icon = String(skill.name);
+    var skills = data.skills;
+    skills.forEach((skill: Skill) => {
+    skill.icon = skill.icon || skill.name;
     });
     skills.sort((a, b) => b.level - a.level);   
 
@@ -37,7 +35,7 @@ const Technologies = () => {
     
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4  cursor-pointer 
                 w-full max-w-7xl mx-auto">
-                {skills.map((skill, index) => (
+                {skills.map((skill: Skill, index) => (
                     <div key={index}
                         className="group relative flex flex-col items-center space-y-4 p-8
                             rounded-xl backdrop-blur-xl hover:ring-4
@@ -55,7 +53,7 @@ const Technologies = () => {
     
                         <div className="relative">
                             <SuperIcon 
-                                name={skill.icon || skill.name || 'react'}
+                                name={skill.icon ?? ''}
                                 className="text-gray-700 dark:text-gray-200
                                     transform transition-all duration-500
                                     group-hover:scale-110 group-hover:-translate-y-2 group-hover:saturate-200
