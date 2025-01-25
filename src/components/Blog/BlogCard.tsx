@@ -1,6 +1,6 @@
 import Markdown from 'markdown-to-jsx';
 import { Post } from '../Types';
-import { Clock, ArrowRight, Tag } from 'lucide-react';
+import { Clock, Tag } from 'lucide-react';
 
 interface BlogCardProps {
   post: Post;
