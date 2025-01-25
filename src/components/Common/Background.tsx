@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
 import SuperIcons from './SuperIcons';
 
-const Background = ({ iconNames }: { iconNames: string[] }) => {
+const Background = ({ iconNames }: {
+  iconNames: string[]
+
+
+
+
+
+}) => {
   const [icons, setIcons] = useState<string[]>([]);
 
   if (iconNames.length === 0) return null;
@@ -17,7 +24,7 @@ const Background = ({ iconNames }: { iconNames: string[] }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 -z-50">
+    <div className="fixed inset-0 overflow-hidden">
       <div
         className="absolute inset-0 opacity-20"
         style={{
@@ -37,7 +44,7 @@ const Background = ({ iconNames }: { iconNames: string[] }) => {
           >
             <SuperIcons
               name={iconName}
-              className="opacity-50 text-gray-800 dark:text-gray-200 transition-all duration-300 ease-in-out transform group-hover:opacity-100 group-hover:scale-110 group-hover:rotate-12"
+              className="opacity-50 text-gray-800 dark:text-gray-200 transition-all duration-300 ease-in-out transform group-hover:opacity-100"
               size="5xl"
             />
           </div>

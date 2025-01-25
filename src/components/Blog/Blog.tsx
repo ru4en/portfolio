@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Post } from '../Types';
 import { getBlogPost } from './BlogParser';
 import { BlogCard } from './BlogCard';
+import Background from '../Common/Background';
 
 const Blog = () => {
   const [blogPosts, setBlogPosts] = useState<Post[]>([]);
@@ -40,8 +41,9 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-br from-gray-500 via-gray-300 to-white dark:from-cyan-800 dark:to-teal-800">
+    <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-400 to-gray-100 dark:text-white">
       <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8">
+      <Background iconNames={['code', 'terminal', 'bubbles:grommet']} />
         <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-12">
           Blog
         </h1>

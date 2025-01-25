@@ -3,6 +3,7 @@ import * as Fa from 'react-icons/fa';
 import * as Md from 'react-icons/md';
 import * as Si from 'react-icons/si';
 import * as Di from 'react-icons/di';
+import * as Gi from 'react-icons/gi';
 
 const SuperIcons: React.FC<{
   name: string;
@@ -16,7 +17,7 @@ const SuperIcons: React.FC<{
 }> = ({ name, className, size = 'base', style, onClick }) => {
   // Extract the icon name and library, defaulting to devicon if no library specified
   const [rawIconName, providedLibrary = 'devicon'] = name.split(':');
-  
+ 
   // Clean and normalize the icon name
   const normalizeIconName = (name: string): string => {
     return name
@@ -24,7 +25,7 @@ const SuperIcons: React.FC<{
       .trim()
       // Convert to camel case
       .split(/[-_\s]+/)
-      .map((word, index) => 
+      .map((word, index) =>
         index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
       )
       .join('');
@@ -44,7 +45,6 @@ const SuperIcons: React.FC<{
     '4xl': 96,  // 96px
     '5xl': 128  // 128px
   };
-
   const iconSize = sizeMap[size] || sizeMap.base;
 
   // Get the appropriate icon component
@@ -55,22 +55,27 @@ const SuperIcons: React.FC<{
     switch (library) {
       case 'devicon':
         // Try Simple Icons first, then Devicons
-        return (Si as any)[`Si${capitalizedName}`] || 
+        return (Si as any)[`Si${capitalizedName}`] ||
                (Di as any)[`Di${capitalizedName}`];
-      
+     
       case 'fontawesome':
         // Try FontAwesome
         return (Fa as any)[`Fa${capitalizedName}`];
-      
-      case 'material-icons':
+     
+      case 'material':
         // Try Material Icons
         return (Md as any)[`Md${capitalizedName}`];
       
+      case 'grommet':
+        // Try Grommet Icons (react-icons/gi)
+        return (Gi as any)[`Gi${capitalizedName}`];
+     
       default:
         // Try all libraries in order
-        return (Si as any)[`Si${capitalizedName}`] || 
+        return (Si as any)[`Si${capitalizedName}`] ||
                (Di as any)[`Di${capitalizedName}`] ||
                (Fa as any)[`Fa${capitalizedName}`] ||
+               (Gi as any)[`Gi${capitalizedName}`] ||
                (Md as any)[`Md${capitalizedName}`];
     }
   }, [iconName, providedLibrary]);

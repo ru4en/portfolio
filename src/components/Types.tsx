@@ -72,6 +72,7 @@ export interface ProjectData {
 export interface Post {
   date: Date;
   title: string;
+  image?: string;
   authors?: string[];
   icons?: string[];
   description?: string;

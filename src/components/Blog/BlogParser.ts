@@ -31,6 +31,9 @@ export const getBlogPost = (content: string): Omit<Post, 'slug'> => {
       case 'title':
         post.title = value;
         break;
+      case 'image':
+        post.image = value;
+        break;
       case 'date':
         post.date = parseDate(value);
         break;
@@ -57,6 +60,7 @@ export const getBlogPost = (content: string): Omit<Post, 'slug'> => {
   return {
     date: post.date,
     title: post.title,
+    image: post.image,
     content: post.content,
     authors: post.authors,
     description: post.description,

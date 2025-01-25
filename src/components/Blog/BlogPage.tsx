@@ -5,6 +5,8 @@ import TagComponent from '../Common/Tag';
 import { ChevronUp, ChevronLeft } from 'lucide-react';
 import Background from '../Common/Background';
 import { copyToClipboard } from '../Common/Clipboard';
+import ReactDOM from 'react-dom';
+import ImageWrapper from '../Common/ImageWrapper';
 
 const BUTTON_STYLES = "p-2 bg-gray-400 hover:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-500 transition-all duration-200";
 
@@ -33,9 +35,9 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
   };
 
   const addCopyButtons = (): void => {
-    const pres = document.querySelectorAll('pre');
+    const pres = document.querySelectorAll('article pre');
 
-    pres.forEach((pre) => {
+    pres?.forEach((pre) => {
       if (pre.querySelector('.copy-button')) return;
       const copyButton = document.createElement('button');
       copyButton.className = `${BUTTON_STYLES} copy-button`;
@@ -53,8 +55,25 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
       pre.appendChild(copyButton);
     });
   };
+
   useEffect(() => {
     addCopyButtons();
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const images = document.querySelectorAll('article img');
+      images.forEach((img) => {
+        const wrapper = document.createElement('div');
+        const parent = img.parentNode;
+        if (parent) {
+          parent.replaceChild(wrapper, img);
+          const imageElement = img as HTMLImageElement;
+          const ImageComponent = <ImageWrapper src={imageElement.src} alt={imageElement.alt} />;
+          ReactDOM.render(ImageComponent, wrapper);
+        }
+      });
+    }
   }, []);
 
   return (
@@ -70,33 +89,33 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
 
       <div className="p-6 md:p-12 lg:p-20 max-w-4xl mx-auto">
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl mt-12 backdrop-blur-md ring-4 ring-cyan-400/50">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-500 bg-opacity-20
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl backdrop-blur-sm mt-12 ring-4 ring-cyan-400/50">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-500 opacity-40 
           to-green-400 dark:from-blue-900 dark:via-cyan-800 dark:to-green-600
-          filter blur-3xl" />
+          " />
           <div className="relative px-6 py-16 md:py-24 lg:py-32">
             <div className="max-w-4xl mx-auto text-center">
               <button
                 onClick={goBack}
                 aria-label="Go back to blogs"
                 className="absolute top-4 left-4 p-2 shadow-lg rounded-lg text-gray-800 dark:text-gray-200
-                bg-white dark:bg-cyan-800 bg-opacity-90 dark:bg-opacity-90 transition-all duration-300
+                bg-white dark:bg-cyan-800 transition-all duration-300 bg-opacity-60 dark:bg-opacity-60
                 backdrop-blur-lg dark:backdrop-blur-lg hover:scale-110 flex items-center gap-2"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-800 dark:text-gray-200" />
                 <span className="text-sm font-medium hidden sm:block">/blogs</span>
               </button>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold  text-emerald-900 dark:text-white mb-6 tracking-tight">
                 {post.title}
               </h1>
-              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
-                <span className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors duration-200">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-emerald-900 dark:text-white">
+                <span className="bg-white/40 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/60 transition-colors duration-200 dark:bg-white/20 dark:hover:bg-white/40">
                 By {post.authors?.join(', ')}
                 </span>
-                <span className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors duration-200">
+                <span className="bg-white/40 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/60 transition-colors duration-200 dark:bg-white/20 dark:hover:bg-white/40">
                   {new Date(post.date).toLocaleDateString()}
                 </span>
-                <span className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/20 transition-colors duration-200">
+                <span className="bg-white/40 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/60 transition-colors duration-200 dark:bg-white/20 dark:hover:bg-white/40">
                   {readingTime} min read
                 </span>
               </div>
