@@ -39,17 +39,36 @@ const Welcome = () => {
         }
       `}</style>
 
-      {/* Particle background */}
       <div
-        className="particles absolute inset-0 duration-75 opacity-100 [background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] dark:[background-size:25px_25px]"
-      ></div>
+        className="absolute inset-0 duration-75 opacity-100 [background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] dark:[background-size:25px_25px]"
+      >
+    <main className="relative w-full min-h-screen">
+      <div className="absolute inset-0 duration-75 opacity-100 [background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] dark:[background-size:25px_25px]">
+        <div className="sr-only">
+          <h1>Ruben Lopes - Full Stack Developer & Computer Science Student</h1>
+          <article>
+            <h2>About Me</h2>
+            <p>
+              Hello! I'm Ruben Lopes, a passionate full-stack developer and Computer Science student 
+              at the University of Reading. Specializing in web development, software engineering, 
+              and desktop applications, I create innovative solutions for modern challenges.
+            </p>
+            <p>
+              Based in the UK, I am currently seeking a graduate role in software development.
+              My expertise includes Python, JavaScript, React, Docker, and more.
+            </p>
+          </article>
+        </div>
+      </div>
+          </main>
+          </div>
 
-      {/* Main content */}
+        {/* Main content */}
       <div className="flex flex-col w-full h-full">
         <div className="flex flex-col items-center text-center justify-center pt-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
           <div className="text-3xl md:text-6xl font-bold space-x-2 text-gray-100 drop-shadow-lg dark:text-green-400">
             <h1 className="transition-transform duration-500 ease-in-out transform">
-              <Typewriter fullText={fullText} />
+                  <Typewriter fullText={fullText} />
             </h1>
           </div>
           <div className="flex pb-5 md:px-20 z-10">
