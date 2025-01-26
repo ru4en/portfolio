@@ -69,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <div className="fixed top-0 w-full px-4 z-50">
       <nav className={`
-        mt-2 mx-auto py-2 px-4 rounded-xl transition-all duration-300 
+        mt-2 mx-auto py-1 px-4 rounded-xl transition-all duration-300 
         w-full max-w-7xl 
         ${isTransparent 
           ? 'text-white shadow-none' 
@@ -91,9 +91,9 @@ const Navbar: React.FC<NavbarProps> = () => {
             <DarkModeSwitch
               checked={isDarkMode}
               onChange={toggleDarkMode}
-              size={30}
+              size={40}
               sunColor="#FFA500"
-              className="hover:bg-gray-300/50 p-1 rounded-full"
+              className="hover:bg-gray-100/10 p-2 rounded-full"
             />
 
             {/* Desktop Menu */}
@@ -101,7 +101,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               {NAV_LINKS.map(({ to, label }) => (
                 <NavLink key={to} to={to}
                   className={`${isTransparent ? 'text-white' : 'text-emerald-500 dark:text-emerald-400'}
-                    hover:bg-gray-300/50 p-2 rounded-lg transition-all duration-300`}
+                    hover:bg-gray-300/10 p-2 rounded-lg transition-all duration-300`}
                 >
                   {label}
                 </NavLink>

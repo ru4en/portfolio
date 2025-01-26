@@ -1,11 +1,11 @@
-name: Deploy static content to Pages
+name: Build and Deploy Static Site
 
 on:
-  # Runs on pushes targeting the default branch
   push:
+    paths:
+      - 'cv/cv.tex'
+      - '.github/workflows/static.yml'
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # Set permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -21,6 +21,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build-cv:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'cv/cv.tex')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache LaTeX packages
+        id: cache-latex
+        uses: actions/cache@v3
+        with:
+          path: /usr/share/texlive
+          key: texlive-${{ runner.os }}-${{ hashFiles('cv/cv.tex') }}
+
+      - name: Install pdflatex
+        if: steps.cache-latex.outputs.cache-hit != 'true'
+        run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+
+      - name: Build CV
+        run: pdflatex -output-directory=dist cv/cv.tex
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
   # Single deploy job since we're just deploying
   deploy:
     environment:
@@ -49,21 +75,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Step 5: Install LaTeX packages to build CV
-      - name: Install pdflatex
-        run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
-
-      # Step 6: Build CV
-      - name: Build CV
-        run: pdflatex -output-directory=dist cv/cv.tex
-
-      # Step 7: Upload the build output
+      # Step 5: Upload the build output
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'  # Points to the directory containing the build output
 
-      # Step 8: Deploy to GitHub Pages
+      # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
