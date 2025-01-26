@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import AppRouter from './routes/AppRouter';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import StyledToast from './components/Common/CustomToast';
 
