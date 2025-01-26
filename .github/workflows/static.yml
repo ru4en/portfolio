@@ -2,20 +2,14 @@ name: Build and Deploy Static Site
 
 on:
   push:
-    paths:
-      - 'cv/cv.tex'
-      - '.github/workflows/static.yml'
     branches: ["main"]
   workflow_dispatch:
 
-# Set permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -42,23 +36,18 @@ jobs:
       - name: Build CV
         run: pdflatex -output-directory=dist cv/cv.tex
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload CV artifact
+        uses: actions/upload-artifact@v3
         with:
+          name: cv-pdf
           path: './dist'
 
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-site:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the code
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js and install dependencies
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -67,21 +56,31 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 3: Build the app using Vite
       - name: Build the app
         run: npm run build
 
-      # Step 4: Configure Pages deployment
+      - name: Download CV artifact if available
+        continue-on-error: true
+        uses: actions/download-artifact@v3
+        with:
+          name: cv-pdf
+          path: './dist'
+
+      - name: Upload combined artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    needs: [build-site]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Step 5: Upload the build output
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'  # Points to the directory containing the build output
-
-      # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
