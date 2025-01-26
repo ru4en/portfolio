@@ -140,6 +140,12 @@ a {
   padding: 0.20rem;
 }
 
+.markdown pre code {
+  border: none;
+  background: none;
+  color: inherit;
+}
+
 
 .markdown blockquote {
   font-size: 1rem;

@@ -4,8 +4,9 @@ import * as Md from 'react-icons/md';
 import * as Si from 'react-icons/si';
 import * as Di from 'react-icons/di';
 import * as Gi from 'react-icons/gi';
+import * as Pi from 'react-icons/pi';
 
-const SuperIcons: React.FC<{
+interface SuperIconsProps {
   name: string;
   isSelected?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,7 +15,17 @@ const SuperIcons: React.FC<{
   className?: string;
   style?: React.CSSProperties;
   size?: 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
-}> = ({ name, className, size = 'base', style, onClick }) => {
+  useNativeColors?: boolean;  // Add this line
+}
+
+const SuperIcons: React.FC<SuperIconsProps> = ({
+  name,
+  className,
+  size = 'base',
+  style,
+  onClick,
+  useNativeColors = false,  // Add this line
+}) => {
   // Extract the icon name and library, defaulting to devicon if no library specified
   const [rawIconName, providedLibrary = 'devicon'] = name.split(':');
  
@@ -69,6 +80,10 @@ const SuperIcons: React.FC<{
       case 'grommet':
         // Try Grommet Icons (react-icons/gi)
         return (Gi as any)[`Gi${capitalizedName}`];
+
+      case 'pixelart':
+        // Try Pixelart Icons (react-icons/pixelart)
+        return (Pi as any)[`Pi${capitalizedName}`];
      
       default:
         // Try all libraries in order
@@ -76,7 +91,8 @@ const SuperIcons: React.FC<{
                (Di as any)[`Di${capitalizedName}`] ||
                (Fa as any)[`Fa${capitalizedName}`] ||
                (Gi as any)[`Gi${capitalizedName}`] ||
-               (Md as any)[`Md${capitalizedName}`];
+               (Md as any)[`Md${capitalizedName}`] ||
+               (Pi as any)[`Pi${capitalizedName}`];
     }
   }, [iconName, providedLibrary]);
 
@@ -95,13 +111,16 @@ const SuperIcons: React.FC<{
         justifyContent: 'center',
         width: iconSize,
         height: iconSize,
-        color: 'currentColor',
         transition: 'all 0.2s ease-in-out',
         cursor: onClick ? 'pointer' : 'inherit',
+        color: useNativeColors ? 'inherit' : style?.color, // Add this line
         ...style,
       }}
     >
-      <IconComponent size={iconSize} />
+      <IconComponent 
+        size={iconSize} 
+        color={useNativeColors ? 'currentColor' : undefined}  // Add this line
+      />
     </div>
   );
 };

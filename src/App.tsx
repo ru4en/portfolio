@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import AppRouter from './routes/AppRouter';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import StyledToast from './components/Common/CustomToast';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +18,17 @@ function App() {
 
   return (
     <>
-      <ToastContainer />
+      <StyledToast
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {isLoading && (
         <div className="preloader">
           {/* Adding a slow fade-in for the logo */}
@@ -38,5 +49,8 @@ function App() {
     </>
   );
 }
+
+toast.success("Success message!");
+toast.error("Error message!");
 
 export default App;

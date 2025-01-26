@@ -17,6 +17,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@types/styled-components": "^5.1.34",
     "boxicons": "^2.1.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -34,6 +35,7 @@
     "react-toggle-dark-mode": "^1.1.1",
     "react-transition-group": "^4.4.5",
     "react-type-animation": "^3.2.0",
+    "styled-components": "^6.1.14",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7"
   },

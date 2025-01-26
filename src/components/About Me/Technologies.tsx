@@ -54,10 +54,9 @@ const Technologies = () => {
                         <div className="relative">
                             <SuperIcon 
                                 name={skill.icon ?? ''}
-                                className="text-gray-700 dark:text-gray-200
+                                className="
                                     transform transition-all duration-500
                                     group-hover:scale-110 group-hover:-translate-y-2 group-hover:saturate-200
-                                    group-hover:text-blue-500 dark:group-hover:text-blue-400
                                     drop-shadow-lg"
                                 size="4xl"
                             />

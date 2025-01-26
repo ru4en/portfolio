@@ -55,6 +55,7 @@ const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, style = 'GRI
               name={iconName}
               className="opacity-50 dark:text-gray-200 transition-all duration-300 ease-in-out transform group-hover:opacity-100"
               size="5xl"
+              useNativeColors={true}
             />
           </div>
         ))}

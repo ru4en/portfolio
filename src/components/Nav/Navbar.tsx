@@ -100,7 +100,7 @@ const Navbar: React.FC<NavbarProps> = () => {
             <div className="hidden md:flex gap-8">
               {NAV_LINKS.map(({ to, label }) => (
                 <NavLink key={to} to={to}
-                  className={`${isTransparent ? 'text-white' : 'text-gray-800'}
+                  className={`${isTransparent ? 'text-white' : 'text-emerald-500 dark:text-emerald-400'}
                     hover:bg-gray-300/50 p-2 rounded-lg transition-all duration-300`}
                 >
                   {label}
