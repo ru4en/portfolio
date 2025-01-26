@@ -80,3 +80,12 @@ export interface Post {
   content: string;
   tags?: string[];
 }
+
+export interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+}
+
+export interface NavbarProps {
+  className?: string;
+}

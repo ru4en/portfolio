@@ -22,7 +22,7 @@
     { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ru4en" }
   ],
   "about": {
-    "role": "DevOps & Software Engineer Specialist",
+    "role": "DevOps & Software Engineer",
     "description": "I am a final year Computer Science student, with professional experience in DevOps, web development, and computational science. My goal is to establish a career as a Software Engineer and DevOps Specialist, drawing on my hands-on experience in full-stack application development, CI/CD pipeline management, and cloud service deployment. Proficient in Python, Django, React, TypeScript, Docker, and cloud solutions, I am passionate about optimising processes and designing scalable systems.",
     "image": "https://avatars.githubusercontent.com/u/60962448?v=4"
   },

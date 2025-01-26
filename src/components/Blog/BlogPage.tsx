@@ -89,7 +89,7 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
 
       <div className="p-6 md:p-12 lg:p-20 max-w-4xl mx-auto">
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-2xl shadow-2xl backdrop-blur-sm mt-12 ring-4 ring-cyan-400/50">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl backdrop-blur-sm mt-12 ring-1 ring-cyan-400/50 hover:ring-2 transition-all duration-300">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-500 opacity-40 
           to-green-400 dark:from-blue-900 dark:via-cyan-800 dark:to-green-600
           " />
@@ -125,7 +125,7 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
 
         <article className="max-w-4xl mx-auto mt-12">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12  hover:shadow-2xl
-          transition-shadow duration-300 backdrop-blur-md dark:backdrop-blur-lg bg-opacity-50 dark:bg-opacity-50 ring-4 ring-gray-300/50 dark:ring-cyan-700/50
+          transition-shadow duration-300 backdrop-blur-md dark:backdrop-blur-lg bg-opacity-50 dark:bg-opacity-50 ring-1 ring-gray-300/50 dark:ring-cyan-700/50 hover:ring-2
           ">
             <div className="flex flex-wrap gap-3 mb-8">
               {post.tags?.map((tag) => (

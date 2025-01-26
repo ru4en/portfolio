@@ -10,7 +10,7 @@ export const BlogCard = ({ post }: BlogCardProps) => (
   <article className="group hover:ring-4 cursor-pointer relative rounded-2xl 
     shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]
     backdrop-blur-lg 
-    ring-4 ring-gray-500/30 dark:ring-cyan-700/30">
+    ring-2 ring-gray-500/30 dark:ring-cyan-700/30">
     {/* Gradient Border */}
     <div className="absolute backdrop-blur-lg dark:backdrop-blur-xl inset-0
       bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 

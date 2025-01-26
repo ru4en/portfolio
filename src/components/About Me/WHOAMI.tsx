@@ -1,18 +1,16 @@
 import { TypeAnimation } from 'react-type-animation';
 import data from "../../../public/data.json";
 import Socials from "../Common/Socials";
+import Background from "../Common/Background";
 
 const WHOAMI = () => {
+    const { skills } = data.skills.reduce<{ skills: string[] }>((acc, skill) => {
+        acc.skills.push(skill.name);
+        return acc;
+    }, { skills: [] });
     return (
         <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-white via-emerald-50 to-gray-100 dark:from-black dark:via-emerald-950/10 dark:to-gray-900 overflow-hidden">
-            {/* Background grid */}
-            <div className="absolute inset-0 opacity-70">
-                <div className="absolute inset-0 animate-grid-fade
-                    [background-image:linear-gradient(to_right,_rgba(16,185,129,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(16,185,129,0.05)_1px,_transparent_1px)] 
-                    [background-size:30px_30px] 
-                    dark:[background-image:linear-gradient(to_right,_rgba(16,185,129,0.2)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(16,185,129,0.2)_1px,_transparent_1px)]"
-                />
-            </div>
+      <Background iconNames={skills} style="CLUTTERED" rotate="RANDOM" />
 
             <div className="relative z-10 w-full max-w-4xl mx-auto px-4 py-16">
                 {/* Profile image */}

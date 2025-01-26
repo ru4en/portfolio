@@ -1,178 +1,152 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
-import { ChevronRight } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { NavLink } from './NavLink';
+import type { NavbarProps } from '../Types';
 
-const Navbar: React.FC = () => {
+const NAV_LINKS = [
+  { to: '/about-me', label: 'WHOAMI' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/cv', label: 'CV' },
+  { to: '/blog', label: 'Blog' },
+] as const;
+
+const Navbar: React.FC<NavbarProps> = () => {
   const location = useLocation();
-  const [isDarkMode, setDarkMode] = useState<boolean>(() => {
+  const [isTop, setIsTop] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(false); // Initialize without immediate value
+
+  // Initialize dark mode on mount and handle system preference changes
+  useEffect(() => {
     const savedPreference = localStorage.getItem('dark-mode');
-    return savedPreference ? JSON.parse(savedPreference) : window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const setInitialMode = () => {
+      const shouldBeDark = savedPreference 
+        ? JSON.parse(savedPreference)
+        : systemPrefersDark.matches;
+      
+      setDarkMode(shouldBeDark);
+      document.documentElement.classList.toggle('dark', shouldBeDark);
+    };
 
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isTop, setIsTop] = useState<boolean>(true);
+    setInitialMode();
 
+    const handleSystemChange = (e: MediaQueryListEvent) => {
+      if (localStorage.getItem('dark-mode') === null) {
+        setDarkMode(e.matches);
+        document.documentElement.classList.toggle('dark', e.matches);
+      }
+    };
+
+    systemPrefersDark.addEventListener('change', handleSystemChange);
+    return () => systemPrefersDark.removeEventListener('change', handleSystemChange);
+  }, []);
+
+  // Add scroll position detection
   useEffect(() => {
-    // Apply dark mode class to the root element
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  const toggleDarkMode = (checked: boolean) => {
-    toast.info(`Switching to ${checked ? 'dark' : 'light'} mode`);
-    setDarkMode(checked);
-    localStorage.setItem('dark-mode', JSON.stringify(checked));
-  };
-
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  }
-
-  useEffect(() => {
-    if (location.pathname !== '/') return;
-
     const handleScroll = () => {
-      setIsTop(window.scrollY === 0);
+      setIsTop(window.scrollY < 100);
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial position
+
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location]);
+  }, []);
+
+  const toggleDarkMode = useCallback((checked: boolean) => {
+    setDarkMode(checked);
+    localStorage.setItem('dark-mode', JSON.stringify(checked));
+    document.documentElement.classList.toggle('dark', checked);
+    toast.info(`Switching to ${checked ? 'dark' : 'light'} mode`);
+  }, []);
+
+  const isTransparent = !isMenuOpen && isTop && location.pathname === '/';
 
   return (
-    <div className={`fixed top-0 w-full px-4 ${!isMenuOpen && isTop && location.pathname === '/' ? 'z-20' : 'z-50'}`}>
-      <nav
-        className={`mt-2 mx-auto navbar navbar-expand-md py-2 px-4 shadow-md rounded-xl backdrop-blur-md transition-all duration-300 w-full max-w-7xl 
-          ${!isMenuOpen && isTop && location.pathname === '/' ? 'shadow-none backdrop-blur-none text-white z-50' : 'bg-gray-200 bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 text-gray-800 dark:text-white z-50'}`}
-      >
-        <div className="navbar-content flex items-center w-full">
-          <div className="logo flex items-center">
-            <Link to="/">
-              <img src="/logo-small.png" alt="logo" width={120} className="transition-all duration-300 ease-in-out hover:scale-105 transform active:scale-95" />
-            </Link>
-          </div>
+    <div className="fixed top-0 w-full px-4 z-50">
+      <nav className={`
+        mt-2 mx-auto py-2 px-4 rounded-xl transition-all duration-300 
+        w-full max-w-7xl 
+        ${isTransparent 
+          ? 'text-white shadow-none' 
+          : 'bg-gray-200/80 dark:bg-gray-800/80 text-gray-800 dark:text-white shadow-lg backdrop-blur-md'
+        }
+      `}>
+        {/* Navigation content */}
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/logo-small.png" 
+              alt="logo" 
+              width={120} 
+              className="transition-transform duration-300 hover:scale-105 active:scale-95"
+            />
+          </Link>
 
-          <div className="ml-auto flex items-center space-x-6">
+          <div className="flex items-center gap-6">
             <DarkModeSwitch
-              style={{ width: '2rem' }}
               checked={isDarkMode}
               onChange={toggleDarkMode}
-              size={24}
-              sunColor={!isMenuOpen && isTop && location.pathname === '/' ? '#fff' : '#1d1d1d'}
+              size={30}
+              sunColor="#FFA500"
+              className="hover:bg-gray-300/50 p-1 rounded-full"
             />
 
-            <div className="hidden md:flex space-x-8 pr-10">
-              <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                WHOAMI
-              </Link>
-              <Link to="/projects" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                projects
-              </Link>
-              <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                cv
-              </Link>
-              <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                blog
-              </Link>
+            {/* Desktop Menu */}
+            <div className="hidden md:flex gap-8">
+              {NAV_LINKS.map(({ to, label }) => (
+                <NavLink key={to} to={to}
+                  className={`${isTransparent ? 'text-white' : 'text-gray-800'}
+                    hover:bg-gray-300/50 p-2 rounded-lg transition-all duration-300`}
+                >
+                  {label}
+                </NavLink>
+              ))}
             </div>
 
-            <div className="block md:hidden pt-2">
-              <button
-                onClick={handleMenuToggle}
-                className="focus:outline-none transform transition-all duration-500 ease-in-out"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`h-6 w-6 dark:text-white transform transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-45' : ''}`}
-                  fill="none"
-                  viewBox="0 0 25 25"
-                  stroke="currentColor"
-                >
-                  {/* Top line */}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 6h15"
-                    className={`transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-90 origin-center -translate-x-1.5' : ''}`}
-                  />
-                  {/* Middle line (hidden when open) */}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 12h15"
-                    className={`transition-opacity duration-300 ease-in-out ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
-                  />
-                  {/* Bottom line */}
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5.2 18h15"
-                    className={`transition-all duration-500 ease-in-out ${isMenuOpen ? 'rotate-135 origin-center -translate-y-1.5' : ''}`}
-                  />
-                </svg>
-              </button>
-            </div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden focus:outline-none relative w-6 h-6"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+            >
+              <span className={`
+                absolute block h-0.5 w-6 transform transition duration-300 ease-in-out
+                ${isTransparent ? 'bg-white' : 'bg-gray-800 dark:bg-white'}
+                ${isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'}
+              `}></span>
+              
+              <span className={`
+                absolute block h-0.5 w-6 transform transition duration-300 ease-in-out
+                ${isTransparent ? 'bg-white' : 'bg-gray-800 dark:bg-white'}
+                ${isMenuOpen ? 'opacity-0' : 'opacity-100'}
+              `}></span>
+              
+              <span className={`
+                absolute block h-0.5 w-6 transform transition duration-300 ease-in-out
+                ${isTransparent ? 'bg-white' : 'bg-gray-800 dark:bg-white'}
+                ${isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'}
+              `}></span>
+            </button>
           </div>
         </div>
 
-        <div
-          className={`md:hidden transition-all duration-500 ease-in-out ${
-            isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-          } overflow-hidden w-full rounded-b-xl bg-opacity-80`}
-        >
-          <ul className="flex flex-col items-center space-y-4 py-4">
-            <li>
-              <Link to="/about-me" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                WHOAMI
-              </Link>
-            </li>
-            <li>
-              <Link to="/projects" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link to="/cv" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                cv
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" className="font-medium text-lg dark:text-white dark:hover:text-green-400 group flex items-center">
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ChevronRight />
-                </span>
-                blog
-              </Link>
-            </li>
+        {/* Mobile Menu */}
+        <div className={`
+          md:hidden transition-all duration-300 overflow-hidden
+          ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+        `}>
+          <ul className="flex flex-col items-center gap-4 py-4">
+            {NAV_LINKS.map(({ to, label }) => (
+              <li key={to}>
+                <NavLink to={to}>{label}</NavLink>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
