@@ -50,7 +50,4 @@ function App() {
   );
 }
 
-toast.success("Success message!");
-toast.error("Error message!");
-
 export default App;
