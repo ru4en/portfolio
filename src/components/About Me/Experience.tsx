@@ -9,11 +9,11 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
             backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 
             rounded-xl p-6 
             shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
-            hover:shadow-[0_20px_50px_rgba(59,130,246,0.15)] dark:hover:shadow-[0_20px_50px_rgba(59,130,246,0.2)]
-            transform perspective-1000 hover:scale-105 hover:-translate-y-2
+            hover:shadow-[0_20px_50px_rgba(0,153,102,0.15)] dark:hover:shadow-[0_20px_50px_rgba(0,153,102,0.2)]
+            transform perspective-1000 hover:scale-102 hover:-translate-y-2
             transition-all duration-500 ease-out animate-float
-            border border-gray-200/50 dark:border-gray-700/50 hover:ring-4
-            hover:border-blue-500/50 dark:hover:border-blue-400/50
+            border border-gray-200/50 dark:border-gray-700/50 hover:ring-4 ring-emerald-500/50 dark:ring-emerald-400/50
+            hover:border-emerald-500/50 dark:hover:border-emerald-400/50
             flex-col md:flex-row">
             <img
                 src={experience.image || 'https://rubenlopes.uk/placeholder_image.png'}
@@ -25,13 +25,13 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
                 />
             <div className="flex flex-col space-y-4">
                 <h3 className="text-xl font-bold bg-clip-text text-transparent 
-                    bg-gradient-to-r from-blue-600 to-cyan-500
+                    bg-gradient-to-r from-emerald-600 to-cyan-500
                     group-hover:animate-text-shine">{experience.company}</h3>
                 <h2 className="text-lg sm:text-xl font-semibold 
                     text-gray-800 dark:text-white
                     transform transition-all duration-300
-                    group-hover:text-blue-500 dark:group-hover:text-blue-400">{experience.role}</h2>
-                <p className="text-sm text-blue-500 dark:text-blue-400 font-medium">
+                    group-hover:text-emerald-500 dark:group-hover:text-emerald-400">{experience.role}</h2>
+                <p className="text-sm text-emerald-500 dark:text-emerald-400 font-medium">
                     {new Date(experience.start).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}
                     {' - '}
                     {new Date(experience.end).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}
@@ -81,7 +81,7 @@ const ExperienceSection = () => {
             transition-colors duration-300">
 
             <h2 className="text-4xl font-bold text-center bg-clip-text text-transparent 
-                bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500
+                bg-gradient-to-r from-emerald-600 via-emerald-500 to-cyan-500
                 animate-text-shine m-8">
                 Work Experience
             </h2>
@@ -100,8 +100,8 @@ const ExperienceSection = () => {
                         isSelected={tech === selectedTech}
                         className={`transform transition-all duration-300 hover:scale-105
                             ${selectedTech === tech 
-                                ? 'bg-blue-500 text-white shadow-lg' 
-                                : 'hover:bg-blue-100 dark:hover:bg-blue-900'}`}
+                                ? 'bg-emerald-500 text-white shadow-lg' 
+                                : 'hover:bg-emerald-100 dark:hover:bg-emerald-900'}`}
                     />
                 ))}
             </div>

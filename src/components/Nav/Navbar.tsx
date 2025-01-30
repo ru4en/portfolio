@@ -68,11 +68,11 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <div className="fixed top-0 w-full px-4 z-50">
-      <nav className={`
+      <nav className={`border border-gray-300/20 
         mt-2 mx-auto py-1 px-4 rounded-xl transition-all duration-300 
         w-full max-w-7xl 
         ${isTransparent 
-          ? 'text-white shadow-none' 
+          ? 'text-white shadow-none bg-transparent border-transparent'
           : 'bg-gray-200/80 dark:bg-gray-800/80 text-gray-800 dark:text-white shadow-lg backdrop-blur-md'
         }
       `}>

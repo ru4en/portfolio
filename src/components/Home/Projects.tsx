@@ -5,17 +5,22 @@ import Tag from '../Common/Tag';
 
 const ProjectCard = ({ project }: { project: Project }) => {
     return (
-        <div className="w-[350px] flex flex-col p-4 rounded-lg shadow-md bg-gray-200 dark:bg-gray-800 dark:text-white min-h-[450px] hover:shadow-lg transition duration-300 transform hover:bg-gray-300 dark:hover:bg-gray-700">
+        <div className="w-[350px] flex flex-col min-h-[450px] p-3 bg-white dark:bg-gray-800
+        flex flex-col border border-gray-200 dark:border-gray-700
+        group hover:ring-4 cursor-pointer relative rounded-2xl ring-gray-500/30 dark:ring-cyan-700/30
+        backdrop-blur-sm shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]">
+            <div className="bg-white dark:bg-gray-800 opacity-30 absolute inset-0 rounded-2xl z-[-1]" />
             <a href={project.url || project.repo} target="_blank" rel="noopener noreferrer">
                 <img 
                     src={project.image || 'placeholder.png'} 
                     alt={project.title} 
-                    className="rounded-lg w-full h-48 object-cover object-center shadow-md hover:shadow-lg transition duration-300 hover:scale-105"
+                    className="rounded-lg w-full h-48 object-cover object-center shadow-md hover:shadow-lg transition duration-300
+                    hover:scale-105 hover:translate-y-[-4px]"
                 />
             </a>
             <h2 className="text-lg font-semibold mt-4 line-clamp-2">{project.title}</h2>
             <p className="text-gray-600 dark:text-gray-400 m-2 line-clamp-2">{project.description}</p>
-            <div className="flex flex-wrap gap-1 mb-2" style={{ maxHeight: '4rem', overflow: 'hidden' }}>
+            <div className="flex flex-wrap gap-1 mb-2 p-1 " style={{ maxHeight: '5rem', overflow: 'hidden' }}>
                 {project.tags && project.tags.map((tag, tagIndex) => (
                     <Tag key={tagIndex} tag={tag} />
                 ))}
@@ -72,20 +77,17 @@ const Projects = () => {
         return acc;
     }, []);
 
-    // Merge tags and skills into one array
     const combinedTagsAndSkills = [...tags, ...skills];
-
-    // Optionally, remove duplicates
     const uniqueTagsAndSkills = Array.from(new Set(combinedTagsAndSkills));
-
-    // Filter projects based on the selected tag
     const filteredProjects = selectedTag
         ? projects.filter((project) => project.tags.includes(selectedTag))
         : projects;
 
     return (
-        <div className="flex flex-col items-center space-y-4 shadow-md py-4 from-gray-100 to-gray-200 bg-gradient-to-br dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-400 to-gray-100
-         dark:text-white">
+        <div className="flex flex-col items-center space-y-4 shadow-md py-4 from-gray-100
+         transition-all duration-300 hover:shadow-lg
+         bg-gradient-to-br dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-100
+         dark:text-white transition-height">
             <h2 className="text-2xl font-semibold">{'</ Projects >'}</h2>
             <p>Here are some of the projects I have worked on.</p>
 
@@ -101,10 +103,12 @@ const Projects = () => {
                 ))}
             </div>
 
-            <div className="w-full overflow-x-auto">
+            <div className="w-full overflow-x-auto transition-opacity duration-500">
                 <div className="flex space-x-4 justify-center p-5" style={{ width: 'fit-content' }}>
                     {filteredProjects.map((project, index) => (
-                        <ProjectCard key={index} project={project} />
+                        <div key={index} className="transition-transform transform hover:scale-105 duration-300">
+                            <ProjectCard project={project} />
+                        </div>
                     ))}
                 </div>
             </div>

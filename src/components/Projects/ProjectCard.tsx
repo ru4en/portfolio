@@ -30,6 +30,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div
         onClick={handleFlip}
         className={` 
+         ring-2 backdrop-blur-lg overflow-hidden transition-all bg-opacity-10
           duration-700 ease-in-out transform-gpu
           preserve-3d cursor-pointer shadow-xl hover:ring-4 hover:top-4  rounded-xl ring-green-500
           ${isFlipped ? 'flipped' : ''}
@@ -41,11 +42,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
         {!isFlipped && (
           <div
             className={`
-                opacity-100 opacity-0
-                absolute inset-0 backface-hidden rounded-xl  p-4
-              bg-gradient-to-br from-white via-blue-50 to-blue-100
-              dark:from-gray-600 dark:via-gray-800 dark:to-gray-900
-              transition-all duration-700 ease-in-out
+                absolute inset-0 backface-hidden rounded-xl  p-4 bg-opacity-10
+              bg-gradient-to-br bg-white dark:bg-gray-800
             `}
           >
             <img
@@ -63,29 +61,33 @@ const ProjectCard = ({ project }: { project: Project }) => {
         {isFlipped && (
           <div
             className={`
-                opacity-0
-              absolute inset-0 backface-hidden
-              rounded-xl shadow-xl p-10
-              bg-gradient-to-br from-green-600 via-green-500 to-cyan-600
-              text-white  flipped w-full h-full
-              overflow-scroll pt-12
-              duration-500 ease-in-out transition-all
-              delay-200
+              opacity-0
+              absolute inset-0 backface-hidden rounded-xl
+              backdrop-blur-xl backdrop-saturate-150
+              text-white flipped w-full h-full
+              overflow-scroll pt-12 pb-4 px-4
+              duration-300 ease-in-out transition-all delay-200
+              border border-white/20
             `}
           >
             <div className="flex flex-col max-h-[200px] max-w-[300px] p-4 gap-4">
+              <div className="bg-gradient-to-br from-green-600/90 via-green-500/90 to-cyan-600/90
+              absolute -inset-0 rounded-xl backdrop-blur-lg opacity-20 z-[-1]
+              ">
+                  </div>
                 <img
                     src={project.image || './placeholder.png'}
-                 alt={project.title} className="w-full h-48 object-cover rounded-md mt-4 shadow-md transition duration-500 ease-in-out" />
+                 alt={project.title} className="w-full h-48 object-cover rounded-md mt-4 shadow-md transition duration-500 ease-in-out
+                 hover:scale-105 hover:shadow-lg"></img>
             </div>
             <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
             <p className="flex-grow text-sm">{project.description}</p>
 
-            <div className="flex gap-4 mt-4">
+            <div className="mt-4 flex space-x-8">
               {project.url && (
                 <a
                   href={project.url}
-                  className="flex-1 bg-white/10 rounded-lg p-2 text-center backdrop-blur-sm transition-colors"
+                  className="flex-1 dark:ring-2 max-w-[200px] bg-white/10 rounded-md p-2 text-center backdrop-blur-sm transition-all shadow-md hover:scale-105  dark:ring-emerald-800 "
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -95,7 +97,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               {project.repo && (
                 <a
                   href={project.repo}
-                  className="flex-1 bg-white/10 rounded-lg p-2 text-center backdrop-blur-sm transition-colors hover:bg-white/20"
+                  className="flex-1 dark:ring-2 max-w-[200px] bg-white/10 rounded-md p-2 text-center backdrop-blur-sm transition-all shadow-md hover:scale-105 dark:ring-emerald-800 "
                   target="_blank"
                   rel="noopener noreferrer"
                 >

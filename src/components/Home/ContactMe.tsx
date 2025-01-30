@@ -71,10 +71,10 @@ const ContactMe: React.FC = () => {
         </p>
 
         <div className="flex justify-center w-full">
-          <div className="relative group w-full max-w-lg rounded-2xl p-1 bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 hover:from-green-500 hover:via-blue-500 hover:to-green-500 transition-all duration-500 ease-in-out shadow-xl">
+          <div className="relative group w-full max-w-lg rounded-xl hover:rounded-2xl ring-4 hover:ring-0 hover:p-1 bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 hover:from-green-500 hover:via-blue-500 hover:to-green-500 transition-all duration-100 ease-in-out shadow-xl">
             <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 blur-xl opacity-50 group-hover:opacity-100 group-hover:blur-2xl transition-all duration-500 ease-in-out"></div>
             
-            <div className="relative bg-gray-400 dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-lg w-full bg-opacity-90 backdrop-blur-md transform transition-transform duration-500 ease-in-out">
+            <div className="relative bg-gray-300 dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-lg w-full bg-opacity-90 backdrop-blur-md transform transition-transform duration-500 ease-in-out">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <input

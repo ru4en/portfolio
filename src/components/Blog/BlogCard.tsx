@@ -7,10 +7,10 @@ interface BlogCardProps {
 }
 
 export const BlogCard = ({ post }: BlogCardProps) => (
-  <article className="group hover:ring-4 cursor-pointer relative rounded-2xl 
-    shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]
-    backdrop-blur-lg 
-    ring-2 ring-gray-500/30 dark:ring-cyan-700/30">
+  <article className="flex flex-col border border-gray-200 dark:border-gray-700
+        group hover:ring-4 cursor-pointer relative rounded-2xl ring-gray-500/30 dark:ring-cyan-700/30
+        backdrop-blur-sm shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]">
+    <div className="bg-white dark:bg-gray-800 opacity-30 absolute inset-0 rounded-2xl" />
     {/* Gradient Border */}
     <div className="absolute backdrop-blur-lg dark:backdrop-blur-xl inset-0
       bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 

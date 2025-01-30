@@ -50,7 +50,7 @@ const WHOAMI = () => {
                     text-gray-700 dark:text-gray-300
                     p-8 rounded-2xl animate-fade-in-delayed
                     backdrop-blur-sm bg-white/30 dark:bg-black/30
-                    border border-emerald-500/10 dark:border-emerald-400/10
+                     dark:border-emerald-400/10 ring-emerald-500/50 ring-2
                     hover:ring-4 transition-all duration-300 ring-emerald-500/50"
                 >
                     {data.about.description}
