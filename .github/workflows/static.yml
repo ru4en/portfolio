@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Cache LaTeX packages
         id: cache-latex
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: /usr/share/texlive
           key: texlive-${{ runner.os }}-${{ hashFiles('cv/cv.tex') }}
@@ -46,10 +46,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18.19.0'
 
@@ -67,7 +67,7 @@ jobs:
           path: './dist'
 
       - name: Upload combined artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
