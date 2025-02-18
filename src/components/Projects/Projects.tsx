@@ -110,11 +110,10 @@ const Projects = () => {
                     id="projects"
                     className="flex gap-20 overflow-x-auto snap snap-x snap-mandatory scroll-snap-type-x py-20
                       [&::-webkit-scrollbar]:w-2
-  [&::-webkit-scrollbar-track]:bg-gray-100
-  [&::-webkit-scrollbar-thumb]:bg-gray-300
-  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500
-                    "
+                    [&::-webkit-scrollbar-track]:bg-gray-100
+                    [&::-webkit-scrollbar-thumb]:bg-gray-300
+                    dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+                    dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
                     style={{ padding: '90px 50vw' }}
                 >
                     {data.projects.map((project: Project, projectIndex: number) => (

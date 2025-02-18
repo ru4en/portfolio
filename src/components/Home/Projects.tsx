@@ -5,7 +5,7 @@ import Tag from '../Common/Tag';
 
 const ProjectCard = ({ project }: { project: Project }) => {
     return (
-        <div className="w-[350px] flex flex-col min-h-[450px] p-3 bg-white dark:bg-gray-800
+        <div className="w-[350px] min-h-[450px] p-3 bg-white dark:bg-gray-800
         flex flex-col border border-gray-200 dark:border-gray-700
         group hover:ring-4 cursor-pointer relative rounded-2xl ring-gray-500/30 dark:ring-cyan-700/30
         backdrop-blur-sm shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:translate-y-[-4px]">
@@ -26,7 +26,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 ))}
             </div>
 
-            <div className="flex justify-between mt-4 space-x-2 mt-auto">
+            <div className="flex justify-between space-x-2 mt-auto">
                 {project.url && project.repo ? (
                     <>
                         <a 
