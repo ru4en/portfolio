@@ -16,25 +16,32 @@ concurrency:
 
 jobs:
   lint:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: '16'
-            cache: 'npm'
-        - name: Install
-          run: npm ci --prefer-offline
-        - name: Prettier
-          run: npm run prettier -- --list-different
-        - name: Eslint
-          run: npm run eslint -- --max-warnings 0
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline
+
+      - name: Run Prettier
+        run: npm run prettier -- --check
+
+      - name: Run ESLint
+        run: npm run eslint -- --max-warnings 0
 
   build-cv:
+    needs: [lint]
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'cv/cv.tex')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Cache LaTeX packages
@@ -44,9 +51,9 @@ jobs:
           path: /usr/share/texlive
           key: texlive-${{ runner.os }}-${{ hashFiles('cv/cv.tex') }}
 
-      - name: Install pdflatex
+      - name: Install LaTeX
         if: steps.cache-latex.outputs.cache-hit != 'true'
-        run: sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+        run: sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 
       - name: Build CV
         run: pdflatex -output-directory=dist cv/cv.tex
@@ -58,23 +65,25 @@ jobs:
           path: './dist'
 
   build-site:
+    needs: [lint]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.19.0'
+          node-version: '18'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --prefer-offline
 
       - name: Build the app
         run: npm run build
 
-      - name: Download CV artifact if available
+      - name: Download CV artifact (if available)
         continue-on-error: true
         uses: actions/download-artifact@v4
         with:
