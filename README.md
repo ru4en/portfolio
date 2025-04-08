@@ -1,51 +1,40 @@
-# React + TypeScript + Vite
+# Ruben's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the source code for my portfolio website hosted at [rubenlopes.uk](https://rubenlopes.uk).
 
-Currently, two official plugins are available:
+## About This Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tech Stack
+This site was built using **React**, with a lot of the styling done using **Tailwind CSS**. Everything – including the blog – is statically generated and hosted on **GitHub Pages**.
 
-## Expanding the ESLint configuration
+### Features
+- **Blog Generator**: The blog generator reads markdown files from the `public/blogs` folder and generates the corresponding blog pages.
+- **Terminal Component**: A custom terminal emulator on the homepage with a few commands you can run for fun. It’s a bit of a gimmick, but I thought it was a cool addition!
+- **Background Component**: Generates a random icon and places it at a 45-degree angle on the page. These icons are selected from **Font Awesome**, **Devicons**, or **Material Icons**.
+- **Automated Workflow**: This repo includes a GitHub Actions workflow that not only builds and deploys the site but also generates my CV from a LaTeX file and deploys it. I’m pretty happy with how it turned out – just need to remember to update it once in a while.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Reflection
+While this site may be a bit over-engineered for a personal portfolio, it has been an incredible helpful for me at learning React and TypeScript. I hope you enjoy browsing the site and find something useful here. I’ll try to keep the blog updated with new stuff I learn and do.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## How to Run Locally
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:ru4en/portfolio.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to `http://localhost:3000`.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## License
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# portfolio
+This project is licensed under the [MIT License](LICENSE).

@@ -4,7 +4,7 @@ import SuperIcon from '../Common/SuperIcons';
 import { Skill } from '../Types';
 
 const Technologies = () => {
-    var skills = data.skills;
+    const skills = data.skills;
     skills.forEach((skill: Skill) => {
     skill.icon = skill.icon || skill.name;
     });

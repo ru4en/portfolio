@@ -45,8 +45,6 @@ const Projects = () => {
             case 'Enter':
             case ' ':
                 e.preventDefault();
-                if (centeredIndex !== null) {
-                }
                 break;
             case 'Escape':
                 e.preventDefault();
