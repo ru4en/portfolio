@@ -15,6 +15,23 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  lint:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '16'
+            cache: 'npm'
+        - name: Install
+          run: npm ci --prefer-offline
+        - name: Alex
+          run: npm run alex
+        - name: Prettier
+          run: npm run prettier -- --list-different
+        - name: Eslint
+          run: npm run eslint -- --max-warnings 0
+
   build-cv:
     if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'cv/cv.tex')
     runs-on: ubuntu-latest
