@@ -7,7 +7,8 @@ import Socials from '../Common/Socials';
 
 const Welcome = () => {
   const fullText = `Hello! I am Ruben,\n
-  a student and developer. Welcome to my website!`;
+  full-time engineer by day, freelance web developer by passion.\n
+  Welcome to my website!`;
 
   const [cursorGlowPosition, setCursorGlowPosition] = useState({ x: 0, y: 0 });
 
