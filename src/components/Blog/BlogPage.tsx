@@ -78,8 +78,7 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
   }, []);
 
   return (
-    <div className="min-h-screen">
-    <Background iconNames={post.icons || []} />
+    <Background iconNames={post.icons || []} layout="GRID" className="fixed min-h-screen">
       {/* Progress bar */}
       <div className="fixed top-0 left-0 w-full z-50">
         <div
@@ -211,7 +210,7 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
       >
         <ChevronUp className="w-6 h-6" />
       </button>
-    </div>
+    </Background>
   );
 };
 

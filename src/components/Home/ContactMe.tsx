@@ -61,8 +61,11 @@ const ContactMe: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="p-3 font-mono top-0 z-[-2] pb-20 min-h-screen bg-[radial-gradient(#aaaaaa_1px,transparent_1px)] [background-size:25px_25px]">
-      <div className="container mx-auto max-w-3xl flex flex-col items-center justify-center">
+    <section id="contact" className="
+    inset-0 duration-75 opacity-100 [background-image:linear-gradient(to_right,_rgba(255,255,255,0.1)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.1)_1px,_transparent_1px)] [background-size:20px_20px] dark:[background-image:linear-gradient(to_right,_rgba(255,255,255,0.05)_1px,_transparent_1px),_linear-gradient(to_bottom,_rgba(255,255,255,0.05)_1px,_transparent_1px)] dark:[background-size:25px_25px]">
+      <div className="p-10 flex flex-col items-center justify-center
+    bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-gray-100 to-gray-200 dark:from-transparent dark:to-gray-950
+      text-gray-800 dark:text-white w-full">
         <h2 className="text-2xl font-semibold m-10">{'</ Contact Me >'}</h2>
         
         <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
@@ -71,7 +74,7 @@ const ContactMe: React.FC = () => {
         </p>
 
         <div className="flex justify-center w-full">
-          <div className="relative group w-full max-w-lg rounded-xl hover:rounded-2xl ring-4 hover:ring-0 hover:p-1 bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 hover:from-green-500 hover:via-blue-500 hover:to-green-500 transition-all duration-100 ease-in-out shadow-xl">
+          <div className="relative group w-full max-w-lg rounded-xl hover:rounded-2xl ring-4 hover:ring-0 hover:p-0 bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 hover:from-green-500 hover:via-blue-500 hover:to-green-500 transition-all duration-100 ease-in-out shadow-xl">
             <div className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 blur-xl opacity-50 group-hover:opacity-100 group-hover:blur-2xl transition-all duration-500 ease-in-out"></div>
             
             <div className="relative bg-gray-300 dark:bg-gray-800 p-8 rounded-xl shadow-lg max-w-lg w-full bg-opacity-90 backdrop-blur-md transform transition-transform duration-500 ease-in-out">

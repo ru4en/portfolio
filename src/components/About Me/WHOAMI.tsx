@@ -9,8 +9,7 @@ const WHOAMI = () => {
         return acc;
     }, { skills: [] });
     return (
-        <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-white via-emerald-50 to-gray-100 dark:from-black dark:via-emerald-950/10 dark:to-gray-900 overflow-hidden">
-      <Background iconNames={skills} style="CLUTTERED" rotate="RANDOM" />
+        <Background iconNames={skills} layout="CLUTTERED" rotate="RANDOM" className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-white via-emerald-50 to-gray-100 dark:from-black dark:via-emerald-950/10 dark:to-gray-900 overflow-hidden">
 
             <div className="relative z-10 w-full max-w-4xl mx-auto px-4 py-16">
                 {/* Profile image */}
@@ -55,9 +54,8 @@ const WHOAMI = () => {
                 >
                     {data.about.description}
                 </p>
-
             </div>
-        </div>
+        </Background>
     );
 };
 

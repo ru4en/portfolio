@@ -22,7 +22,7 @@ const PageTransitionWrapper = ({ children, location }: { children: React.ReactNo
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 0); // Small delay to show spinner briefly
+    }, 0); 
 
     return () => clearTimeout(timer);
   }, [location.pathname]);

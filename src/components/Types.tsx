@@ -10,6 +10,7 @@ export interface SiteInfo {
         link: string;
         type: string;
         position: string;
+        required_consent?: boolean;
     }>;
 }
 

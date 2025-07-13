@@ -86,7 +86,7 @@ const Projects = () => {
     return (
         <div className="flex flex-col items-center space-y-4 shadow-md py-4 from-gray-100
          transition-all duration-300 hover:shadow-lg
-         bg-gradient-to-br dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-100
+         bg-gradient-to-t dark:from-gray-900 dark:to-green-800 text-gray-800 to-gray-400
          dark:text-white transition-height">
             <h2 className="text-2xl font-semibold">{'</ Projects >'}</h2>
             <p>Here are some of the projects I have worked on.</p>

@@ -9,30 +9,116 @@ import data from '../public/data.json';
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
-    const showAlerts = () => {
-      data.site.alerts.forEach((alert) => {
-        toast(alert.message, {
+  const hasConsentedToCookies = () => {
+    return document.cookie.includes('COOKIE_CONSENT=true');
+  };
+
+  const writeCookie = (name: string, value: string, days: number) => {
+    if (hasConsentedToCookies()) {
+      // Set cookie with expiration date
+      const date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = `expires=${date.toUTCString()}`;
+      document.cookie = `${name}=${value}; ${expires}; path=/`;
+    }
+  };
+
+  const readCookie = (name: string) => {
+    const nameEQ = `${name}=`;
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  };
+
+  const CustomToastContent = ({ alert }: { alert: any }) => {
+    if (!alert.required_consent) {
+      writeCookie('alert_' + alert.title, 'true', 365);
+    }
+      return (
+      <div className="flex flex-col space-y-3">
+        <div>{alert.message}</div>
+        <div className="flex space-x-2">
+          {alert.required_consent && (
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+              onClick={() => {
+                // Set cookie consent first
+                const date = new Date();
+                date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+                const expires = `expires=${date.toUTCString()}`;
+                document.cookie = `COOKIE_CONSENT=true; ${expires}; path=/`;
+                
+                // Now we can set the alert cookie
+                writeCookie('alert_' + alert.title, 'true', 365);
+                toast.dismiss();
+              }}
+            >
+              Accept
+            </button>
+          )}
+          {alert.link && (
+            <a
+              href={alert.link}
+              className="bg-green-500 text-white px-4 py-2 rounded"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                // Only set cookie if consent is given
+                if (hasConsentedToCookies()) {
+                  writeCookie('alert_' + alert.title, 'true', 365);
+                }
+                toast.dismiss();
+              }}
+            >
+              Learn More
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const showAlerts = () => {
+    data.site.alerts.forEach((alert) => {
+      // Check if alert has a message
+      if (!alert.message) return;
+      
+      // If cookies are consented to, check if this alert was already shown
+      if (hasConsentedToCookies() && readCookie('alert_' + alert.title)) {
+        return; // Don't show this alert again
+      }
+      
+      // If this alert requires consent but no consent is given, always show it
+      // If consent is given but no alert cookie exists, show it
+      // If no consent required and no alert cookie exists, show it
+      const shouldShow = alert.required_consent ? 
+        !hasConsentedToCookies() : 
+        !readCookie('alert_' + alert.title);
+      
+      if (shouldShow) {
+        toast(<CustomToastContent alert={alert} />, {
           type: (alert.type as any) || 'info',
           position: (alert.position as any) || 'top-right',
-          onClick: () => {
-            window.location.href = alert.link || window.location.href;
-          },
-          autoClose: ((alert as any).autoClose !== undefined ? (alert as any).autoClose : 5000),
+          autoClose: ((alert as any).autoClose !== undefined ? (alert as any).autoClose : false),
           hideProgressBar: false,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: 'light',
+          closeOnClick: false,
         });
-      });
-    };
-
+      }
+    });
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
       showAlerts();
-
     }, 200);
 
     return () => clearTimeout(timer);
@@ -53,14 +139,12 @@ function App() {
       />
       {isLoading && (
         <div className="preloader">
-          {/* Adding a slow fade-in for the logo */}
           <img 
             src="/logo-small.png" 
             alt="logo" 
             width={120} 
             className="transition-all "
           />
-          {/* Optional: You can add a spinner here */}
           <div className="spinner"></div>
         </div>
       )}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import SuperIcons from './SuperIcons';
 
 enum StyleOptions {
@@ -9,51 +9,74 @@ enum StyleOptions {
 interface BackgroundProps {
   iconNames: string[];
   rotate?: number | string;
-  style?: keyof typeof StyleOptions;
+  layout?: keyof typeof StyleOptions;
+  className?: string;
+  children?: ReactNode;
+  blink?: boolean;
 }
 
-const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, style = 'GRID' }) => {
-  const [icons, setIcons] = useState<string[]>([]);
+interface IconData {
+  name: string;
+  shouldBlink: boolean;
+  delay: number;
+  rotation: number;
+}
+
+const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, layout = 'GRID', className = '', children, blink = false }) => {
+  const [icons, setIcons] = useState<IconData[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
-  if (iconNames.length === 0) return null;
+  if (iconNames.length === 0) return children || null;
 
   useEffect(() => {
-    const generateIcons = () => {
+    const generateIcons = (): IconData[] => {
       return Array.from({ length: 256 }).map(() => {
         const randomIndex = Math.floor(Math.random() * iconNames.length);
-        return iconNames[randomIndex];
+        return {
+          name: iconNames[randomIndex],
+          shouldBlink: blink && Math.random() > 0.7, // 30% chance to blink
+          delay: Math.random() * 3, // Random delay between 0-3 seconds
+          rotation: rotate === 'RANDOM' ? Math.random() * 360 : (rotate as number) || 0
+        };
       });
     };
     setIcons(generateIcons());
     setIsMounted(true);
-  }, []);
+  }, [blink, rotate]);
 
   return (
     <div 
-      className="fixed inset-0 overflow-hidden transition-opacity duration-1000 ease-in-out"
+      className={`relative transition-opacity duration-1000 ease-in-out overflow-hidden ${className}`}
       style={{ opacity: isMounted ? 1 : 0 }}
     >
-      <div
-
-      />
-      <div className={`${StyleOptions[style]} animate-spin-slow`}>
-        {icons.map((iconName, index) => (
-          <div
-            key={index}
-            className="relative group"
-            style={{
-              transform: `rotate(${rotate === 'RANDOM' ? Math.random() * 360 : rotate}deg)`,
-            }}
-          >
-            <SuperIcons
-              name={iconName}
-              className="opacity-50 dark:text-gray-200 transition-all duration-300 ease-in-out transform group-hover:opacity-100"
-              size="5xl"
-              useNativeColors={true}
-            />
-          </div>
-        ))}
+      {/* Background icons */}
+      <div className="absolute inset-0">
+        <div className={`${StyleOptions[layout]} animate-spin-slow`}>
+          {icons.map((iconData, index) => (
+            <div
+              key={index}
+              className="relative group"
+              style={{
+                transform: `rotate(${iconData.rotation}deg)`,
+              }}
+            >
+              <SuperIcons
+                name={iconData.name}
+                className={`opacity-50 dark:text-gray-200 transition-all duration-300 ease-in-out transform group-hover:opacity-100 ${iconData.shouldBlink ? 'animate-twinkle' : ''}`}
+                style={{
+                  animationDelay: iconData.shouldBlink ? `${iconData.delay}s` : undefined
+                }}
+                size="5xl"
+                useNativeColors={true}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        {children}
       </div>
     </div>
   );
@@ -62,20 +85,13 @@ const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, style = 'GRI
 export default Background;
 
 
-// USEAGE:
+// USAGE:
 
 // <Background
-//   iconNames={['circle-exclamation', 'bug', 'beer-mug-empty:']}
-//   style="CLUTTERED"
+//   iconNames={['circle-exclamation', 'bug', 'beer-mug-empty']}
+//   layout="CLUTTERED" | "GRID"
 //   rotate="RANDOM"
-//   useNativeColors={true}
-//   size="5xl"
-// />
-
-// <Background />
-// iconNames: Array of icon names to display in the background. :. see SuperIcons documentation for valid names.
-// style: Optional style for the background, defaults to 'GRID'. Can be 'GRID' or 'CLUTTERED'.
-// rotate: Optional rotation for the icons, can be a number or 'RANDOM' for random rotation.
-// useNativeColors: Optional boolean to use native colors for icons, defaults to true.
-// size: Optional size for the icons, defaults to '5xl'.
-// isMounted: Internal state to control the opacity transition of the background.
+// >
+//   <p>Your content here</p>
+//   <div>More content</div>
+// </Background>

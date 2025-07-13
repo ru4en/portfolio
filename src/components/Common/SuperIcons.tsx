@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import * as Fa from 'react-icons/fa';
+import * as Fa6 from 'react-icons/fa6';
 import * as Md from 'react-icons/md';
 import * as Si from 'react-icons/si';
 import * as Di from 'react-icons/di';
@@ -63,6 +64,15 @@ const SuperIcons: React.FC<SuperIconsProps> = ({
     const library = providedLibrary.toLowerCase();
     const capitalizedName = iconName.charAt(0).toUpperCase() + iconName.slice(1);
 
+    // Debug logging - remove this after testing
+    console.log('Searching for icon:', {
+      rawIconName,
+      iconName,
+      capitalizedName: `Fa${capitalizedName}`,
+      library,
+      providedLibrary
+    });
+
     switch (library) {
       case 'devicon':
         // Try Simple Icons first, then Devicons
@@ -70,8 +80,18 @@ const SuperIcons: React.FC<SuperIconsProps> = ({
                (Di as any)[`Di${capitalizedName}`];
      
       case 'fontawesome':
-        // Try FontAwesome
-        return (Fa as any)[`Fa${capitalizedName}`];
+      case 'fa':
+        // Try main FontAwesome libraries only
+        const faIcon = (Fa as any)[`Fa${capitalizedName}`] ||
+                      (Fa6 as any)[`Fa${capitalizedName}`];
+        
+        if (!faIcon) {
+          console.log('Available FA icons starting with Fa:', 
+            Object.keys(Fa).filter(key => key.startsWith('Fa')).slice(0, 10)
+          );
+        }
+        
+        return faIcon;
      
       case 'material':
         // Try Material Icons
@@ -82,14 +102,15 @@ const SuperIcons: React.FC<SuperIconsProps> = ({
         return (Gi as any)[`Gi${capitalizedName}`];
 
       case 'pixelart':
-        // Try Pixelart Icons (react-icons/pixelart)
+        // Try Pixelart Icons (react-icons/pi)
         return (Pi as any)[`Pi${capitalizedName}`];
      
       default:
-        // Try all libraries in order
+        // Try all available libraries
         return (Si as any)[`Si${capitalizedName}`] ||
                (Di as any)[`Di${capitalizedName}`] ||
                (Fa as any)[`Fa${capitalizedName}`] ||
+               (Fa6 as any)[`Fa${capitalizedName}`] ||
                (Gi as any)[`Gi${capitalizedName}`] ||
                (Md as any)[`Md${capitalizedName}`] ||
                (Pi as any)[`Pi${capitalizedName}`];

@@ -62,32 +62,32 @@ const Blog = () => {
 
   return (
     <>
-    {!isLoading && <Background iconNames={BLOG_ICONS} style="CLUTTERED" rotate="RANDOM" />}
-    <div className="blog flex flex-col items-center space-y-10 py-20 min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-400 to-gray-100 dark:text-white">
+    <Background iconNames={BLOG_ICONS} layout="CLUTTERED" rotate="RANDOM" className="flex flex-col items-center space-y-10 py-20 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-green-900 text-gray-800 to-gray-400 to-gray-100 dark:text-white z-10 relative min-h-screen">
       <div className="w-full max-w-6xl px-4 sm:px-6 md:px-8">
-        <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-12">
-          Blog
-        </h1>
-        {error && 
-        <div className="card bg-red-500 text-white text-center p-4
-        absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <i className="fas fa-exclamation-triangle mr-2"></i>
-          {error}
-        </div>}
-        
-        {warnings.length > 0 && (
-          <div className="mb-6 p-4 bg-yellow-100 dark:bg-yellow-900 border border-yellow-300 dark:border-yellow-700 rounded-lg">
-            <h3 className="text-yellow-800 dark:text-yellow-200 font-semibold mb-2">
-              <i className="fas fa-exclamation-triangle mr-2"></i>
-              Some blog posts failed to load:
-            </h3>
-            <ul className="text-yellow-700 dark:text-yellow-300 text-sm">
-              {warnings.map((warning, index) => (
-                <li key={index} className="mb-1">• {warning}</li>
-              ))}
-            </ul>
-          </div>
-        )}
+          <h1 className="text-4xl font-extrabold text-center text-gray-800 dark:text-white mb-12">
+            Blog
+          </h1>
+          {error && 
+          <div className="card bg-red-500 text-white text-center p-4
+          absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <i className="fas fa-exclamation-triangle mr-2"></i>
+            {error}
+          </div>}
+          
+          {warnings.length > 0 && (
+            <div className="mb-6 p-4 bg-yellow-100 dark:bg-yellow-900 border border-yellow-300 dark:border-yellow-700 rounded-lg">
+              <h3 className="text-yellow-800 dark:text-yellow-200 font-semibold mb-2">
+                <i className="fas fa-exclamation-triangle mr-2"></i>
+                Some blog posts failed to load:
+              </h3>
+              <ul className="text-yellow-700 dark:text-yellow-300 text-sm">
+                {warnings.map((warning, index) => (
+                  <li key={index} className="mb-1">• {warning}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
         
         {isLoading ? (
               <Spinner />
@@ -102,9 +102,9 @@ const Blog = () => {
           </div>
         )}
       </div>
-    </div>
-    </>
+    </Background>
+  </>
   );
-}
+};
 
 export default Blog;
