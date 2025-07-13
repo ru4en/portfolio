@@ -4,7 +4,7 @@ import BlogPage from './BlogPage'
 import { Post } from '../Types'
 import { getBlogPost } from './BlogParser'
 import NotFound from '../Common/NotFound'
-import Spinner from '../Common/Spinner'
+import Spinner from '../Common/Utils/Spinner'
 
 interface BlogState {
   error: string | null;

@@ -11,7 +11,7 @@ import Blog from "../components/Blog/Blog";
 import BlogPost from "../components/Blog/BlogPost";
 import NotFound from "../components/Common/NotFound/NotFound";
 import Projects from "../components/Projects/Projects";
-import Spinner from "../components/Common/Spinner";
+import Spinner from "../components/Common/Utils/Spinner";
 
 
 const PageTransitionWrapper = ({ children, location }: { children: React.ReactNode; location: any }) => {

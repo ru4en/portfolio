@@ -1,6 +1,6 @@
 
 import { Post } from '../Types';
-import { calculateReadingTime } from '../Common/Utils';
+import { calculateReadingTime } from '../Common/Utils/Index';
 
 const parseDate = (dateStr: string): Date => {
   const [day, month, year] = dateStr.split('-').map(Number);

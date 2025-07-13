@@ -81,7 +81,7 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
     <div className="min-h-screen">
     <Background iconNames={post.icons || []} />
       {/* Progress bar */}
-      <div className="absolute top-0 left-0 right-0 z-50 h-1 bg-gray-200 dark:bg-gray-800">
+      <div className="fixed top-0 left-0 w-full z-50">
         <div
           className="h-1.5 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 backdrop-blur-lg"
           style={{ width: `${readingProgress}%`, transition: 'width 0.2s ease' }}
@@ -185,7 +185,6 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
                   overrides: {
                     img: {
                       props: {
-                        className: 'w-full object-cover hover:shadow-2xl transition-shadow duration-300'
                       }
                     },
                     a: {

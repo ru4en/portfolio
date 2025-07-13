@@ -3,7 +3,7 @@ import { Post } from '../Types';
 import { getBlogPost } from './BlogParser';
 import { BlogCard } from './BlogCard';
 import Background from '../Common/Background';
-import Spinner from '../Common/Spinner'
+import Spinner from '../Common/Utils/Spinner';
 
 // Move Background outside and memoize the icons array
 const BLOG_ICONS = ['code', 'terminal', 'read-cv-logo-duotone:pixelart'];
@@ -59,6 +59,7 @@ const Blog = () => {
     loadBlogPosts();
   }, []);
 
+
   return (
     <>
     {!isLoading && <Background iconNames={BLOG_ICONS} style="CLUTTERED" rotate="RANDOM" />}
@@ -89,7 +90,7 @@ const Blog = () => {
         )}
         
         {isLoading ? (
-          <Spinner />
+              <Spinner />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {blogPosts.map((post) => (

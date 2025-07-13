@@ -179,6 +179,10 @@ a {
   border-radius: 0.75rem;
 }
 
+.page-enter-active .page-exit-done {
+  position: static !important;
+}
+
 .page {
   position: relative;
   width: 100%;
@@ -197,6 +201,8 @@ a {
 }
 
 .page-enter {
+  position: relative !important;
+  display: contents;
   transform: scale(1.05);
 }
 
