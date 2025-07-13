@@ -1,5 +1,6 @@
 
 import { Post } from '../Types';
+import { calculateReadingTime } from '../Common/Utils';
 
 const parseDate = (dateStr: string): Date => {
   const [day, month, year] = dateStr.split('-').map(Number);
@@ -73,6 +74,7 @@ export const getBlogPost = (content: string): Omit<Post, 'slug'> | null => {
     description: post.description,
     tags: post.tags,
     icons: post.icons,
-    hidden: post.hidden
+    hidden: post.hidden,
+    readingTime: calculateReadingTime(post.content)
   };
 };

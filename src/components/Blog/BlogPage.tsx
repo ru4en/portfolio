@@ -78,12 +78,15 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white ">
+    <div className="min-h-screen">
     <Background iconNames={post.icons || []} />
-      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-cyan-400 dark:from-green-600 dark:to-cyan-600 transition-all duration-300
-        z-50"
-        style={{ width: `${readingProgress}%` }}
-      ></div>
+      {/* Progress bar */}
+      <div className="absolute top-0 left-0 right-0 z-50 h-1 bg-gray-200 dark:bg-gray-800">
+        <div
+          className="h-1.5 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 backdrop-blur-lg"
+          style={{ width: `${readingProgress}%`, transition: 'width 0.2s ease' }}
+        />
+      </div>
 
       <div className="p-6 md:p-12 lg:p-20 max-w-4xl mx-auto">
         {/* Hero Section */}

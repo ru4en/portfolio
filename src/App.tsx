@@ -17,7 +17,7 @@ function App() {
           onClick: () => {
             window.location.href = alert.link || window.location.href;
           },
-          autoClose: (alert.autoClose !== undefined ? alert.autoClose : 5000),
+          autoClose: ((alert as any).autoClose !== undefined ? (alert as any).autoClose : 5000),
           hideProgressBar: false,
           pauseOnHover: true,
           draggable: true,

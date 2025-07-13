@@ -1,6 +1,7 @@
 import Markdown from 'markdown-to-jsx';
 import { Post } from '../Types';
 import { Clock, Tag } from 'lucide-react';
+import { Link } from 'react-router-dom'; // Add this import
 
 interface BlogCardProps {
   post: Post;
@@ -15,8 +16,8 @@ export const BlogCard = ({ post }: BlogCardProps) => (
     <div className="absolute backdrop-blur-lg dark:backdrop-blur-xl inset-0
       bg-gradient-to-r from-green-400/20 via-cyan-400/20 to-blue-400/20 
       opacity-10 group-hover:opacity-100 transition-opacity duration-300" />
-    <a
-      href={`/#/blog/${post.slug}`}
+    <Link
+      to={`/blog/${post.slug}`}
       className="inline-flex items-center gap-2 font-medium group/link decoration-none">
     {/* Content Container with small border offset */}
     <div className="relative m-[1px] rounded-2xl overflow-hidden">
@@ -64,7 +65,7 @@ export const BlogCard = ({ post }: BlogCardProps) => (
         </div>
       </div>
     </div>
-    </a>
+    </Link>
   </article>
 );
 
