@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import BlogPage from './BlogPage'
 import { Post } from '../Types'
 import { getBlogPost } from './BlogParser'
