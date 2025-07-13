@@ -79,7 +79,9 @@ export interface Post {
   slug?: string;
   content: string;
   tags?: string[];
-}
+  hidden?: boolean;
+  readingTime: number;
+  }
 
 export interface NavLinkProps {
   to: string;

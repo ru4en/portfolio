@@ -9,12 +9,13 @@ const parseDate = (dateStr: string): Date => {
   return new Date(year, month - 1, day);
 };
 
-export const getBlogPost = (content: string): Omit<Post, 'slug'> => {
+export const getBlogPost = (content: string): Omit<Post, 'slug'> | null => {
   const frontMatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
   const match = content.match(frontMatterRegex);
   
   if (!match) {
-    throw new Error('Invalid blog post format: Missing front matter');
+    console.warn('No front matter found in blog post');
+    return null;
   }
 
   const [, frontMatter, markdownContent] = match;
@@ -49,6 +50,12 @@ export const getBlogPost = (content: string): Omit<Post, 'slug'> => {
       case 'icons':
         post.icons = value.split(',').map(icon => icon.trim());
         break;
+      case 'hidden':
+        post.hidden = value.toLowerCase() === 'true';
+        break;
+      default:
+        console.warn(`Unknown front matter key: ${key}`);
+        break;
     }
   });
 
@@ -65,6 +72,7 @@ export const getBlogPost = (content: string): Omit<Post, 'slug'> => {
     authors: post.authors,
     description: post.description,
     tags: post.tags,
-    icons: post.icons
+    icons: post.icons,
+    hidden: post.hidden
   };
 };

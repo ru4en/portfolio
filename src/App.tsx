@@ -2,15 +2,38 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import AppRouter from './routes/AppRouter';
 import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import StyledToast from './components/Common/CustomToast';
+import data from '../public/data.json';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
+    const showAlerts = () => {
+      data.site.alerts.forEach((alert) => {
+        toast(alert.message, {
+          type: (alert.type as any) || 'info',
+          position: (alert.position as any) || 'top-right',
+          onClick: () => {
+            window.location.href = alert.link || window.location.href;
+          },
+          autoClose: (alert.autoClose !== undefined ? alert.autoClose : 5000),
+          hideProgressBar: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+      });
+    };
+
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 200); // Adjust the timeout duration as needed
+      showAlerts();
+
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);

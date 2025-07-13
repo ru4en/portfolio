@@ -22,10 +22,25 @@ const SiteInfoEditor: React.FC<{ siteInfo: SiteInfo; setSiteInfo: (info: SiteInf
         setSiteInfo({ ...siteInfo, keywords: siteInfo.keywords.filter((_, i) => i !== tagIndex) });
     };
 
-
     return (
         <div className="p-6 mb-6 rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
             <div className="space-y-5">
+                {/* Welcome Message Input */}
+                <div>
+                    <label htmlFor="welcome" className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                        Welcome Message
+                    </label>
+                    <input
+                        type="text"
+                        id="welcome"
+                        name="welcome"
+                        value={siteInfo.welcome}
+                        onChange={handleChange}
+                        className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
+                        placeholder="Enter welcome message"
+                    />
+                </div>
+
                 {/* Title Input */}
                 <div>
                     <label htmlFor="title" className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -39,6 +54,22 @@ const SiteInfoEditor: React.FC<{ siteInfo: SiteInfo; setSiteInfo: (info: SiteInf
                         onChange={handleChange}
                         className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         placeholder="Enter site title"
+                    />
+                </div>
+
+                {/* Job Title Input */}
+                <div>
+                    <label htmlFor="job" className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                        Job Title
+                    </label>
+                    <input
+                        type="text"
+                        id="job"
+                        name="job"
+                        value={siteInfo.job}
+                        onChange={handleChange}
+                        className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
+                        placeholder="Enter your job title"
                     />
                 </div>
 
@@ -71,43 +102,6 @@ const SiteInfoEditor: React.FC<{ siteInfo: SiteInfo; setSiteInfo: (info: SiteInf
                         className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
                         placeholder="Enter author name"
                     />
-                </div>
-        {/* "keywords */}
-                <div>
-                    <label htmlFor="image" className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        Image URL
-                    </label>
-                    <input
-                        type="text"
-                        id="image"
-                        name="image"
-                        value={siteInfo.image}
-                        onChange={handleChange}
-                        className="mt-2 block w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:text-gray-100"
-                        placeholder="https://example.com/image.jpg"
-                    />
-                </div>
-                
-                {/* Keywords Section */}
-                <div className="w-full">
-                    <label htmlFor={`keywords`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300 pb-2">Keywords</label>
-                    <div className="flex p-2 space-x-2 flex-wrap gap-x-1 gap-y-2 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700">
-                        {siteInfo.keywords.map((tag: string, tagIndex: number) => (
-                            <TagComponent 
-                                key={tagIndex} 
-                                tag={tag}
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleTagChange(tagIndex, e.target.value)} 
-                                onRemove={() => removeKeyword(tagIndex)}
-                            />
-                        ))}
-                    </div>
-                    <button
-                        type="button"
-                        onClick={addKeyword}
-                        className="mt-2 text-blue-500 hover:text-blue-600"
-                    >
-                        + Add Keyword
-                    </button>
                 </div>
             </div>
         </div>

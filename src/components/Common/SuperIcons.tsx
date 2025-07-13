@@ -126,3 +126,50 @@ const SuperIcons: React.FC<SuperIconsProps> = ({
 };
 
 export default SuperIcons;
+
+
+// Usage Example:
+// <SuperIcons name="react" size="xl" onClick={() => console.log('Icon clicked!')} />
+// <SuperIcons name="devicon:javascript" size="2xl" useNativeColors={true} />
+// <SuperIcons name="fontawesome:coffee" size="lg" className="text-brown-500" />
+// <SuperIcons name="material:home" size="base" style={{ color: 'blue' }} />
+// <SuperIcons name="grommet:circle" size="3xl" />
+// <SuperIcons name="pixelart:heart" size="4xl" className="text-red-500" />
+
+
+// <SuperIcons />
+// name: string
+//    - The name of the icon, which can include a library prefix (e.g., "devicon:javascript").
+//    - Options include:
+//      - devicon: for Devicons
+//      - fontawesome: for FontAwesome icons
+//      - material: for Material Icons
+//      - grommet: for Grommet Icons
+//      - pixelart: for Pixelart Icons
+//      - No prefix for Simple Icons or other libraries
+
+// isSelected: boolean
+//    - Optional. If true, applies a selected style to the icon.
+
+// onChange: function
+//    - Optional. Callback function for when the icon is clicked or selected.
+
+// onRemove: function
+//    - Optional. Callback function for when the icon is removed.
+
+// onClick: function
+//    - Optional. Callback function for when the icon is clicked.
+
+// className: string
+//    - Optional. Additional CSS classes to apply to the icon container.
+
+// style: object
+//    - Optional. Inline styles to apply to the icon container.
+
+// size: string
+//    - Optional. Size of the icon, can be 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', or '5xl'.
+//    - Defaults to 'base'.
+
+// useNativeColors: boolean
+//    - Optional. If true, uses the icon's native colors instead of the style color.
+//    - Defaults to false, meaning it will use the color defined in the style prop or the className.

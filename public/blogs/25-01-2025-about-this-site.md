@@ -7,6 +7,8 @@ description: A technical overview of my website, the stack I used, and what you 
 tags: tech stack, website 
 icons: vine-leaf:grommet, monstera-leaf:grommet, linden-leaf:grommet, oak-leaf:grommet, maple-leaf:grommet, ginkgo-leaf:grommet, falling-leaf:grommet, chestnut-leaf:grommet, solid-leaf:grommet, zigzag-leaf:grommet, leaf-skeleton:grommet, leaf-swirl:grommet, flamed-leaf:grommet, curled-leaf:grommet
 image: /images/Rubens Portfolio.png
+hidden: false
+
 ---
 
 # About This Site

@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import BlogPage from './BlogPage'
 import { Post } from '../Types'
 import { getBlogPost } from './BlogParser'
+import NotFound from '../Common/NotFound'
+import Spinner from '../Common/Spinner'
 
 interface BlogState {
   error: string | null;
@@ -37,7 +39,13 @@ const BlogPost = () => {
         }
 
         const text = await response.text();
-        const post = getBlogPost(text);
+        const parsedPost = getBlogPost(text);
+
+        if (!parsedPost) {
+          throw new Error('Failed to parse blog post');
+        }
+
+        const post: Post = { ...parsedPost, slug: slug! };
 
         setState({ 
           error: null,
@@ -55,12 +63,14 @@ const BlogPost = () => {
     if (slug) loadBlog();
   }, [slug]);
 
-  if (state.error) {
-    return <div className="text-red-600 dark:text-red-400 p-8 text-center">{state.error}</div>;
+  if (state.isLoading) {
+    return (
+          <Spinner />
+    );
   }
 
-  if (state.isLoading) {
-    return <div className="animate-pulse p-8 text-center">Loading...</div>;
+  if (state.error) {
+    return <NotFound />;
   }
 
   return state.post ? <BlogPage post={state.post} /> : null;

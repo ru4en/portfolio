@@ -2,13 +2,11 @@ import { useEffect, useState } from 'react';
 
 import TerminalPopup from './Term';
 import Typewriter from '../Common/Typewriter';
-import data from '../../../public/data.json';
 import Socials from '../Common/Socials';
+import data from '../../../public/data.json';
 
 const Welcome = () => {
-  const fullText = `Hello! I am Ruben,\n
-  full-time engineer by day, freelance web developer by passion.\n
-  Welcome to my website!`;
+  const fullText = data.site.welcome;
 
   const [cursorGlowPosition, setCursorGlowPosition] = useState({ x: 0, y: 0 });
 

@@ -5,10 +5,10 @@ import TagComponent from '../Common/Tag';
 import { ChevronUp, ChevronLeft } from 'lucide-react';
 import Background from '../Common/Background';
 import { copyToClipboard } from '../Common/Clipboard';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import ImageWrapper from '../Common/ImageWrapper';
 
-const BUTTON_STYLES = "p-2 bg-gray-400 hover:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-500 transition-all duration-200";
+const BUTTON_STYLES = "p-2 bg-gray-400 hover:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-500 dark:focus:ring-cyan-500 transition-all duration-200 text-white shadow-lg hover:shadow-xl flex items-center justify-center";
 
 const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
   const [readingProgress, setReadingProgress] = useState(0);
@@ -70,22 +70,20 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
           parent.replaceChild(wrapper, img);
           const imageElement = img as HTMLImageElement;
           const ImageComponent = <ImageWrapper src={imageElement.src} alt={imageElement.alt} />;
-          ReactDOM.render(ImageComponent, wrapper);
+          const root = createRoot(wrapper);
+          root.render(ImageComponent);
         }
       });
     }
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white ">
     <Background iconNames={post.icons || []} />
-      {/* Progress bar */}
-      <div className="fixed top-0 left-0 right-0 h-1.5 bg-gray-200 dark:bg-gray-800 z-50">
-        <div
-          className="h-1.5 bg-gradient-to-r from-green-400 via-cyan-400 to-blue-400 backdrop-blur-lg"
-          style={{ width: `${readingProgress}%`, transition: 'width 0.2s ease' }}
-        />
-      </div>
+      <div className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 to-cyan-400 dark:from-green-600 dark:to-cyan-600 transition-all duration-300
+        z-50"
+        style={{ width: `${readingProgress}%` }}
+      ></div>
 
       <div className="p-6 md:p-12 lg:p-20 max-w-4xl mx-auto">
         {/* Hero Section */}
@@ -118,7 +116,41 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
                 <span className="bg-white/40 px-4 py-2 rounded-full backdrop-blur-sm hover:bg-white/60 transition-colors duration-200 dark:bg-white/20 dark:hover:bg-white/40">
                   {readingTime} min read
                 </span>
+
               </div>
+
+              <div className="mt-6 flex justify-center items-center gap-4"> 
+                <button
+                  onClick={() => copyToClipboard(window.location.href)}
+                  className={`${BUTTON_STYLES} flex items-center gap-2 p-3 cursor-copy`}
+                  aria-label="Copy blog URL"
+                >
+                  <span className="fas fa-link"></span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    const blob = new Blob([post.content], { type: 'text/markdown' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${post.title.replace(/\s+/g, '_').toLowerCase()}-${new Date(post.date).toISOString().split('T')[0]}.md`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                  }}
+                  className={`${BUTTON_STYLES} flex items-center gap-2 p-3`}
+                  aria-label="Download blog post"
+                >
+                  <span className="fas fa-download"></span>
+                </button>
+              </div>
+              {post.description && (
+                <p className="mt-6 text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+                  {post.description}
+                </p>
+              )}
             </div>
           </div>
         </div>

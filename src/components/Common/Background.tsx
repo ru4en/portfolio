@@ -35,12 +35,7 @@ const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, style = 'GRI
       style={{ opacity: isMounted ? 1 : 0 }}
     >
       <div
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(45deg, transparent 25%, rgba(200, 200, 200, 0.1) 50%, transparent 75%)',
-          mixBlendMode: 'overlay',
-          pointerEvents: 'none',
-        }}
+
       />
       <div className={`${StyleOptions[style]} animate-spin-slow`}>
         {icons.map((iconName, index) => (
@@ -65,3 +60,22 @@ const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, style = 'GRI
 };
 
 export default Background;
+
+
+// USEAGE:
+
+// <Background
+//   iconNames={['circle-exclamation', 'bug', 'beer-mug-empty:']}
+//   style="CLUTTERED"
+//   rotate="RANDOM"
+//   useNativeColors={true}
+//   size="5xl"
+// />
+
+// <Background />
+// iconNames: Array of icon names to display in the background. :. see SuperIcons documentation for valid names.
+// style: Optional style for the background, defaults to 'GRID'. Can be 'GRID' or 'CLUTTERED'.
+// rotate: Optional rotation for the icons, can be a number or 'RANDOM' for random rotation.
+// useNativeColors: Optional boolean to use native colors for icons, defaults to true.
+// size: Optional size for the icons, defaults to '5xl'.
+// isMounted: Internal state to control the opacity transition of the background.

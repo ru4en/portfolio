@@ -1,20 +1,30 @@
 {
   "site": {
-    "title": "Rubens Portfolio",
+    "welcome": "Hello! I am Ruben,\n full-time engineer by day, freelance web developer by passion.\n",
+    "title": "Ruben Lopes' Portfolio",
+    "job": "Software Engineer & DevOps Specialist",
     "description": "This is my professional portfolio, showcasing my work, projects, and experiences in software engineering, DevOps, and cybersecurity.",
     "author": "Ruben Lopes",
-    "image": "logo-small.png",
-    "keywords": [
-      "portfolio",
-      "web development",
-      "react",
-      "python",
-      "aws",
-      "devops",
-      "ruben lopes",
-      "cybersecurity",
-      "automation",
-      "software engineering"
+    "alerts": [
+      {
+        "title": "Cookie Consent",
+        "message": "This site uses cookies to enhance your browsing experience. By continuing to use this site, you agree to our use of cookies.",
+        "link": "/privacy-policy",
+        "type": "default",
+        "position": "bottom-center"
+      },
+      {
+        "title": "New Blog Post",
+        "message": "Check out my latest blog post on DevOps best practices!",
+        "link": "/#/blog/",
+        "type": "info"
+      },
+      {
+        "title": "Site Update",
+        "message": "The site has been updated with new projects and blog posts.",
+        "link": "/",
+        "type": "success"
+      }
     ]
   },
   "socials": [
