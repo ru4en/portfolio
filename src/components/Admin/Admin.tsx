@@ -310,7 +310,8 @@ const Admin = () => {
                                 }}
                                 className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl mt-4"
                             >
-                                Save
+                                <span className="fas fa-download mr-2"></span>
+                                Download JSON
                             </button>
                         </div>
                     </>

@@ -1,9 +1,16 @@
 export interface SiteInfo {
+    welcome: string;
     title: string;
+    job: string;
     description: string;
     author: string;
-    image: string;
-    keywords: string[];
+    alerts: Array<{
+        title: string;
+        message: string;
+        link: string;
+        type: string;
+        position: string;
+    }>;
 }
 
 export interface SocialLink {
