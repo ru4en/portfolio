@@ -1,7 +1,7 @@
 import React from 'react';
 import SuperIcon from './SuperIcons';
 
-const TagComponent: React.FC<{
+const Tag: React.FC<{
   tag: string;
   isSelected?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -53,4 +53,4 @@ const TagComponent: React.FC<{
   );
 };
 
-export default TagComponent;
+export default Tag;

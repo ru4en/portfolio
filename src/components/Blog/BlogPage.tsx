@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import { Post } from '../Types';
-import TagComponent from '../Common/Tag';
+import Tag from '../Common/Tag';
 import { ChevronUp, ChevronLeft } from 'lucide-react';
 import Background from '../Common/Background';
 import { copyToClipboard } from '../Common/Clipboard';
@@ -163,7 +163,7 @@ const BlogPage: React.FC<{ post: Post }> = ({ post }) => {
           ">
             <div className="flex flex-wrap gap-3 mb-8">
               {post.tags?.map((tag) => (
-                <TagComponent key={tag} tag={tag} hideIcon={true} />
+                <Tag key={tag} tag={tag} hideIcon={true} />
               ))}
             </div>
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import data from '../../../public/data.json';
 import { Experience } from '../Types';
-import TagComponent from '../Common/Tag';
+import Tag from '../Common/Tag';
 
 const ExperienceCard = ({ experience }: { experience: Experience }) => {
     return (
@@ -38,7 +38,7 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
                 </p>
                 <div className="flex flex-wrap gap-2">
                     {experience.technologies && experience.technologies.map((tech, index) => (
-                        <TagComponent key={index} tag={tech} />
+                        <Tag key={index} tag={tech} />
                     ))}
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 
@@ -93,7 +93,7 @@ const ExperienceSection = () => {
 
             <div className="flex flex-wrap justify-center gap-2 mb-8">
                 {uniqueTechnologies.map((tech: string, techIndex: number) => (
-                    <TagComponent 
+                    <Tag 
                         key={techIndex} 
                         tag={tech} 
                         onClick={() => setSelectedTech(tech === selectedTech ? null : tech)}

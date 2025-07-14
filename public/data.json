@@ -13,24 +13,12 @@
         "type": "default",
         "position": "bottom-center",
         "required_consent": true
-      },
-      {
-        "title": "New Blog Post",
-        "message": "Check out my latest blog post on DevOps best practices!",
-        "type": "info"
-      },
-      {
-        "title": "Site Update",
-        "message": "The site has been updated with new projects and blog posts.",
-        "link": "/",
-        "type": "success"
       }
     ]
   },
   "socials": [
     { "name": "GitHub", "url": "https://github.com/ru4en/" },
-    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ru4en" },
-    { "name": "University:python:fa", "url": "https://reading.ac.uk" }
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ru4en" }
   ],
   "about": {
     "role": "DevOps & Software Engineer",

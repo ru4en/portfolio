@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Project } from '../Types';
-import TagComponent from '../Common/Tag';
+import Tag from '../Common/Tag';
 
 const ProjectEditor: React.FC<{
     project: Project;
@@ -120,7 +120,7 @@ const ProjectEditor: React.FC<{
                     <label htmlFor={`tags`} className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Tags</label>
                     <div className="flex p-2 space-x-2 flex-wrap gap-x-1 gap-y-2 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700">
                         {project.tags.map((tag: string, tagIndex: number) => (
-                            <TagComponent 
+                            <Tag 
                                 key={tagIndex} 
                                 tag={tag}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleTagChange(tagIndex, e.target.value)} 
