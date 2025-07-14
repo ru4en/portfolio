@@ -13,6 +13,8 @@ const TerminalPopup = () => {
   const [isTerminalVisible, setIsTerminalVisible] = useState(true);
   const [position, setPosition] = useState({ x: 0, y: 200 });
   const textContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const termOutRef = useRef<HTMLDivElement>(null);
   const fullText = `
   This is an interactive terminal.\n
   Type 'help' for a list of available commands.
@@ -120,6 +122,13 @@ const TerminalPopup = () => {
     setText('');
   };
 
+  const handleTerminalClick = () => {
+    if (inputRef.current && termOutRef.current) {
+      inputRef.current.focus();
+      termOutRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  };
+
   return (
     <div className="absolute inset-0 flex items-center justify-center">
       <div
@@ -135,18 +144,19 @@ const TerminalPopup = () => {
       </div>
       <Draggable
         handle=".terminal-header"
-        disabled={!isTerminalVisible || isMaximized}
+        // disable if the terminal is maximized or phone view
+        disabled={!isTerminalVisible || isMaximized || window.innerWidth <= 768}
         position={isMaximized ? { x: 0, y: 0 } : position}
         onStop={(_, data) => setPosition({ x: data.x, y: data.y })}
         enableUserSelectHack={false}
         bounds="parent"
       >
-        <div className={`relative group rounded-xl shadow-lg mb-3 backdrop-blur-md fade-in duration-75 z-20 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`} id="terminal-popup">
+        <div className={`relative group rounded-xl shadow-lg backdrop-blur-md fade-in duration-75 z-20 ${isTerminalVisible ? 'opacity-100' : 'opacity-0'}`} id="terminal-popup">
           <div
-            className="absolute inset-0 rounded-xl bg-gradient-to-tl from-cyan-500 via-green-500 to-blue-800 transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover"
+            className="absolute inset-0 rounded-xl bg-gradient-to-tl pb-12 from-cyan-500 via-green-500 to-blue-800 transition-opacity duration-700 opacity-0 group-hover:opacity-100 group-hover:blur-2xl opacity-10:hover"
             id="terminal-popup-bg-shade"
           ></div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg backdrop-blur-lg opacity-90 border border-gray-200 dark:border-gray-700" id="terminal-popup1">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg backdrop-blur-lg opacity-90 border border-gray-200 dark:border-gray-700" id="terminal-popup1" onClick={handleTerminalClick}>
             <div className="flex items-center justify-between space-x-4 p-2 cursor-move">
               <div className="flex gap-2">
                 <div
@@ -172,10 +182,9 @@ const TerminalPopup = () => {
               className="space-y-2 overflow-y-auto relative text-green-600 dark:text-green-500 cursor-text bg-gray-100 dark:bg-gray-900 rounded-lg text-sm md:text-md"
               style={{ height: `${height - 80}px` }}
               id="terminal-popup-body"
-              
-
             >
-              <pre className="whitespace-pre-wrap break-words p-2 text-sm md:text-md" style={{ fontFamily: 'monospace', width: `${width - 40}px`, backgroundColor: 'transparent' }}>
+              <pre className="whitespace-pre-wrap break-words p-2 text-sm md:text-md" style={{ fontFamily: 'monospace', width: `${width - 40}px`, backgroundColor: 'transparent' }}
+              ref={termOutRef}>
                 {text}
               </pre>
               <div className="flex items-center space-x-2 relative p-2">
@@ -187,6 +196,7 @@ const TerminalPopup = () => {
                   <span className="dark:text-white text-lg pl-2 pr-1">{"►"}</span>
                 </p>
                 <input
+                  ref={inputRef}
                   type="text"
                   value={userInput}
                   onChange={handleInputChange}

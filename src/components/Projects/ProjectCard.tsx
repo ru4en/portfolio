@@ -1,49 +1,102 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Project } from '../Types';
 import Tag from '../Common/Tag';
 import './ProjectCard.css';
+import { isInCenter } from './isInCenter';
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const [updateTrigger, setUpdateTrigger] = useState(0); // State to force updates
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkCenter = () => {
+      const projects = document.getElementById('projects');
+      if (cardRef.current && projects) {
+        const selected = isInCenter(cardRef.current, projects);
+        setIsSelected(selected);
+
+        // Trigger a re-render if the selection state changes
+        setUpdateTrigger((prev) => prev + 1);
+      }
+    };
+
+    checkCenter();
+    window.addEventListener('scroll', checkCenter, { passive: true });
+    window.addEventListener('resize', checkCenter);
+
+    return () => {
+      window.removeEventListener('scroll', checkCenter);
+      window.removeEventListener('resize', checkCenter);
+    };
+  }, [project, updateTrigger]);
 
   const handleFlip = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsFlipped(!isFlipped);
     setIsFullscreen(!isFullscreen);
-    for (let i = 0; i < document.body.getElementsByClassName('controller').length; i++) {
-      document.body.getElementsByClassName('controller')[i].classList.toggle('hidden');
-    }
+
+    const controllers = document.querySelectorAll('.controller');
+    controllers.forEach((controller) => controller.classList.toggle('hidden'));
+
     const projects = document.getElementById('projects');
     if (projects) {
       projects.classList.toggle('overflow-x-hidden');
     }
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (!isSelected) return; // Only allow click if selected
+    e.stopPropagation();
+
+    if (isFullscreen && isFlipped) {
+      setIsFlipped(false);
+      setIsFullscreen(false);
+
+      const controllers = document.querySelectorAll('.controller');
+      controllers.forEach((controller) => controller.classList.toggle('hidden'));
+
+      const projects = document.getElementById('projects');
+      if (projects) {
+        projects.classList.toggle('overflow-x-hidden');
+      }
+    } else {
+      handleFlip(e);
+    }
+  };
+
   return (
     <div
+      ref={cardRef}
       className={`
         relative group
-        ${isFullscreen ? 'inset-0 z-5 flex items-center justify-center ' : ''}
+        ${isFullscreen ? 'inset-0 z-5 flex items-center justify-center' : ''}
       `}
     >
       <div
-        onClick={handleFlip}
-        className={` 
-         ring-2 backdrop-blur-lg overflow-hidden transition-all bg-opacity-10
-          duration-700 ease-in-out transform-gpu
-          preserve-3d cursor-pointer shadow-xl hover:ring-4 hover:top-4  rounded-xl ring-green-500
+        onClick={handleClick}
+        className={`
+          overflow-hidden
+          duration-1000 transition-all
+          ease-in-out md:p-10
+          preserve-3d shadow-xl rounded-xl ring-green-500
+
           ${isFlipped ? 'flipped' : ''}
-          ${isFullscreen ? 'w-[90vw] h-[80vh] sm:w-[80vw] sm:h-[70vh] lg:w-[70vw] lg:h-[60vh] '
+          ${isFullscreen ? 'w-[90vw] h-[80vh] sm:w-[80vw] sm:h-[70vh] lg:w-[70vw] lg:h-[60vh]'
             : 'w-[250px] h-[300px] sm:w-[300px] lg:w-[350px]'}
+          ${!isFullscreen && isFlipped ? 'cursor-not-allowed' : ''}
+          ${isSelected ? 'cursor-pointer' : 'cursor-not-allowed opacity-60'}
         `}
       >
         {/* Front */}
         {!isFlipped && (
           <div
             className={`
-                absolute inset-0 backface-hidden rounded-xl  p-4 bg-opacity-10
-              bg-gradient-to-br bg-white dark:bg-gray-800
+                absolute inset-0 backface-hidden rounded-xl p-4 bg-opacity-10
+              bg-gradient-to-br from-green-600/30 to-cyan-600/20 overflow-hidden
+              backdrop-blur-lg border border-white/20 
             `}
           >
             <img
@@ -62,32 +115,34 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <div
             className={`
               opacity-0
-              absolute inset-0 backface-hidden rounded-xl
-              backdrop-blur-xl backdrop-saturate-150
-              text-white flipped w-full h-full
-              overflow-scroll pt-12 pb-4 px-4
+              text-white flipped overflow-y-scroll overflow-x-hidden
+               inset-0 backface-hidden rounded-xl pt-12 pb-4 px-9
               duration-300 ease-in-out transition-all delay-200
-              border border-white/20
+              border border-white/20 w-full h-full backdrop-blur-lg 
+              bg-gradient-to-br from-green-600/30 to-cyan-600/20
             `}
           >
-            <div className="flex flex-col max-h-[200px] max-w-[300px] p-4 gap-4">
-              <div className="bg-gradient-to-br from-green-600/90 via-green-500/90 to-cyan-600/90
-              absolute -inset-0 rounded-xl backdrop-blur-lg opacity-20 z-[-1]
-              ">
-                  </div>
-                <img
-                    src={project.image || './placeholder.png'}
-                 alt={project.title} className="w-full h-48 object-cover rounded-md mt-4 shadow-md transition duration-500 ease-in-out
-                 hover:scale-105 hover:shadow-lg"></img>
+            <div className="flex flex-col p-4 gap-4">
+              <img
+                src={project.image || './placeholder.png'}
+                alt={project.title}
+                className="m-auto h-48 rounded-md mt-4 shadow-md transition duration-500 ease-in-out
+                hover:scale-105 hover:shadow-lg"
+              />
             </div>
             <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-            <p className="flex-grow text-sm">{project.description}</p>
+            <p className="flex-grow text-white
+                          duration-300 ease-in-out transition-all delay-500
+                          opacity-0 animate-fade-in
+            ">
+              {project.description}
+            </p>
 
-            <div className="mt-4 flex space-x-8">
+            <div className="flex mt-4 gap-2">
               {project.url && (
                 <a
                   href={project.url}
-                  className="flex-1 dark:ring-2 max-w-[200px] bg-white/10 rounded-md p-2 text-center backdrop-blur-sm transition-all shadow-md hover:scale-105  dark:ring-emerald-800 "
+                  className="rounded-lg px-4 py-2 bg-green-500 hover:bg-green-600 text-white transition-colors duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -97,7 +152,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               {project.repo && (
                 <a
                   href={project.repo}
-                  className="flex-1 dark:ring-2 max-w-[200px] bg-white/10 rounded-md p-2 text-center backdrop-blur-sm transition-all shadow-md hover:scale-105 dark:ring-emerald-800 "
+                  className="rounded-lg px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white transition-colors duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -7,11 +7,11 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
     return (
         <div className="group relative flex w-full items-center space-x-4 sm:space-x-6 lg:space-x-8 
             backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 
-            rounded-xl p-6 
+            rounded-xl pt-6 
             shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
             hover:shadow-[0_20px_50px_rgba(0,153,102,0.15)] dark:hover:shadow-[0_20px_50px_rgba(0,153,102,0.2)]
             transform perspective-1000 hover:scale-102 hover:-translate-y-2
-            transition-all duration-500 ease-out animate-float
+            transition-all duration-500 ease-out animate-float p-2
             border border-gray-200/50 dark:border-gray-700/50 hover:ring-4 ring-emerald-500/50 dark:ring-emerald-400/50
             hover:border-emerald-500/50 dark:hover:border-emerald-400/50
             flex-col md:flex-row">
@@ -26,7 +26,7 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
             <div className="flex flex-col space-y-4">
                 <h3 className="text-xl font-bold bg-clip-text text-transparent 
                     bg-gradient-to-r from-emerald-600 to-cyan-500
-                    group-hover:animate-text-shine">{experience.company}</h3>
+                    group-hover:animate-text-shine p-2">{experience.company}</h3>
                 <h2 className="text-lg sm:text-xl font-semibold 
                     text-gray-800 dark:text-white
                     transform transition-all duration-300
@@ -76,7 +76,7 @@ const ExperienceSection = () => {
 
     return (
         <div className="
-            relative flex flex-col items-center justify-center w-full min-h-screen p-4 bg-emerald-50
+            relative flex flex-col items-center justify-center w-full min-h-screen pb-5 bg-emerald-50
             dark:bg-gray-950 text-gray-800 dark:text-gray-200
             transition-colors duration-300">
 

@@ -27,8 +27,19 @@ const SuperIcons: React.FC<SuperIconsProps> = ({
   onClick,
   useNativeColors = false,  // Add this line
 }) => {
-  // Extract the icon name and library, defaulting to devicon if no library specified
-  const [rawIconName, providedLibrary = 'devicon'] = name.split(':');
+  let rawIconName = '';
+  let providedLibrary = 'devicon'; // Default library
+
+  console.log('Socials component rendered with name:', name);
+  const nameParts = name.split(':');
+
+  // Dynamically handle name:iconname:provider and iconname:provider formats
+  if (nameParts.length > 1) {
+    rawIconName = nameParts[nameParts.length - 2]; // Second-to-last part is the icon name
+    providedLibrary = nameParts[nameParts.length - 1]; // Last part is the library
+  } else {
+    rawIconName = name; // Use the entire name as the icon name
+  }
  
   // Clean and normalize the icon name
   const normalizeIconName = (name: string): string => {

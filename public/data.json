@@ -29,7 +29,8 @@
   },
   "socials": [
     { "name": "GitHub", "url": "https://github.com/ru4en/" },
-    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ru4en" }
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/ru4en" },
+    { "name": "University:python:fa", "url": "https://reading.ac.uk" }
   ],
   "about": {
     "role": "DevOps & Software Engineer",

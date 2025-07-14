@@ -103,13 +103,13 @@ function App() {
         toast(<CustomToastContent alert={alert} />, {
           type: (alert.type as any) || 'info',
           position: (alert.position as any) || 'top-right',
-          autoClose: ((alert as any).autoClose !== undefined ? (alert as any).autoClose : false),
           hideProgressBar: false,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: 'light',
           closeOnClick: false,
+          autoClose: alert.required_consent ? false : 5000,
         });
       }
     });
@@ -127,7 +127,7 @@ function App() {
   return (
     <>
       <StyledToast
-        position="bottom-right"
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

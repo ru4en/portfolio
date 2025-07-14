@@ -62,7 +62,7 @@ const Background: React.FC<BackgroundProps> = ({ iconNames, rotate, layout = 'GR
             >
               <SuperIcons
                 name={iconData.name}
-                className={`opacity-50 dark:text-gray-200 transition-all duration-300 ease-in-out transform group-hover:opacity-100 ${iconData.shouldBlink ? 'animate-twinkle' : ''}`}
+                className={`opacity-50 dark:text-gray-200 transition-all duration-300 p-5 ease-in-out transform group-hover:opacity-100 ${iconData.shouldBlink ? 'animate-twinkle' : ''}`}
                 style={{
                   animationDelay: iconData.shouldBlink ? `${iconData.delay}s` : undefined
                 }}

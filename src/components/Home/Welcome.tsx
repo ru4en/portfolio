@@ -50,13 +50,14 @@ const Welcome = () => {
         ]} 
         layout="GRID"
         blink={true}
-        className="bg-gradient-to-t from-gray-700 to-gray-500 dark:from-gray-900 dark:to-black fixed min-h-screen
+        className="bg-gradient-to-t from-gray-700 to-gray-500 dark:from-gray-900 dark:to-black fixed
+        min-h-[100vh] items-center justify-center p-1 pb-5 max-w-full
         text-gray-100 dark:text-white"
       >
-        <div className="flex flex-col w-full h-full min-h-screen">
-          <div className="flex flex-col items-center text-center justify-center pt-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
+        <div className="flex flex-col w-full h-full min-h-[100vh]  relative">
+          <div className="flex flex-col items-center text-center justify-center p-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
             <div className="text-3xl md:text-6xl font-bold space-x-2 text-gray-100 drop-shadow-lg dark:text-green-400">
-              <h1 className="transition-transform duration-500 ease-in-out transform">
+              <h1 className="transition-transform duration-500 ease-in-out transform sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
                     <Typewriter fullText={fullText} />
               </h1>
             </div>
@@ -66,7 +67,7 @@ const Welcome = () => {
               ))}
             </div>
           </div>
-            <TerminalPopup />
+          <TerminalPopup />
         </div>
       </Background>
 

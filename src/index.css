@@ -158,3 +158,10 @@ body {
     padding: 20px;
     width: 300px;
     }
+
+
+    @media (max-width: 768px) {
+      .Toastify__toast-container {
+        padding: 15px !important;
+      }
+    }

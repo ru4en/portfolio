@@ -11,8 +11,13 @@ const TagComponent: React.FC<{
   hideIcon?: boolean;
 }> = ({ tag, isSelected, onChange, onRemove, onClick, className, hideIcon = false }) => {
   let name = tag;
+  let icon = '';
   if (tag.split(':').length > 1) {
     name = tag.split(':')[0];
+    // use the last 2 parts of the tag as the icon name
+    icon = tag.split(':').slice(-2).join(':');
+  } else {
+    icon = tag;
   }
 
   return (
@@ -20,7 +25,7 @@ const TagComponent: React.FC<{
     <span className={`rounded-full px-3 py-1 text-sm font-semibold flex items-center transition-all
        duration-200 hover:ring-2 ring-emerald-500/50 dark:ring-emerald-400/50
        ${className || 'bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-200  hover:bg-gray-100 dark:hover:bg-gray-600 hover:scale-105'}`}>
-      {!hideIcon && <SuperIcon name={tag} className="w-4 h-4 mr-1" />}
+      {!hideIcon && <SuperIcon name={icon} className="w-4 h-4 mr-1" />}
   {
     onChange ? (
       <input

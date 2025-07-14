@@ -5,7 +5,7 @@ import { Module } from '../Types';
 const Education = () => {
     const education = data.education;
     return (
-        <div className="relative flex flex-col items-center justify-center p-9 min-h-screen
+        <div className="relative flex flex-col items-center justify-center  min-h-screen
             bg-gradient-to-br from-white via-gray-50 to-white
             dark:from-black dark:via-gray-900 dark:to-black">
 
