@@ -25,9 +25,7 @@ const packageVersion = getPackageVersion();
 const gitCommit = safeExec('git rev-parse --short HEAD', 'no-commit');
 
 // Determine build mode (default to 'dev' if no valid argument is provided)
-const isDev = process.argv.includes('dev');
-const isBuild = process.argv.includes('build');
-const buildMode = isDev ? 'dev' : isBuild ? 'prod' : 'dev'; // Default to 'dev'
+const buildMode = process.env.VITE_MODE || 'dev';
 
 // Generate build version in the format: <package-version>-<git-commit>-<mode>
 const buildVersion = `${packageVersion}-${gitCommit}-${buildMode}`;

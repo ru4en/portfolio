@@ -1,14 +1,14 @@
 {
   "name": "www.rubenlopes.uk",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "https://www.rubenlopes.uk",
   "description": "Portfolio website of Ruben Lopes",
   "type": "module",
   "scripts": {
-    "predev": "node verner.js",
+    "predev": "VITE_MODE=dev node verner.js",
     "dev": "vite",
-    "prebuild": "node verner.js",
+    "prebuild": "VITE_MODE=prod node verner.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
