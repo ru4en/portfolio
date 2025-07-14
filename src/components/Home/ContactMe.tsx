@@ -66,7 +66,7 @@ const ContactMe: React.FC = () => {
       <div className="p-10 flex flex-col items-center justify-center
     bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-gray-100 to-gray-200 dark:from-transparent dark:to-gray-950
       text-gray-800 dark:text-white w-full">
-        <h2 className="text-2xl font-semibold m-10">{'</ Contact Me >'}</h2>
+        <h2 className="text-2xl font-semibold m-10">{'</Contact Me>'}</h2>
         
         <p className="text-center text-gray-500 dark:text-gray-400 mb-8">
           Have a question or want to work together? Feel free to send me a message!
