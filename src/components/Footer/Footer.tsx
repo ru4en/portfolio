@@ -62,8 +62,17 @@ const Footer: React.FC = () => {
             <Mail size={28} color="currentColor" />
           </a>
         </div>
-      </div>
-    </footer>
+        </div>
+<div className="mt-6 text-center text-gray-400 text-xs">
+  <p>
+    <strong>Build:</strong>{' '}
+    <span className="text-gray-300">
+      {import.meta.env.VITE_BUILD_VERSION}
+    </span>
+  </p>
+</div>
+</footer>
+
   );
 };
 
