@@ -71,13 +71,13 @@ const Welcome = () => {
       </Background>
 
       {/* Cursor glow dynamic position */}
-      {/* <div
+      <div
         className="cursor-glow"
         style={{
           left: `${cursorGlowPosition.x}px`,
           top: `${cursorGlowPosition.y}px`,
         }}
-      /> */}
+      />
     </>
   );
 };
