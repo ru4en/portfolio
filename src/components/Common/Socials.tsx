@@ -1,11 +1,6 @@
 import React from 'react';
 import SuperIcon from './SuperIcons';
 
-import {
-  faGithub, faLinkedin, faTwitter, faInstagram, faFacebook, faDiscord,
-  IconDefinition
-} from '@fortawesome/free-brands-svg-icons';  // Added more social icons
-
 const Socials: React.FC<{
   name: string;
   url: string;
