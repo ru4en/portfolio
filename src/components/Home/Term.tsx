@@ -14,7 +14,7 @@ const TerminalPopup = () => {
   const [position, setPosition] = useState({ x: 0, y: 200 });
   const textContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const termOutRef = useRef<HTMLDivElement>(null);
+  const termOutRef = useRef<HTMLPreElement>(null);
   const fullText = `
   This is an interactive terminal.\n
   Type 'help' for a list of available commands.
