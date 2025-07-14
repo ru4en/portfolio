@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import TerminalPopup from './Term';
 import Typewriter from '../Common/Typewriter';
@@ -50,7 +50,6 @@ const Welcome = () => {
         ]} 
         layout="GRID"
         blink={true}
-        size="5xl"
         className="bg-gradient-to-t from-gray-700 to-gray-500 dark:from-gray-900 dark:to-black fixed min-h-screen
         text-gray-100 dark:text-white"
       >
