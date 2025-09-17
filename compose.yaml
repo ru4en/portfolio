@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - CV_URL=cv.pdf
     ports:
       - "8080:80"
     volumes:

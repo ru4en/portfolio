@@ -18,9 +18,10 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
             <img
                 src={experience.image || 'https://rubenlopes.uk/placeholder_image.png'}
                 alt={experience.company}
-                className="object-cover object-center w-52 md:w-48 rounded-lg
-                    grayscale brightness-[1.15] contrast-125 transform
-                    dark:grayscale dark:brightness-[.75] dark:invert
+                className="object-cover object-center w-52 md:w-48 rounded-2xl
+                    brightness-[1.15] contrast-125 transform
+                    dark:grayscale-1 dark:brightness-[.75] dark:bg-white/20 dark:p-3
+                    group-hover:filter group-hover:brightness-[1.25] group-hover:contrast-150
                     transition-[filter,transform] duration-500 ease-out"
                 />
             <div className="flex flex-col space-y-4">
@@ -54,9 +55,9 @@ const ExperienceCard = ({ experience }: { experience: Experience }) => {
 const ExperienceSection = () => {
     const experience = (data?.experience || []).map((exp: any) => ({
         ...exp,
-        start: new Date(exp.start),
-        end: new Date(exp.end),
-    }));
+        start: new Date(exp.start || Date.now()),
+        end: (typeof exp.end === 'string' && exp.end.toLowerCase() === 'present') ? new Date() : new Date(exp.end || Date.now()),
+    })).sort((a: Experience, b: Experience) => new Date(b.start).getTime() - new Date(a.start).getTime());
     const [selectedTech, setSelectedTech] = useState<string | null>(null);
 
     const technologies = experience.reduce((acc: string[], exp: Experience) => {

@@ -26,7 +26,7 @@ const CVViewer = () => {
                 </div>
               )}
               <embed
-                src="/Ruben Lopes - CV-TX1124.pdf"
+                src={import.meta.env.VITE_CV_URL || '/cv.pdf'}
                 type="application/pdf"
                 width="100%"
                 height="100%"
@@ -37,7 +37,7 @@ const CVViewer = () => {
 
             <div className="mt-6 flex justify-center">
               <a
-                href="/Ruben Lopes - CV-TX1124.pdf"
+                href={import.meta.env.VITE_CV_URL || '/cv.pdf'}
                 download
                 className="group relative inline-flex items-center gap-2 px-6 py-3
                   bg-gradient-to-br from-blue-400 via-cyan-500 to-teal-500 

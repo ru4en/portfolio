@@ -30,7 +30,20 @@ clean:
 # CV
 
 cv:
-	cd cv && make
+	cd docs && \
+	pdflatex -output-directory ../dist -jobname RubenLopes-CV-TX$(DATE) cv.tex && \
+	cp ../dist/RubenLopes-CV-TX$(DATE).pdf ../public/cv.pdf && \
+	cd ..
+
+cl:
+	cd docs && \
+	read -p "Enter the company name: " company_name; \
+	read -p "Enter the position title: " position_title; \
+	read -p "Enter the industry: " industry; \
+	read -p "Enter YOUR phone number: " phone_number; \
+	pdflatex -output-directory ../dist -jobname RubenLopes-CL-TX$(DATE) \
+		"\\def\\recipientCompany{$$company_name} \\def\\jobPosition{$$position_title} \\def\\industry{$$industry} \\def\\phoneNumber{$$phone_number} \\input{cl.tex}" && \
+	cd ..
 
 cv-clean:
 	cd cv && make clean

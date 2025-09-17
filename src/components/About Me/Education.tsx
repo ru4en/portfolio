@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import data from '../../../public/data.json';
 import { Module } from '../Types';
+import SuperIcons from '../Common/SuperIcons';
 
 const Education = () => {
     const education = data.education;
@@ -18,16 +19,12 @@ const Education = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full  mx-auto px-4">
                 {education.map((edu, index) => (
-                    <div key={index} 
-                        className="group relative flex flex-col space-y-4 p-8
+                    <div key={index}
+                        className="group relative space-y-4 p-8
+                            flex flex-col items-center text-center
                             rounded-xl backdrop-blur-xl
                             bg-white/80 dark:bg-gray-800/80
-                            shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-                            dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)]
-                            hover:shadow-[0_20px_50px_rgba(0,153,102,0.15)]
-                            dark:hover:shadow-[0_20px_50px_rgba(0,153,102,0.2)]
-                            transform perspective-1000
-                            hover:scale-102 hover:-translate-y-2
+                            hover:scale-102 hover:-translate-y-2  
                             transition-all duration-500 ease-out
                             animate-float hover:ring-4 ring-emerald-500/50 dark:ring-emerald-400/50
                             border border-gray-200/50 dark:border-gray-700/50
@@ -40,7 +37,7 @@ const Education = () => {
                                 transform transition-all duration-500
                                 grayscale brightness-[0.15] contrast-125
                                 dark:grayscale dark:brightness-[0] dark:invert
-                                transition-[filter,transform] duration-500 ease-out"
+                                ease-out"
                         />
 
                         <div className="space-y-4">
@@ -71,8 +68,9 @@ const Education = () => {
                                 </span>
                             )}
 
-                            <p className="text-gray-600 dark:text-gray-400 
-                                transition-all duration-300
+                            <p className="
+                                transition-all max-h-40 overflow-y-auto hover:max-h-full
+                                bg-white/30 dark:bg-black/30 p-4 rounded-lg duration-900
                                 group-hover:text-gray-800 dark:group-hover:text-gray-200">
                                 {edu.description}
                             </p>
@@ -101,10 +99,7 @@ const ModuleSection = ({ modules }: { modules: Module[] }) => {
                     transition-all duration-300
                     font-semibold text-lg
                     flex items-center justify-between">
-                {isVisible ? 'Hide Modules' : 'Show Modules'}
-                <span className={`transform transition-transform duration-300 ${isVisible ? 'rotate-180' : ''}`}>
-                    ↓
-                </span>
+                {isVisible ?<span><SuperIcons name="chevron-up:fa" className="w-5 h-5" /> Hide Modules</span> : <span><SuperIcons name="chevron-down:fa" className="w-5 h-5" /> Show Modules</span>}
             </button>
 
             <div className={`grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4

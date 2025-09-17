@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import TerminalPopup from './Term';
-import Typewriter from '../Common/Typewriter';
+import { TypeAnimation } from 'react-type-animation';
 import Socials from '../Common/Socials';
 import data from '../../../public/data.json';
 import Background from '../Common/Background';
@@ -28,14 +28,13 @@ const Welcome = () => {
 
       <Background 
         iconNames={[
-          'bug:fa',
           'docker',
           'terminal:fa',
           'graduation-cap:fa',
           'graduation-cap:fa',
           'graduation-cap:fa',
-          'graduation-cap:fa',
-          'graduation-cap:fa',
+          'barclays',
+          'hp',
           'python',
           'python',
           'javascript',
@@ -57,8 +56,16 @@ const Welcome = () => {
         <div className="flex flex-col w-full h-full min-h-[100vh]  relative">
           <div className="flex flex-col items-center text-center justify-center p-20 px-5 sm:px-10 md:px-20 lg:px-40 xl:px-60">
             <div className="text-3xl md:text-6xl font-bold space-x-2 text-gray-100 drop-shadow-lg dark:text-green-400">
-              <h1 className="transition-transform duration-500 ease-in-out transform sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    <Typewriter fullText={fullText} />
+              <h1 className="transition-transform duration-500 ease-in-out transform sm:text-4xl md:text-5xl lg:text-5xl">
+                     <TypeAnimation
+                                sequence={[
+                                    `${fullText}`,
+                                    2000,
+                                ]}
+                                wrapper="span"
+                                speed={50}
+                                repeat={Infinity}
+                            />
               </h1>
             </div>
             <div className="flex pb-5 md:px-20 z-10">

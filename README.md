@@ -33,6 +33,28 @@ While this site may be a bit over-engineered for a personal portfolio, it has be
    ```
 4. Open your browser and navigate to `http://localhost:3000`.
 
+
+---
+## CV and Cover Letter Generation
+
+To generate the CV and cover letter, you need to have LaTeX installed on your machine. Once you have LaTeX set up, you can run the following command in the root directory of the project:
+
+```bash
+
+dnf install pdflatex
+
+```
+
+Then, you can use the Makefile to generate the CV and cover letter:
+
+```bash
+
+make cv # for CV generation
+make cl # for cover letter generation
+
+```
+
+
 ---
 
 ## License
