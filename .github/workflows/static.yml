@@ -57,7 +57,6 @@ jobs:
     name: Build CV PDF
     runs-on: ubuntu-latest
     needs: [tests]
-    # if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'docs/cv.tex') }}
     steps:
       - uses: actions/checkout@v4
       - name: Install LaTeX
@@ -73,6 +72,11 @@ jobs:
           mkdir -p public/cv
           pdflatex -interaction=nonstopmode -output-directory=public/cv docs/cv.tex
           pdflatex -interaction=nonstopmode -output-directory=public/cv docs/cv.tex
+      - name: Upload CV artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: public/cv/cv.pdf
 
   build-site:
     name: Build static site
@@ -86,10 +90,15 @@ jobs:
           cache: "npm"
       - run: npm ci --prefer-offline
       - run: npm run build
+      - name: Download CV artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cv-pdf
+          path: cv-temp
       - name: Include CV PDF in site artifact
         run: |
           mkdir -p dist
-          cp public/cv/cv.pdf dist/cv.pdf
+          cp cv-temp/cv.pdf dist/cv.pdf
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
@@ -99,6 +108,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: [build-site]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -111,33 +121,30 @@ jobs:
   notify:
     name: Send Discord Notification
     runs-on: ubuntu-latest
-    needs:
-      - lint-js
-      - lint-tex
-      - tests
-      - build-cv
-      - build-site
-      - deploy
-    if: always()
+    needs: [deploy]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     steps:
       - name: Post Discord message
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          STATUS="SUCCESS"
-          COLOR=5814783
-          if [[ "${{ needs.lint-js.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-          if [[ "${{ needs.lint-tex.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-          if [[ "${{ needs.tests.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-          if [[ "${{ needs.build-cv.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-          if [[ "${{ needs.build-site.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-          if [[ "${{ needs.deploy.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          if [[ "${{ needs.deploy.result }}" == "success" ]]; then
+            STATUS="SUCCESS"
+            COLOR=5814783
+          else
+            STATUS="FAILURE"
+            COLOR=16711680
+          fi
+          
           curl -H "Content-Type: application/json" \
             -X POST \
             -d "{
               \"username\": \"GitHub Actions\",
               \"embeds\": [{
-                \"title\": \"CI/CD Result: $STATUS\",
-                \"description\": \"Workflow: ${{ github.workflow }}\nRepo: ${{ github.repository }}\nCommit: ${{ github.sha }}\",
-                \"color\": $COLOR
+                \"title\": \"Deployment Result: $STATUS\",
+                \"description\": \"Workflow: ${{ github.workflow }}\\nRepo: ${{ github.repository }}\\nCommit: \`${{ github.sha }}\`\\nBranch: ${{ github.ref_name }}\",
+                \"color\": $COLOR,
+                \"url\": \"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"
               }]
             }" \
-            ${{ secrets.DISCORD_WEBHOOK }}
+            "$DISCORD_WEBHOOK"
