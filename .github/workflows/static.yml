@@ -16,22 +16,16 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  ###########################################################################
-  # LINT JOBS (PARALLEL)
-  ###########################################################################
-
   lint-js:
     name: Lint JavaScript
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
-
       - run: npm ci --prefer-offline
       - run: npm run lint || true
 
@@ -41,16 +35,10 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-
       - name: Install chktex
         run: sudo apt-get update && sudo apt-get install -y chktex
-
       - name: Run chktex
         run: chktex -q -v0 docs/cv.tex || true
-
-  ###########################################################################
-  # TESTS
-  ###########################################################################
 
   tests:
     name: Run tests
@@ -59,17 +47,11 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-
       - run: npm ci --prefer-offline
       - run: echo "=== PLACEHOLDER TESTS ==="
-
-  ###########################################################################
-  # BUILD CV
-  ###########################################################################
 
   build-cv:
     name: Build CV PDF
@@ -77,16 +59,7 @@ jobs:
     needs: [tests]
     steps:
       - uses: actions/checkout@v4
-
-      - name: Cache LaTeX
-        id: cache-latex
-        uses: actions/cache@v4
-        with:
-          path: /usr/share/texlive
-          key: texlive-${{ runner.os }}-${{ hashFiles('docs/cv.tex') }}
-
       - name: Install LaTeX
-        if: steps.cache-latex.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -94,53 +67,28 @@ jobs:
             texlive-fonts-recommended \
             texlive-latex-extra \
             texlive-fonts-extra
-
       - name: Build CV PDF
         run: |
-          mkdir -p dist/cv
-          pdflatex -interaction=nonstopmode -output-directory=dist/cv docs/cv.tex
-          pdflatex -interaction=nonstopmode -output-directory=dist/cv docs/cv.tex
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: cv-pdf
-          path: dist/cv
-
-  ###########################################################################
-  # BUILD SITE
-  ###########################################################################
+          mkdir -p public/cv
+          pdflatex -interaction=nonstopmode -output-directory=public/cv docs/cv.tex
+          pdflatex -interaction=nonstopmode -output-directory=public/cv docs/cv.tex
 
   build-site:
     name: Build static site
     runs-on: ubuntu-latest
-    needs: [tests]
+    needs: [tests, build-cv]
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
-
       - run: npm ci --prefer-offline
-
       - run: npm run build
-
-      - name: Download CV PDF artifact (if exists)
-        uses: actions/download-artifact@v4
-        continue-on-error: true
-        with:
-          name: cv-pdf
-          path: dist/cv
-
-      - name: Upload to GitHub Pages artifact
+      - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
-  ###########################################################################
-  # DEPLOY
-  ###########################################################################
 
   deploy:
     name: Deploy to GitHub Pages
@@ -151,14 +99,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/configure-pages@v5
-
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
-  ###########################################################################
-  # NOTIFY
-  ###########################################################################
 
   notify:
     name: Send Discord Notification
@@ -172,26 +115,24 @@ jobs:
       - deploy
     if: always()
     steps:
-    - name: Post Discord message
-      run: |
-        STATUS="SUCCESS"
-        COLOR=5814783
-    
-        if [[ "${{ needs.lint-js.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-        if [[ "${{ needs.lint-tex.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-        if [[ "${{ needs.tests.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-        if [[ "${{ needs.build-cv.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-        if [[ "${{ needs.build-site.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-        if [[ "${{ needs.deploy.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
-    
-        curl -H "Content-Type: application/json" \
-          -X POST \
-          -d "{
-            \"username\": \"GitHub Actions\",
-            \"embeds\": [{
-              \"title\": \"CI/CD Result: $STATUS\",
-              \"description\": \"Workflow: ${{ github.workflow }}\nRepo: ${{ github.repository }}\nCommit: ${{ github.sha }}\",
-              \"color\": $COLOR
-            }]
-          }" \
-          ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Post Discord message
+        run: |
+          STATUS="SUCCESS"
+          COLOR=5814783
+          if [[ "${{ needs.lint-js.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          if [[ "${{ needs.lint-tex.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          if [[ "${{ needs.tests.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          if [[ "${{ needs.build-cv.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          if [[ "${{ needs.build-site.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          if [[ "${{ needs.deploy.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "{
+              \"username\": \"GitHub Actions\",
+              \"embeds\": [{
+                \"title\": \"CI/CD Result: $STATUS\",
+                \"description\": \"Workflow: ${{ github.workflow }}\nRepo: ${{ github.repository }}\nCommit: ${{ github.sha }}\",
+                \"color\": $COLOR
+              }]
+            }" \
+            ${{ secrets.DISCORD_WEBHOOK }}
