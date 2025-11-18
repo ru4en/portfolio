@@ -176,25 +176,26 @@ jobs:
       - deploy
     if: always()
     steps:
-      - name: Post Discord message
-        run: |
-          STATUS="SUCCESS"
-          COLOR=5814783
-
-          for job in lint-js lint-tex tests build-cv build-site deploy; do
-            if [[ "${{ needs[$job].result }}" != "success" ]]; then
-              STATUS="FAILURE"; COLOR=16711680
-            fi
-          done
-
-          curl -H "Content-Type: application/json" \
-            -X POST \
-            -d "{
-              \"username\": \"GitHub Actions\",
-              \"embeds\": [{
-                \"title\": \"CI/CD Result: $STATUS\",
-                \"description\": \"Workflow: ${{ github.workflow }}\nRepo: ${{ github.repository }}\nCommit: ${{ github.sha }}\",
-                \"color\": $COLOR
-              }]
-            }" \
-            ${{ secrets.DISCORD_WEBHOOK }}
+    - name: Post Discord message
+      run: |
+        STATUS="SUCCESS"
+        COLOR=5814783
+    
+        if [[ "${{ needs.lint-js.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+        if [[ "${{ needs.lint-tex.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+        if [[ "${{ needs.tests.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+        if [[ "${{ needs.build-cv.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+        if [[ "${{ needs.build-site.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+        if [[ "${{ needs.deploy.result }}" != "success" ]]; then STATUS="FAILURE"; COLOR=16711680; fi
+    
+        curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"username\": \"GitHub Actions\",
+            \"embeds\": [{
+              \"title\": \"CI/CD Result: $STATUS\",
+              \"description\": \"Workflow: ${{ github.workflow }}\nRepo: ${{ github.repository }}\nCommit: ${{ github.sha }}\",
+              \"color\": $COLOR
+            }]
+          }" \
+          ${{ secrets.DISCORD_WEBHOOK }}
