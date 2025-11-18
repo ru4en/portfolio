@@ -16,43 +16,66 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  lint:
-    name: Lint JS + LaTeX
+  lint-js:
+    name: Lint JavaScript
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Node Lint ----------------------------------------------------------
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci --prefer-offline
 
       - name: Run ESLint
         run: npm run lint
 
-      # LaTeX Lint ---------------------------------------------------------
+  lint-tex:
+    name: Lint LaTeX
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Install chktex
         run: sudo apt-get update && sudo apt-get install -y chktex
 
-      - name: Run chktex on CV
+      - name: Run chktex
         run: chktex -q -v0 cv/cv.tex
+
+  tests:
+    name: Run tests (UI-ready)
+    runs-on: ubuntu-latest
+    needs: [lint-js, lint-tex]
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        run: npm ci --prefer-offline
+
+      - name: Run tests (TODO)
+        run: |
+          echo "=== PLACEHOLDER TESTS ==="
 
   build-cv:
     name: Build CV PDF
-    needs: [lint]
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'cv/')
     runs-on: ubuntu-latest
+    needs: [tests]
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.modified, 'cv/')
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Cache LaTeX packages
       - name: Cache LaTeX
         id: cache-latex
         uses: actions/cache@v4
@@ -70,7 +93,7 @@ jobs:
             texlive-latex-extra \
             texlive-fonts-extra
 
-      - name: Build CV PDF
+      - name: Build CV
         run: |
           mkdir -p dist/cv
           pdflatex -interaction=nonstopmode -output-directory=dist/cv cv/cv.tex
@@ -79,87 +102,75 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cv-pdf
-          path: 'dist/cv'
+          path: dist/cv
 
   build-site:
-    name: Build static website
-    needs: [lint]
+    name: Build static site
     runs-on: ubuntu-latest
+    needs: [tests]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm ci --prefer-offline
 
-      - name: Build the app
+      - name: Build site
         run: npm run build
 
-      # Download CV artifact if available (ignore errors)
-      - name: Download CV artifact
+      - name: Download CV PDF (optional)
         uses: actions/download-artifact@v4
         continue-on-error: true
         with:
           name: cv-pdf
-          path: './dist/cv'
+          path: dist/cv
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: dist
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: [build-site]
     runs-on: ubuntu-latest
+    needs: [build-site]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v5
 
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Notify Success (Discord)
-        if: success()
-        run: |
-          curl -H "Content-Type: application/json" \
-            -X POST \
-            -d "{
-              \"username\": \"GitHub Actions\",
-              \"embeds\": [{
-                \"title\": \"✅ Deployment Successful\",
-                \"description\": \"Your site was deployed.\",
-                \"color\": 5814783
-              }]
-            }" \
-            ${{ secrets.DISCORD_WEBHOOK }}
-
-  notify-on-failure:
-    name: Notify on Pipeline Failure
-    if: failure()
-    needs: [lint, build-cv, build-site, deploy]
+  notify:
+    name: Send Discord Notification
     runs-on: ubuntu-latest
+    needs: [lint-js, lint-tex, tests, build-cv, build-site, deploy]
+    if: always()      # ALWAYS RUN
     steps:
-      - name: Notify Failure (Discord)
+      - name: Post Discord message
         run: |
+          STATUS="SUCCESS"
+          COLOR=5814783
+          if [ "${{ job.status }}" != "success" ]; then
+            STATUS="FAILURE"
+            COLOR=16711680
+          fi
+
           curl -H "Content-Type: application/json" \
             -X POST \
             -d "{
               \"username\": \"GitHub Actions\",
               \"embeds\": [{
-                \"title\": \"❌ Build or Deployment Failed\",
-                \"description\": \"Check workflow logs.\",
-                \"color\": 16711680
+                \"title\": \"CI/CD Result: $STATUS\",
+                \"description\": \"Workflow: ${{ github.workflow }}\nRepo: ${{ github.repository }}\nCommit: ${{ github.sha }}\",
+                \"color\": $COLOR
               }]
             }" \
             ${{ secrets.DISCORD_WEBHOOK }}
