@@ -75,10 +75,6 @@ jobs:
     name: Build CV PDF
     runs-on: ubuntu-latest
     needs: [tests]
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      contains(toJson(github.event.head_commit.modified), 'docs/') ||
-      contains(toJson(github.event.pull_request.changed_files), 'docs/')
     steps:
       - uses: actions/checkout@v4
 
