@@ -57,6 +57,7 @@ jobs:
     name: Build CV PDF
     runs-on: ubuntu-latest
     needs: [tests]
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'docs/cv.tex') }}
     steps:
       - uses: actions/checkout@v4
       - name: Install LaTeX
