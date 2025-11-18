@@ -35,7 +35,7 @@ jobs:
 
   build-cv:
     # needs: [lint]
-    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'cv/cv.tex')
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.modified, 'docs/cv.tex')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -46,15 +46,14 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /usr/share/texlive
-          key: texlive-${{ runner.os }}-${{ hashFiles('cv/cv.tex') }}
+          key: texlive-${{ runner.os }}-${{ hashFiles('docs/cv.tex') }}
 
       - name: Install LaTeX
         if: steps.cache-latex.outputs.cache-hit != 'true'
         run: sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
 
       - name: Build CV
-        run: pdflatex -output-directory=dist cv/cv.tex
-
+        run: pdflatex -output-directory=dist docs/cv.tex
       - name: Upload CV artifact
         uses: actions/upload-artifact@v4
         with:
