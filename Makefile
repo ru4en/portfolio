@@ -41,7 +41,7 @@ cl:
 	read -p "Enter the position title: " position_title; \
 	read -p "Enter the industry: " industry; \
 	read -p "Enter YOUR phone number: " phone_number; \
-	pdflatex -output-directory ../dist -jobname RubenLopes-CL-TX$(DATE) \
+	pdflatex -output-directory ../dist -jobname "RubenLopes-CL-TX$(DATE)_$$(echo $$company_name | tr ' ' '_')" \
 		"\\def\\recipientCompany{$$company_name} \\def\\jobPosition{$$position_title} \\def\\industry{$$industry} \\def\\phoneNumber{$$phone_number} \\input{cl.tex}" && \
 	cd ..
 
